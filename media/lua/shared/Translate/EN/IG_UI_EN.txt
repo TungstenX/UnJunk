@@ -1,0 +1,4 @@
+IGUI_EN = {
+    IGUI_Skelenton_fail_1 = "Couldn't unlock. I can try again... ",
+    IGUI_Skelenton_fail_2 = "Skelenton key broke off in lock.",
+}

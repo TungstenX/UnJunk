@@ -1,0 +1,8 @@
+Sandbox_EN = {
+  Sandbox_UnJunk = "Un-Junk",
+  Sandbox_UnJunk_Bypass = "Bypass locks",
+  Sandbox_UnJunk_Bypass_tooltip = "Toggles whether Players can bypass door locks using a Skelenton key. ",
+  Sandbox_UnJunk_BypassAllDoors = "Bypass All Doors",
+  Sandbox_UnJunk_BypassAllDoors_tooltip = "Determines whether all door locks can be bypassed or not.<br>By default, reinforced doors (Prison doors, metal grid doors, etc.) cannot be bypassed up until Level 8 Nimble.",
+  Sandbox_UnJunk_BypassChanceMultiplier = "Bypass Chance Multiplier",
+}

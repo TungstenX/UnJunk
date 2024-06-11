@@ -1,0 +1,90 @@
+/*
+┌────────────────────────────────────────────────────────────────────────────────────────────────────┐                                                                                                     
+│ _/_/_/_/_/  _/    _/  _/      _/    _/_/_/    _/_/_/  _/_/_/_/_/  _/_/_/_/  _/      _/  _/      _/ │    
+│    _/      _/    _/  _/_/    _/  _/        _/            _/      _/        _/_/    _/    _/  _/    │   
+│   _/      _/    _/  _/  _/  _/  _/  _/_/    _/_/        _/      _/_/_/    _/  _/  _/      _/       │   
+│  _/      _/    _/  _/    _/_/  _/    _/        _/      _/      _/        _/    _/_/    _/  _/      │   
+│ _/        _/_/    _/      _/    _/_/_/  _/_/_/        _/      _/_/_/_/  _/      _/  _/      _/     │   
+├────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ © Copyright 2024                                                                                   │ 
+└────────────────────────────────────────────────────────────────────────────────────────────────────┘
+*/
+/*
+TODO: Need to make models, textures, etc
+Note: No recipe to make this yet
+*/
+module Base {
+  item Slingshot {
+    DisplayName                  = Slingshot, 
+    Icon                         = TBD, 
+    WeaponSprite                 = TBD, 
+    Type                         = Weapon, 
+    SubCategory                  = Firearm, 
+    Ranged                       = TRUE, 
+    IsAimedFirearm               = TRUE, 
+    WeaponReloadType             = handgun, 
+    FireMode                     = Single,
+    FireModePossibilities        = Single,
+    AttachmentType               = Holster, 
+    UseEndurance                 = FALSE, 
+    TwoHandWeapon                = TRUE, 
+    RequiresEquippedBothHands    = TRUE, 
+    haveChamber                  = FALSE,
+    RackAfterShoot               = FALSE,
+    /* ============ PERFORMANCE DATA ============= */   
+    MinRange                     = 0.61,
+    MaxRange                     = 14,
+    AimingPerkRangeModifier      = 1.4,
+    MinDamage                    = 1,
+    MaxDamage                    = 1.4,
+    CriticalChance               = 15,
+    CritDmgMultiplier            = 4, 
+    AimingPerkCritModifier       = 10, 
+    HitChance                    = 1000,
+    ToHitModifier                = 1.5, 
+    AimingPerkHitChanceModifier  = 13,
+    MinAngle                     = 0.915,
+    AimingPerkMinAngleModifier   = 0.05,
+    ConditionMax                 = 10, 
+    ConditionLowerChanceOneIn    = 60, 
+    MultipleHitConditionAffected = FALSE, 
+    JamGunChance                 = 0.0, 
+    AimingTime                   = 20,
+    ReloadTime                   = 25, 
+    SwingTime                    = 2,
+    MinimumSwingTime             = 0.5,
+    SwingAmountBeforeImpact      = 0, 
+    RecoilDelay                  = 50,
+    Weight                       = 1.7,
+    OAL                          = 0.6,
+    /* ============= AMMUNITION DATA ============= */   
+    AmmoType                     = Base.SlingshotAmmo, 
+    AmmoBox                      = SeedBag, 
+    MaxAmmo                      = 1, 
+    ProjectileCount              = 1, 
+    MaxHitCount                  = 1, 
+    ShareDamage                  = FALSE, 
+    SplatSize                    = 3, 
+    SplatNumber                  = 3, 
+    SplatBloodOnNoDeath          = TRUE, 
+    PushBackMod                  = 0, 
+    KnockBackOnNoDeath           = FALSE, 
+    KnockdownMod                 = 0, 
+    DoorDamage                   = 0,
+    /* ============ ANIMATION & SOUND ============ */   
+    RunAnim                      = Run_Weapon2, 
+    SwingAnim                    = Handgun, 
+    MetalValue                   = 0, 
+    SoundVolume                  = 1, 
+    SoundRadius                  = 3, 
+    SoundGain                    = 2, 
+    SwingSound                   = BatSwing,
+    BreakSound                   = BreakFishingLine,
+    RackSound                    = null,
+    ImpactSound                  = null,
+    /* =========== TRANSFORM VARIABLES =========== */
+    /* none*/
+    /* ============= ATTACHMENT DATA ============= */
+    /* none */
+  } 
+}

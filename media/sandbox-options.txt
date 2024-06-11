@@ -1,0 +1,25 @@
+VERSION = 1,
+
+option UnJunk.Bypass {
+    type = boolean,
+    default = true,
+    page = UnJunk,
+    translation = Sandbox_UnJunk_Bypass,
+}
+
+option UnJunk.BypassAllDoors {
+    type = boolean,
+    default = false,
+    page = UnJunk,
+    translation = Sandbox_UnJunk_BypassAllDoors,
+}
+
+option UnJunk.BypassChanceMultiplier
+{
+    type = double,
+    min = 0,
+    default = 1,
+    max = 5,
+    page = UnJunk,
+    translation = UnJunk_BypassChanceMultiplier,
+}

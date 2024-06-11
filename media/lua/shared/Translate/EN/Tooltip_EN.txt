@@ -1,0 +1,4 @@
+Tooltip_EN = {
+  Tooltip_item_use_skelenton_key = "Use skelenton key to unlock locks",
+  Tooltip_item_crucible = "Used for melting soft metals",
+}

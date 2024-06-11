@@ -1,0 +1,6 @@
+version=1
+id=UnJunk
+title=UnJunk
+description=Making junk items more useful
+tags=Build 41;Balance;Interface;Misc
+visibility=private

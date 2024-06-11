@@ -1,0 +1,8 @@
+Recipes_EN = {
+  Cut-Up-Wallet = "Cut up wallets",
+  Whittle-Skeleton-Key = "Whittle skeleton a Key",
+  Shredding-Map = "Shredding map into paper strips",
+  Make-Crucible = "Make a crucible",
+  Make-Slingshot-Ammo = "Cast slingshot ammo",
+  Make-Slingshot-Ammo-more = "Cast slingshot ammo",
+}

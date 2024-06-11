@@ -1,0 +1,8 @@
+README.md
+.gitignore
+.git
+copy.sh
+resources
+preview.png
+workshop.txt
+exclude-file.txt

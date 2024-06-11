@@ -1,0 +1,47 @@
+/*
+┌────────────────────────────────────────────────────────────────────────────────────────────────────┐                                                                                                     
+│ _/_/_/_/_/  _/    _/  _/      _/    _/_/_/    _/_/_/  _/_/_/_/_/  _/_/_/_/  _/      _/  _/      _/ │    
+│    _/      _/    _/  _/_/    _/  _/        _/            _/      _/        _/_/    _/    _/  _/    │   
+│   _/      _/    _/  _/  _/  _/  _/  _/_/    _/_/        _/      _/_/_/    _/  _/  _/      _/       │   
+│  _/      _/    _/  _/    _/_/  _/    _/        _/      _/      _/        _/    _/_/    _/  _/      │   
+│ _/        _/_/    _/      _/    _/_/_/  _/_/_/        _/      _/_/_/_/  _/      _/  _/      _/     │   
+├────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ © Copyright 2024                                                                                   │ 
+└────────────────────────────────────────────────────────────────────────────────────────────────────┘
+*/
+module Base {
+  item SkeletonKey 	{
+    DisplayCategory = Security,
+		Weight	=	0,
+		Type	=	Key,
+		DisplayName	=	Key,
+		Icon	=	Key1,
+		MetalValue = 5,
+		WorldStaticModel = Key,
+    Tooltip = Tooltip_item_use_skelenton_key,
+	}
+  
+  item Crucible {
+    DisplayCategory = Container,
+		Weight	=	2,
+		Type	=	Normal,
+		DisplayName	=	Crucible,
+		Icon	=	MugFulll,
+		Tooltip = Tooltip_item_crucible,
+		StaticModel = Mug,
+		WorldStaticModel = Mug,
+  }
+  
+  /* Options for SlingshotAmmo: 
+  Icons:            CottonBalls, MetalBits, TZ_PotatoSeeds, ChocolateCoveredCoffeeBeans,        Blackbeans,        
+  WorldStaticModel: CottonBalls,          , Seeds_Ground,   ChocolateCoveredCoffeeBeans_Ground, Blackbeans_Ground, 
+  */
+  item SlingshotAmmo {
+    DisplayCategory = Ammo,
+    Weight = 0.25,
+    Type = Normal,
+    DisplayName	= Slingshot pebble ammo,
+    Icon = TZ_PotatoSeeds,
+    WorldStaticModel = Seeds_Ground, 
+  }
+}
