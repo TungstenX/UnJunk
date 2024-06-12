@@ -5,4 +5,5 @@ copy.sh
 resources
 preview.png
 workshop.txt
+info.txt
 exclude-file.txt

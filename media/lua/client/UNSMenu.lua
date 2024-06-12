@@ -18,6 +18,10 @@
 UNSMenu = USNMenu or {}
 UNSMenu.DEBUG = getDebug() or false
 
+function UNSMenu.calcTime(player)
+  return 190 / player:getPerkLevel(Perks.Nimble)
+end
+
 function UNSMenu.Loop(worldobjects, player, lockedObject, actionType, toolID, toolContainer)
   if not player:hasEquipped(toolID) then
     UNSUtils.DelayFunction(function()
@@ -26,9 +30,9 @@ function UNSMenu.Loop(worldobjects, player, lockedObject, actionType, toolID, to
         else
           if(actionType == UnJunk.BYPASS_DOOR) then
             luautils.walkAdjWindowOrDoor(player, lockedObject:getSquare(), lockedObject)
-            ISTimedActionQueue.add(UNSTimedAction.bypassDoor(worldobjects, lockedObject, player, toolContainer, 190))
+            ISTimedActionQueue.add(UNSTimedAction.bypassDoor(worldobjects, lockedObject, player, toolContainer, UNSMenu.calcTime(player)))
           elseif(actionType == UnJunk.BYPASS_VEHICLE_DOOR) then
-            ISTimedActionQueue.add(UNSTimedAction.bypassVehicleDoor(worldobjects, lockedObject, player, toolContainer, 190))
+            ISTimedActionQueue.add(UNSTimedAction.bypassVehicleDoor(worldobjects, lockedObject, player, toolContainer, UNSMenu.calcTime(player)))
           end
         end
       end, 10, true)
@@ -48,7 +52,7 @@ function UNSMenu.bypassVehicleOpenLock(vehicle, vehiclePart, player, bypassKey)
   if not player:hasEquipped(toolID) then
     UNSMenu.Loop(vehicle,  player, vehiclePart, UnJunk.BYPASS_VEHICLE_DOOR, toolID, toolContainer)
   else
-    ISTimedActionQueue.add(UNSTimedAction.bypassVehicleDoor(vehicle, vehiclePart,  player, toolContainer, 190))
+    ISTimedActionQueue.add(UNSTimedAction.bypassVehicleDoor(vehicle, vehiclePart,  player, toolContainer, UNSMenu.calcTime(player)))
   end
 end
 
@@ -106,7 +110,7 @@ function USNMenu.bypassLock(worldobjects, lockedObject, player, bypassKey, doorT
     USNMenu.Loop(worldobjects, player, lockedObject, doorType, toolID, toolContainer)
   else
     luautils.walkAdjWindowOrDoor(player, lockedObject:getSquare(), lockedObject)
-    ISTimedActionQueue.add(timedFunc(worldobjects, lockedObject, player, toolContainer, 190))
+    ISTimedActionQueue.add(timedFunc(worldobjects, lockedObject, player, toolContainer, UNSMenu.calcTime(player)))
   end
 end
 
