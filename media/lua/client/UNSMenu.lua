@@ -19,24 +19,7 @@ UNSMenu = UNSMenu or {}
 UNSMenu.DEBUG = getDebug() or false
 
 function UNSMenu.calcTime(player)
-  return 190 / (player:getPerkLevel(Perks.Nimble) + 1)
-end
-
-function UNSMenu.Loop(worldobjects, player, lockedObject, actionType, toolID, toolContainer)
-  if not player:hasEquipped(toolID) then
-    UNSUtils.delayFunction(function()
-        if not player:hasEquipped(toolID) then
-          UNSMenu.Loop(worldobjects, player, lockedObject, actionType, toolID, toolContainer)
-        else
-          if(actionType == UnJunk.BYPASS_DOOR) then
-            luautils.walkAdjWindowOrDoor(player, lockedObject:getSquare(), lockedObject)
-            ISTimedActionQueue.add(UNSTimedAction.bypassDoor(lockedObject, player, toolContainer, UNSMenu.calcTime(player)))
-          elseif(actionType == UnJunk.BYPASS_VEHICLE_DOOR) then
-            ISTimedActionQueue.add(UNSTimedAction.bypassVehicleDoor(worldobjects, lockedObject, player, toolContainer, UNSMenu.calcTime(player)))
-          end
-        end
-      end, 10, true)
-  end
+  return 250 / (player:getPerkLevel(Perks.Nimble) + 1)
 end
 
 function UNSMenu.bypassVehicleOpenLock(vehicle, vehiclePart, player, bypassKey)
@@ -46,15 +29,10 @@ function UNSMenu.bypassVehicleOpenLock(vehicle, vehiclePart, player, bypassKey)
   ISInventoryPaneContextMenu.transferIfNeeded(player, bypassKey)
 
   if not player:hasEquipped(toolID) then
-    ISInventoryPaneContextMenu.equipWeapon(bypassKey, true, true,  player:getPlayerNum())
+    ISInventoryPaneContextMenu.equipWeapon(bypassKey, true, false,  player:getPlayerNum())
     toolContainer = bypassKey:getContainer()
   end
-
-  if not player:hasEquipped(toolID) then
-    UNSMenu.Loop(vehicle,  player, vehiclePart, UnJunk.BYPASS_VEHICLE_DOOR, toolID, toolContainer)
-  else
-    ISTimedActionQueue.add(UNSTimedAction.bypassVehicleDoor(vehicle, vehiclePart,  player, toolContainer, UNSMenu.calcTime(player)))
-  end
+  ISTimedActionQueue.add(UNSTimedAction.bypassVehicleDoor(vehicle, vehiclePart,  player, toolContainer, UNSMenu.calcTime(player)))
 end
 
 function UNSMenu.isNotBroken(item)
@@ -96,15 +74,8 @@ function UNSMenu.showRadialMenuOutside(player)
   end
 end
 
+
 function UNSMenu.bypassLock(worldobjects, lockedObject, player, bypassKey, doorType, vehicleDoor)
-  print("bypassLock: worldobjects   ", worldobjects)
-  print("bypassLock: lockedObject   ", lockedObject)
-  print("bypassLock: player         ", player)
-  print("bypassLock: bypassKey      ", bypassKey)
-  print("bypassLock: doorType       ", doorType)
-  print("bypassLock: vehicleDoor    ", vehicleDoor)
-  
-  
   if not bypassKey then return end
   local toolID = bypassKey:getFullType()
   local toolContainer = nil
@@ -112,22 +83,14 @@ function UNSMenu.bypassLock(worldobjects, lockedObject, player, bypassKey, doorT
   ISInventoryPaneContextMenu.transferIfNeeded(player, bypassKey)
 
   if not player:hasEquipped(toolID) then
-    ISInventoryPaneContextMenu.equipWeapon(bypassKey, true, true, player:getPlayerNum())
+    ISInventoryPaneContextMenu.equipWeapon(bypassKey, true, false, player:getPlayerNum())
     toolContainer = bypassKey:getContainer()
-    print("bypassLock: not player:hasEquipped(toolID)")
   end
-
-  if not player:hasEquipped(toolID) then
-    print("bypassLock: not player:hasEquipped(toolID)")
-    --UNSMenu.Loop(worldobjects, player, lockedObject, doorType, toolID, toolContainer)
+  luautils.walkAdjWindowOrDoor(player, lockedObject:getSquare(), lockedObject)
+  if vehicleDoor then       
+     ISTimedActionQueue.add(UNSTimedAction.bypassVehicleDoor(worldobjects, lockedObject, player, toolContainer, UNSMenu.calcTime(player)))
   else
-    luautils.walkAdjWindowOrDoor(player, lockedObject:getSquare(), lockedObject)
-    print("UNSMenu.bypassLock calcTime", tostring(UNSMenu.calcTime(player)))
-    if vehicleDoor then       
-       ISTimedActionQueue.add(UNSTimedAction.bypassVehicleDoor(worldobjects, lockedObject, player, toolContainer, UNSMenu.calcTime(player)))
-    else
-      ISTimedActionQueue.add(UNSTimedAction:bypassDoor(worldobjects, lockedObject, player, toolContainer, UNSMenu.calcTime(player)))
-    end    
+    ISTimedActionQueue.add(UNSTimedAction:bypassDoor(worldobjects, lockedObject, player, toolContainer, UNSMenu.calcTime(player)))
   end
 end
 
@@ -188,7 +151,7 @@ end
 
 Events.OnFillWorldObjectContextMenu.Add(UNSMenu.OnFillWorldObjectContextMenuBypass)
 
--- 
+-- Not working correctly, needs testing
 local OnShowRadialMenuOutside = ISVehicleMenu.showRadialMenuOutside
 
 ISVehicleMenu.showRadialMenuOutside = function(playerObj)

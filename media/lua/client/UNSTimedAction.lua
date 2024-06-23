@@ -167,8 +167,6 @@ function UNSTimedAction.bypass(self, character, container, time, typeTimeAction)
 --  o.fromHotbar = false
   o.typeTimeAction = typeTimeAction
   o.maxTime = time -- Time take by the action
-  print(o)
-  print(o.character)
   if o.character:isTimedActionInstant() then o.maxTime = 1 end
   if UNSTimedAction.DEBUG.trace then print("UNSTimedAction done") end
   return o
