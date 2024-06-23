@@ -19,6 +19,9 @@
 
 require "TimedActions/ISBaseTimedAction"
 UNSTimedAction = ISBaseTimedAction:derive("UNSTimedAction")
+UNSTimedAction.DEBUG = UNSTimedAction.DEBUG or {}
+UNSTimedAction.DEBUG.info = getDebug() or false
+UNSTimedAction.DEBUG.trace = true
 
 UNSTimedAction.isValid = function(self)
   return true
@@ -26,34 +29,18 @@ end
 
 -- TODO: Animations and Util functions
 UNSTimedAction.start = function(self)
-  if self.typeTimeAction == UnJunk.BYPASS_DOOR then
-    self:setActionAnim("RemoveBarricade") -- TODO
-    self:setAnimVariable("RemoveBarricade", "CrowbarMid") -- TODO
-    if self.character:isTimedActionInstant() then return end
-
-    UNSUtils.delayFunction(function()
-      UNSSoundUtils.stopSoundClip(self.character, "MetalBarHit")
-      end, 35, true)
-  else
-    self:setActionAnim("RemoveBarricade")
-    self:setAnimVariable("RemoveBarricade", "CrowbarMid")
-    if self.character:isTimedActionInstant() then return end
-
-    UNSUtils.delayFunction(function()
-      UNSSoundUtils.stopSoundClip(self.character, "MetalBarHit")
-      end, 35, true)
-  end
+  if UNSTimedAction.DEBUG.trace then print("UNSTimedAction.start") end
+  
+  UNSSoundUtils.playSoundClip(self.character, "WindowRattle")
+  self:setActionAnim("BlowTorchFloor")
+  self.character:faceThisObject(self.lockedObject)
 end
 
 -- TODO: Animations and Util functions
 UNSTimedAction.stop = function(self)
+  if UNSTimedAction.DEBUG.trace then print("UNSTimedAction.stop") end  
+  UNSSoundUtils.stopSoundClip(self.character, "WindowRattle")
   ISBaseTimedAction.stop(self)
-
-  if self.typeTimeAction == UnJunk.BYPASS_DOOR then
-    --UNSSoundUtils.stopSoundClip(self.character, BB_CS_Utils.GetProperSound(self.lockedObject, false))
-  else
-    --UNSSoundUtils.stopSoundClip(self.character, "MetalBarHit")
-  end
 end
 
 local function isSuccessfull(player, nimbleLevel, failBoost)
@@ -84,14 +71,22 @@ local function removeTool(self)
   self.character:setPrimaryHandItem(nil)
 end
 
--- TODO: Animations and Util functions
-UNSTimedAction.perform = function(self)
-  local nimbleLevel = self.character:getPerkLevel(Perks.Nimble)
-  if self.typeTimeAction == UnJunk.BYPASS_DOOR then
-    -- TODO: Figure out what sound
-    --UNSSoundUtils.stopSoundClip(self.character, BB_CS_Utils.GetProperSound(self.lockedObject, false))
+UNSTimedAction.update = function(self)
+  self.character:faceThisObject(self.lockedObject)
+  UNSSoundUtils.playSoundClip(self.character, "WindowRattle")
+end
 
-    if isSuccessfull(self.character, nimbleLevel, 0) then
+UNSTimedAction.waitToStart = function(self)
+  self.character:faceThisObject(self.lockedObject)
+  return self.character:shouldBeTurning()
+end
+
+UNSTimedAction.perform = function(self)
+  if UNSTimedAction.DEBUG.trace then print("UNSTimedAction.perform") end
+  local nimbleLevel = self.character:getPerkLevel(Perks.Nimble) + 1
+  if self.typeTimeAction == UnJunk.BYPASS_DOOR then
+    local success = true --isSuccessfull(self.character, nimbleLevel, 0)
+    if success then
       UNSServer.unlockDoorOpen(self.lockedObject, self.character)
       returnTool(self)
     else
@@ -104,7 +99,7 @@ UNSTimedAction.perform = function(self)
         removeTool(self)
       else
         self.character:Say(getText("IGUI_Skelenton_fail_1"))
-        self.character:getXp():AddXP(Perks.Nimble, 4)
+        self.character:getXp():AddXP(Perks.Nimble, 0.25)
         -- TODO: Figure out what sound
         --if BB_CS_Utils.GetProperSound(self.lockedObject, true) == "Wooden" then
         --  BB_CS_Utils.TryplaySoundClip(self.character, "BreakLockOnWindow")
@@ -143,7 +138,7 @@ UNSTimedAction.perform = function(self)
         removeTool(self)
       else
         self.character:Say(getText("IGUI_Skelenton_fail_2"))
-        self.character:getXp():AddXP(Perks.Nimble, 4)
+        self.character:getXp():AddXP(Perks.Nimble, 0.25)
         -- TODO: Figure out what sound
         --if BB_CS_Utils.GetProperSound(self.lockedObject, true) == "Wooden" then
         --  BB_CS_Utils.TryplaySoundClip(self.character, "BreakLockOnWindow")
@@ -158,28 +153,41 @@ UNSTimedAction.perform = function(self)
 end
 
 function UNSTimedAction.bypass(self, character, container, time, typeTimeAction)
-  local action = ISBaseTimedAction.new(self, character)
-  action.typeTimeAction = typeTimeAction
-  action.character = character
-  action.container = container
-  action.stopOnWalk = true
-  action.stopOnRun = true
-  action.maxTime = time
-  action.fromHotbar = false
-
-  if action.character:isTimedActionInstant() then action.maxTime = 1 end
-  return action
+  if UNSTimedAction.DEBUG.trace then print("bypass: character      ", character) end
+  if UNSTimedAction.DEBUG.trace then print("bypass: container      ", container) end
+  if UNSTimedAction.DEBUG.trace then print("bypass: time           ", time) end
+  if UNSTimedAction.DEBUG.trace then print("bypass: typeTimeAction ", typeTimeAction) end
+  local o = {}
+  setmetatable(o, self)
+  self.__index = self
+  o.character = character
+  o.container = container
+  o.stopOnWalk = true
+	o.stopOnRun = true
+--  o.fromHotbar = false
+  o.typeTimeAction = typeTimeAction
+  o.maxTime = time -- Time take by the action
+  print(o)
+  print(o.character)
+  if o.character:isTimedActionInstant() then o.maxTime = 1 end
+  if UNSTimedAction.DEBUG.trace then print("UNSTimedAction done") end
+  return o
 end
 
-function UNSTimedAction.bypassDoor(self, worldObjects, lockedObject, character, container, time)
+function UNSTimedAction:bypassDoor(worldobjects, lockedObject, character, container, time)
+  if UNSTimedAction.DEBUG.trace then print("UNSTimedAction.bypassDoor: worldobjects ", worldobjects) end
+  if UNSTimedAction.DEBUG.trace then print("UNSTimedAction.bypassDoor: lockedObject ", lockedObject) end
+  if UNSTimedAction.DEBUG.trace then print("UNSTimedAction.bypassDoor: character    ", character) end
+  if UNSTimedAction.DEBUG.trace then print("UNSTimedAction.bypassDoor: container    ", container) end
+  if UNSTimedAction.DEBUG.trace then print("UNSTimedAction.bypassDoor: time         ", time) end
   local action = UNSTimedAction.bypass(self, character, container, time, UnJunk.BYPASS_DOOR)
   action.worldObjects = worldObjects
   action.lockedObject = lockedObject
   return action
 end
 
-function UNSTimedAction.bypassVehicleDoor(self, lockedObject, character, container, time)
-  local action = UNSTimedAction.bypass(self, character, container, time, UnJunk.BYPASS_VEHICLE_DOOR)
+function UNSTimedAction.bypassVehicleDoor(lockedObject, character, container, time)
+  local action = UNSTimedAction:bypass(self, character, container, time, UnJunk.BYPASS_VEHICLE_DOOR)
   action.vehicleID = vehicle:getId()
   action.lockedObjectID = lockedObject:getId()
   return action

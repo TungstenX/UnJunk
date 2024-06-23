@@ -16,7 +16,8 @@
 UNSSoundUtils = UNSSoundUtils or {}
 
 function UNSSoundUtils.playSoundClip(obj, soundName)
-	if obj:getEmitter():isPlaying(soundName) then return end
+	if obj and obj:getEmitter() and obj:getEmitter():isPlaying(soundName) then return end
+  if not obj or not obj:getEmitter() then return end
   obj:getEmitter():playSoundImpl(soundName, IsoObject.new())
 end
 

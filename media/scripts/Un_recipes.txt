@@ -9,33 +9,66 @@
 │ © Copyright 2024                                                                                   │ 
 └────────────────────────────────────────────────────────────────────────────────────────────────────┘
 */
-/*
-TODO: 
-1. Kettie vanaf bra, ens 
-2. Other Junk items
-*/
 module Base {
-  /************************ CONVERT STUFF ************************/
+  /* Wallets => leather strips*/
+  /* I can't get "destroy Wallet/Wallet3/Wallet4;2," to work. It is suppose to use 2 wallets but the game only use one at a time? */
   recipe Cut-Up-Wallet {
-    destroy Wallet=2/Wallet2=2/Wallet3=2/Wallet4=2,    
+    Thread=0.1,
+    destroy Wallet=2,    
+    keep [Recipe.GetItemTypes.SewingNeedle],
     keep [Recipe.GetItemTypes.Scissors]/[Recipe.GetItemTypes.SharpKnife],
+    keep LetterOpener/IcePick/Corkscrew,
 
     Result:LeatherStrips,
     Sound:ClothesRipping,
-    Time:100.0,
+    Time:150.0,
     AnimNode:RipSheets,
+    Prop1:Scissors,
+    Prop2:Source=1,
 	}
-  
+  recipe Cut-Up-Wallet3 {
+    Thread=0.1,
+    destroy Wallet3=2,    
+    keep [Recipe.GetItemTypes.SewingNeedle],
+    keep [Recipe.GetItemTypes.Scissors]/[Recipe.GetItemTypes.SharpKnife],
+    keep LetterOpener/IcePick/Corkscrew,
+
+    Result:LeatherStrips,
+    Sound:ClothesRipping,
+    Time:150.0,
+    AnimNode:RipSheets,
+    Prop1:Scissors,
+    Prop2:Source=1,
+	}
+  recipe Cut-Up-Wallet4 {
+    Thread=0.1,
+    destroy Wallet4=2,    
+    keep [Recipe.GetItemTypes.SewingNeedle],
+    keep [Recipe.GetItemTypes.Scissors]/[Recipe.GetItemTypes.SharpKnife],
+    keep LetterOpener/IcePick/Corkscrew,
+
+    Result:LeatherStrips,
+    Sound:ClothesRipping,
+    Time:150.0,
+    AnimNode:RipSheets,
+    Prop1:Scissors,
+    Prop2:Source=1,
+	}
+
+  /* CreditCard => Skeleton key*/
   recipe Whittle-Skeleton-Key {
     destroy CreditCard,    
     keep [Recipe.GetItemTypes.Scissors]/[Recipe.GetItemTypes.SharpKnife],
 
-    Result:LeatherStrips,
-    Sound:ClothesRipping,
-    Time:100.0,
-    AnimNode:RipSheets,
-	}  
+    Result:SkeletonKey,
+    Sound:SliceMeat,
+    Time:300.0,
+    AnimNode:Disassemble,
+    Prop1:Scissors,
+    Prop2:Source=1,
+	} 
   
+  /* Maps => Sheet paper*/
   recipe Shredding-Map {
     destroy Map/LouisvilleMap1/LouisvilleMap2/LouisvilleMap3/LouisvilleMap4/LouisvilleMap5/LouisvilleMap6/LouisvilleMap7/LouisvilleMap8/LouisvilleMap9/MarchRidgeMap/MuldraughMap/WestpointMap/RosewoodMap/RiversideMap,    
     keep [Recipe.GetItemTypes.Scissors]/[Recipe.GetItemTypes.SharpKnife],
@@ -46,44 +79,17 @@ module Base {
     AnimNode:RipSheets,
 	}
   
+  /* Mug => Crucible 
   recipe Make-Crucible {
+    Water=5,		
+		Sandbag=1,
     destroy Mugl/MugRed/MugWhite/MugSpiffo,
-    		Water=5,
-		ConcretePowder=0.2,
 
-		CanBeDoneFromFloor:TRUE,
-		Result:Crucible=1,
+		Result:Crucible,
 		Sound:MakePlaster,
 		AnimNode:Dig,
 		Time:100.0,
 		Category:Smithing,
-  }
-  
-  recipe Make-Slingshot-Ammo {
-    destroy Necklace_Gold/Necklace_GoldRuby/Necklace_GoldDiamond/NecklaceLong_Gold/NecklaceLong_GoldDiamond/Necklace_Silver/Necklace_SilverSapphire/Necklace_SilverCrucifix/Necklace_SilverDiamond/NecklaceLong_Silver/NecklaceLong_SilverEmerald/NecklaceLong_SilverSapphire/NecklaceLong_SilverDiamond/Necklace_Crucifix/Necklace_YingYang/NecklaceLong_Amber/NoseRing_Gold/NoseRing_Silver/NoseStud_Gold/NoseStud_Silver/Earring_LoopLrg_Gold/Earring_LoopLrg_Silver/Earring_LoopMed_Silver/Earring_LoopMed_Gold/Earring_LoopSmall_Silver_Both/Earring_LoopSmall_Silver_Top/Earring_LoopSmall_Gold_Both/Earring_LoopSmall_Gold_Top/Earring_Stud_Gold/Earring_Stud_Silver/Earring_Stone_Sapphire/Earring_Stone_Emerald/Earring_Stone_Ruby/Earring_Pearl/Earring_Dangly_Sapphire/Earring_Dangly_Emerald/Earring_Dangly_Ruby/Earring_Dangly_Diamond/Earring_Dangly_Pearl/Ring_Right_MiddleFinger_Gold/Ring_Left_MiddleFinger_Gold/Ring_Right_RingFinger_GoldRing_Left_RingFinger_Gold/Ring_Right_MiddleFinger_Silver/Ring_Left_MiddleFinger_Silver/Ring_Right_RingFinger_Silver/Ring_Left_RingFinger_Silver/Ring_Right_MiddleFinger_SilverDiamond/Ring_Left_MiddleFinger_SilverDiamond/Ring_Right_RingFinger_SilverDiamond/Ring_Left_RingFinger_SilverDiamond/Ring_Right_MiddleFinger_GoldRuby/Ring_Left_MiddleFinger_GoldRuby/Ring_Right_RingFinger_GoldRuby/Ring_Left_RingFinger_GoldRuby/Ring_Right_MiddleFinger_GoldDiamond/Ring_Left_MiddleFinger_GoldDiamond/Ring_Right_RingFinger_GoldDiamond/Ring_Left_RingFinger_GoldDiamond/BellyButton_DangleGold/BellyButton_DangleGoldRuby/BellyButton_DangleSilver/BellyButton_DangleSilverDiamond/BellyButton_RingGold/BellyButton_RingGoldDiamond/BellyButton_RingGoldRuby/BellyButton_RingSilver/BellyButton_RingSilverAmethyst/BellyButton_RingSilverDiamond/BellyButton_RingSilverRuby/BellyButton_StudGold/BellyButton_StudGoldDiamond/BellyButton_StudSilver/BellyButton_StudSilverDiamond
-
-    BlowTorch=2,
-    keep Crucible,[Recipe.GetItemTypes.WeldingMask],
-
-    Result:SlingshotAmmo=1,
-    Time:150.0,
-    Category:Welding,
-    SkillRequired:MetalWelding=2,
-    OnGiveXP:Recipe.OnGiveXP.MetalWelding10,
-    /*NeedToBeLearn:true,*/
-  }
-  
-  recipe Make-Slingshot-Ammo-more {
-    destroy Bracelet_BangleRightGold/Bracelet_BangleLeftGold/Bracelet_BangleRightSilver/Bracelet_BangleLeftSilver/Bracelet_ChainRightGold/Bracelet_ChainLeftGold/Bracelet_ChainRightSilver/Bracelet_ChainLeftSilver
-
-    BlowTorch=4,
-    keep Crucible,[Recipe.GetItemTypes.WeldingMask],
-
-    Result:SlingshotAmmo=2,
-    Time:250.0,
-    Category:Welding,
-    SkillRequired:MetalWelding=2,
-    OnGiveXP:Recipe.OnGiveXP.MetalWelding10,
-    /*NeedToBeLearn:true,*/
-  } 
+		CanBeDoneFromFloor:TRUE,
+  }*/
 }

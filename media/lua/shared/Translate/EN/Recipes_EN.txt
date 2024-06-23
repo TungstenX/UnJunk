@@ -1,5 +1,7 @@
 Recipes_EN = {
   Cut-Up-Wallet = "Cut up wallets",
+  Cut-Up-Wallet3 = "Cut up wallets",
+  Cut-Up-Wallet4 = "Cut up wallets",
   Whittle-Skeleton-Key = "Whittle skeleton a Key",
   Shredding-Map = "Shredding map into paper strips",
   Make-Crucible = "Make a crucible",

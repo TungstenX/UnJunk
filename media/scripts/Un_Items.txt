@@ -14,8 +14,8 @@ module Base {
     DisplayCategory = Security,
 		Weight	=	0,
 		Type	=	Key,
-		DisplayName	=	Key,
-		Icon	=	Key1,
+		DisplayName	=	Skeleton Key,
+		Icon	=	SkeletonKey,
 		MetalValue = 5,
 		WorldStaticModel = Key,
     Tooltip = Tooltip_item_use_skelenton_key,
@@ -26,10 +26,10 @@ module Base {
 		Weight	=	2,
 		Type	=	Normal,
 		DisplayName	=	Crucible,
-		Icon	=	MugFulll,
+		Icon	=	Crucible,
 		Tooltip = Tooltip_item_crucible,
-		StaticModel = Mug,
-		WorldStaticModel = Mug,
+		StaticModel = MugRed,
+		WorldStaticModel = MugRed,
   }
   
   /* Options for SlingshotAmmo: 

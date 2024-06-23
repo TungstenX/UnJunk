@@ -15,22 +15,22 @@
 --
 -- This handles the OnFillWorldObjectContextMenu event as well as the radial menu (outside the vehicle)
 
-UNSMenu = USNMenu or {}
+UNSMenu = UNSMenu or {}
 UNSMenu.DEBUG = getDebug() or false
 
 function UNSMenu.calcTime(player)
-  return 190 / player:getPerkLevel(Perks.Nimble)
+  return 190 / (player:getPerkLevel(Perks.Nimble) + 1)
 end
 
 function UNSMenu.Loop(worldobjects, player, lockedObject, actionType, toolID, toolContainer)
   if not player:hasEquipped(toolID) then
-    UNSUtils.DelayFunction(function()
+    UNSUtils.delayFunction(function()
         if not player:hasEquipped(toolID) then
           UNSMenu.Loop(worldobjects, player, lockedObject, actionType, toolID, toolContainer)
         else
           if(actionType == UnJunk.BYPASS_DOOR) then
             luautils.walkAdjWindowOrDoor(player, lockedObject:getSquare(), lockedObject)
-            ISTimedActionQueue.add(UNSTimedAction.bypassDoor(worldobjects, lockedObject, player, toolContainer, UNSMenu.calcTime(player)))
+            ISTimedActionQueue.add(UNSTimedAction.bypassDoor(lockedObject, player, toolContainer, UNSMenu.calcTime(player)))
           elseif(actionType == UnJunk.BYPASS_VEHICLE_DOOR) then
             ISTimedActionQueue.add(UNSTimedAction.bypassVehicleDoor(worldobjects, lockedObject, player, toolContainer, UNSMenu.calcTime(player)))
           end
@@ -40,6 +40,7 @@ function UNSMenu.Loop(worldobjects, player, lockedObject, actionType, toolID, to
 end
 
 function UNSMenu.bypassVehicleOpenLock(vehicle, vehiclePart, player, bypassKey)
+  if not bypassKey then return end
   local toolID = bypassKey:getFullType()
   local toolContainer = nil
   ISInventoryPaneContextMenu.transferIfNeeded(player, bypassKey)
@@ -64,7 +65,7 @@ local function getBypassKey(playerInv)
   local bypassKey = nil
 
 	for _, v in pairs(UnJunk.BYPASS_TOOLS) do
-    bypassKey = playerInv:getFirstTypeEvalRecurse(v, USNMenu.isNotBroken)
+    bypassKey = playerInv:getFirstTypeEvalRecurse(v, UNSMenu.isNotBroken)
     if bypassKey then
       return bypassKey
     end
@@ -73,7 +74,7 @@ local function getBypassKey(playerInv)
 end
 
 --- Call this function when Player is opening the Radial Menu outside a Vehicle.
-function USNMenu.showRadialMenuOutside(player)
+function UNSMenu.showRadialMenuOutside(player)
   if not SandboxVars.UnJunk.Bypass then return end
 
 	local vehicle =  player:getNearVehicle() if not vehicle then return end
@@ -90,12 +91,21 @@ function USNMenu.showRadialMenuOutside(player)
     local isHood = doorPart:getId() == "EngineDoor"
 
     if not (isHood) then
-      menu:addSlice(getText("ContextMenu_Use_Skelenton"), getTexture("media/ui/vehicles/BypassKey.png"), USNMenu.bypassVehicleOpenLock, vehicle, doorPart,  player, bypassKey)
+      menu:addSlice(getText("ContextMenu_Use_Skelenton"), getTexture("media/ui/vehicles/BypassKey.png"), UNSMenu.bypassVehicleOpenLock, vehicle, doorPart,  player, bypassKey)
     end
   end
 end
 
-function USNMenu.bypassLock(worldobjects, lockedObject, player, bypassKey, doorType, timedFunc)
+function UNSMenu.bypassLock(worldobjects, lockedObject, player, bypassKey, doorType, vehicleDoor)
+  print("bypassLock: worldobjects   ", worldobjects)
+  print("bypassLock: lockedObject   ", lockedObject)
+  print("bypassLock: player         ", player)
+  print("bypassLock: bypassKey      ", bypassKey)
+  print("bypassLock: doorType       ", doorType)
+  print("bypassLock: vehicleDoor    ", vehicleDoor)
+  
+  
+  if not bypassKey then return end
   local toolID = bypassKey:getFullType()
   local toolContainer = nil
 
@@ -104,25 +114,32 @@ function USNMenu.bypassLock(worldobjects, lockedObject, player, bypassKey, doorT
   if not player:hasEquipped(toolID) then
     ISInventoryPaneContextMenu.equipWeapon(bypassKey, true, true, player:getPlayerNum())
     toolContainer = bypassKey:getContainer()
+    print("bypassLock: not player:hasEquipped(toolID)")
   end
 
   if not player:hasEquipped(toolID) then
-    USNMenu.Loop(worldobjects, player, lockedObject, doorType, toolID, toolContainer)
+    print("bypassLock: not player:hasEquipped(toolID)")
+    --UNSMenu.Loop(worldobjects, player, lockedObject, doorType, toolID, toolContainer)
   else
     luautils.walkAdjWindowOrDoor(player, lockedObject:getSquare(), lockedObject)
-    ISTimedActionQueue.add(timedFunc(worldobjects, lockedObject, player, toolContainer, UNSMenu.calcTime(player)))
+    print("UNSMenu.bypassLock calcTime", tostring(UNSMenu.calcTime(player)))
+    if vehicleDoor then       
+       ISTimedActionQueue.add(UNSTimedAction.bypassVehicleDoor(worldobjects, lockedObject, player, toolContainer, UNSMenu.calcTime(player)))
+    else
+      ISTimedActionQueue.add(UNSTimedAction:bypassDoor(worldobjects, lockedObject, player, toolContainer, UNSMenu.calcTime(player)))
+    end    
   end
 end
 
-function USNMenu.bypassDoor(worldobjects, lockedObject, player, bypassKey)
-  USNMenu.bypassLock(worldobjects, lockedObject, player, bypassKey, UnJunk.BYPASS_DOOR, UNSTimedAction.bypassDoor)
+function UNSMenu.bypassDoor(worldobjects, lockedObject, player, bypassKey)
+  UNSMenu.bypassLock(worldobjects, lockedObject, player, bypassKey, UnJunk.BYPASS_DOOR, false)
 end
 
-function USNMenu.bypassVehicleOpen(vehicle, vehiclePart, player, bypassKey)
-  USNMenu.bypassLock(vehicle, vehiclePart, player, bypassKey, UnJunk.BYPASS_VEHICLE_DOOR, UNSTimedAction.bypassVehicleDoor)
+function UNSMenu.bypassVehicleOpen(vehicle, vehiclePart, player, bypassKey)
+  UNSMenu.bypassLock(vehicle, vehiclePart, player, bypassKey, UnJunk.BYPASS_VEHICLE_DOOR, true)
 end
 
-USNMenu.OnFillWorldObjectContextMenuBypass = function(playerSup, context, worldobjects, test)
+UNSMenu.OnFillWorldObjectContextMenuBypass = function(playerSup, context, worldobjects, test)
   if not SandboxVars.UnJunk.Bypass then return end
 
   local player = getSpecificPlayer(playerSup)
@@ -164,12 +181,12 @@ USNMenu.OnFillWorldObjectContextMenuBypass = function(playerSup, context, worldo
 
     -- Is it a door, is it not barricaded, is lock and not by the BADDEAD key (broken IsoDoor lock)
 		if instanceof(lockedObject, "IsoDoor") and lockedObject:isBarricaded() == false and lockedObject:isLocked() == true and lockedObject:getKeyId() ~= 0x0BADDEAD then
-      context:addOptionOnTop(getText("ContextMenu_Use_Skelenton"), worldobjects, USNMenu.bypassDoor, lockedObject,  player, bypassKey)
+      context:addOptionOnTop(getText("ContextMenu_Use_Skelenton"), worldobjects, UNSMenu.bypassDoor, lockedObject,  player, bypassKey)
 		end
 	end
 end
 
-Events.OnFillWorldObjectContextMenu.Add(USNMenu.OnFillWorldObjectContextMenuBypass)
+Events.OnFillWorldObjectContextMenu.Add(UNSMenu.OnFillWorldObjectContextMenuBypass)
 
 -- 
 local OnShowRadialMenuOutside = ISVehicleMenu.showRadialMenuOutside
@@ -177,5 +194,5 @@ local OnShowRadialMenuOutside = ISVehicleMenu.showRadialMenuOutside
 ISVehicleMenu.showRadialMenuOutside = function(playerObj)
 	if playerObj:getVehicle() then return end
 	OnShowRadialMenuOutside(playerObj)
-  USNMenu.showRadialMenuOutside(playerObj)
+  UNSMenu.showRadialMenuOutside(playerObj)
 end

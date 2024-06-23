@@ -69,12 +69,13 @@ function UNSServer.unlockDoorOpen(lockableObject, player)
     for i = 1, #garageDoorObjects do
       local object = garageDoorObjects[i]
       object:setLockedByKey(false)
-      player:getXp():AddXP(Perks.Nimble, 5)
+      player:getXp():AddXP(Perks.Nimble, 2.5)
     end
 
     ISTimedActionQueue.add(ISOpenCloseDoor:new(player, lockableObject, 0))
-    UNSSoundUtils.playSoundClip(player, "BreakBarricadePlank")
-    player:getXp():AddXP(Perks.Nimble, 7)
+    --scrapingWood
+    UNSSoundUtils.playSoundClip(player, "SlidingGlassDoorOpen")
+    player:getXp():AddXP(Perks.Nimble, 2.5)
   end
 end
 
@@ -101,7 +102,7 @@ function UNSServer.breakLockDoor(worldObjects, lockableObject, player)
     end
 
     ISTimedActionQueue.add(ISOpenCloseDoor:new(player, lockableObject, 0))
-    UNSSoundUtils.playSoundClip(player, "BreakBarricadePlank")
+    UNSSoundUtils.playSoundClip(player, "BreakObject")
     player:getXp():AddXP(Perks.Nimble, 7)
   end
 end
