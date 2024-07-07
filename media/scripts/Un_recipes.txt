@@ -106,15 +106,7 @@ module Base {
   
   /* Open Wine bottle => Open Wine bottle Covered */
   recipe Open-Wine-Bottle-Covered {
-    destroy OpenWine, RubberBand, DishCloth, 
-    
-    Result:OpenWineCovered,
-    Time:80.0,
-    Category:Cooking,
-    OnGiveXP:Recipe.OnGiveXP.None,
-  }  
-  recipe Open-Wine-Bottle-Covered2 {
-    destroy OpenWine2, RubberBand, DishCloth, 
+    destroy OpenWine/OpenWine2, RubberBand, DishCloth, 
     
     Result:OpenWineCovered,
     Time:80.0,
@@ -122,7 +114,7 @@ module Base {
     OnGiveXP:Recipe.OnGiveXP.None,
   }  
   
-  /* Open Wine bottle Covered => Vinegar */
+  /* Decant Wine bottle Covered => Vinegar */
   recipe Decant-Wine-Bottle-Covered {
     destroy OpenWineCovered, BeerEmpty/WineEmpty/WineEmpty2, WaterBottleEmpty/MayonnaiseEmpty/PopBottleEmpty,
     keep [Recipe.GetItemTypes.Scissors]/[Recipe.GetItemTypes.SharpKnife],

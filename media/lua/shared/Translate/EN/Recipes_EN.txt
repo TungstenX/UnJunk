@@ -21,6 +21,5 @@ Recipes_EN = {
   Open-Wine-Bottle = "Open wine bottle",
   Open-Wine-Bottle2 = "Open wine bottle",
   Open-Wine-Bottle-Covered = "Cover open wine bottle",
-  Open-Wine-Bottle-Covered2 = "Cover open wine bottle",
   Decant-Wine-Bottle-Covered = "Decant covered open wine bottle",
 }

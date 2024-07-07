@@ -1,4 +1,4 @@
-version=1.02
+version=1.03
 id=3265140517
 title=UnJunk
 description=Making junk items more useful

@@ -29,6 +29,6 @@ function Recipe.OnCreate.DecantCoveredWine(items, result, player)
 end
 
 function Recipe.OnTest.CanDecantWine(item)
-  print("How rotten: ", tostring(item:HowRotten()))
+  --print("How rotten: ", tostring(item:HowRotten()))
   return item:IsRotten()
 end
