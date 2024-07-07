@@ -9,9 +9,13 @@ Making junk items more useful
     - Use a credit card (consumed) and a pair of scissors or a knife to create a skeleton key
 - Shredding map into paper strips
     - Rip up a map to produce 6 sheets of paper
-- Make a crucible
+- Making vinegar
+    1. Open wine bottle (Wine + Corkscrew). 
+    2. Cover open wine bottle (Open wine bottle + Rubber band + Dish towel). 
+    3. Wait 7 - 14 days, decant (Plastic empty bottle + Glass empty bottle + Sharp knife)
+- Make a crucible **[Not yet implemented]**
     - Use any of the mugs, 5 waters and 0.2 Concrete Powder to produce 1 Crucible
-- Cast slingshot ammo
+- Cast slingshot ammo **[Not yet implemented]**
     - Use most of the soft metal jewelry (consumed), propane/blow torch, Crucible and Welding Mask to produce a ball bearing size slingshot ammo
 - Make a slingshot **[Not yet implemented]**
     - This will implement the slingshot weapon

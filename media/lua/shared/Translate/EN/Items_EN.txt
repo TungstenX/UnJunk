@@ -9,7 +9,11 @@
 │ © Copyright 2024                                                                                   │ 
 └────────────────────────────────────────────────────────────────────────────────────────────────────┘
 */
-IGUI_EN = {
-    IGUI_Skelenton_fail_1 = "Couldn't unlock. I can try again... ",
-    IGUI_Skelenton_fail_2 = "Skelenton key broke off in lock.",
+
+Items_EN = {
+  DisplayNameOpenChardonnay       = "Open Chardonnay",
+  DisplayNameOpenChardonnayRotten = "Open Chardonnay Rotten",
+  DisplayNameOpenRedWine          = "Open Merlot",
+  DisplayNameOpenRedWineRotten    = "Open Merlot Rotten",
+  DisplayNameOpenWineCovered      = "Covered Open Wine Bottle",
 }

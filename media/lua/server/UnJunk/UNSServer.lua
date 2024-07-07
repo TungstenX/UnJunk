@@ -1,23 +1,26 @@
--- ┌────────────────────────────────────────────────────────────────────────────────────────────────────┐                                                                                                     
--- │ _/_/_/_/_/  _/    _/  _/      _/    _/_/_/    _/_/_/  _/_/_/_/_/  _/_/_/_/  _/      _/  _/      _/ │    
--- │    _/      _/    _/  _/_/    _/  _/        _/            _/      _/        _/_/    _/    _/  _/    │   
--- │   _/      _/    _/  _/  _/  _/  _/  _/_/    _/_/        _/      _/_/_/    _/  _/  _/      _/       │   
--- │  _/      _/    _/  _/    _/_/  _/    _/        _/      _/      _/        _/    _/_/    _/  _/      │   
--- │ _/        _/_/    _/      _/    _/_/_/  _/_/_/        _/      _/_/_/_/  _/      _/  _/      _/     │   
--- ├────────────────────────────────────────────────────────────────────────────────────────────────────┤
--- │ © Copyright 2024                                                                                   │ 
--- ├────────────────────────────────────────────────────────────────────────────────────────────────────┤
--- │ Credits:                                                                                           │
--- │   Braven's CommonSense mod                                                                         │
--- │   Workshop ID: 2875848298                                                                          │
--- │   Mod ID: BB_CommonSense                                                                           │
--- └────────────────────────────────────────────────────────────────────────────────────────────────────┘
---
--- TODO:
--- 1. Pick sounds
+--[[
+┌────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ _/_/_/_/_/  _/    _/  _/      _/    _/_/_/    _/_/_/  _/_/_/_/_/  _/_/_/_/  _/      _/  _/      _/ │    
+│    _/      _/    _/  _/_/    _/  _/        _/            _/      _/        _/_/    _/    _/  _/    │   
+│   _/      _/    _/  _/  _/  _/  _/  _/_/    _/_/        _/      _/_/_/    _/  _/  _/      _/       │   
+│  _/      _/    _/  _/    _/_/  _/    _/        _/      _/      _/        _/    _/_/    _/  _/      │   
+│ _/        _/_/    _/      _/    _/_/_/  _/_/_/        _/      _/_/_/_/  _/      _/  _/      _/     │ ├────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ © Copyright 2024                                                                                   │ 
+├────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ Credits:                                                                                           │
+│   Braven's CommonSense mod                                                                         │
+│   Workshop ID: 2875848298                                                                          │
+│   Mod ID: BB_CommonSense                                                                           │
+└────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+┌────────────┐
+│ UNS Server │
+└────────────┘
+
+TODO: Review sounds
+]]
 
 UNSServer = UNSServer or {}
-UNSServer.DEBUG = getDebug() or false
 
 --
 -- This override can break the car door's lock if the args.breakLocked is set and is true
@@ -34,11 +37,11 @@ function UNSServer.onClientCommand(module, command, player, args)
     if vehicle then
       local part = vehicle:getPartById(args.part)
       if not part then
-        if UNSServer.DEBUG then print('no such part '..tostring(args.part)) end
+        if UnJunk.LOG.debug then print('no such part '..tostring(args.part)) end
         return
       end
       if not part:getDoor() then
-        if UNSServer.DEBUG then print('part ' .. args.part .. ' has no door') end
+        if UnJunk.LOG.debug then print('part ' .. args.part .. ' has no door') end
         return
       end
       if args.breakLocked and not part:getDoor():isLockBroken() then
@@ -47,7 +50,7 @@ function UNSServer.onClientCommand(module, command, player, args)
       --vehicle:toggleLockedDoor(part, player, args.locked)
       vehicle:transmitPartDoor(part)
     else
-      if UNSServer.DEBUG then print('no such vehicle id='..tostring(args.vehicle)) end
+      if UnJunk.LOG.debug then print('no such vehicle id='..tostring(args.vehicle)) end
     end
   end
 end

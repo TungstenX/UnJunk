@@ -1,5 +1,5 @@
 /*
-┌────────────────────────────────────────────────────────────────────────────────────────────────────┐                                                                                                     
+┌────────────────────────────────────────────────────────────────────────────────────────────────────┐
 │ _/_/_/_/_/  _/    _/  _/      _/    _/_/_/    _/_/_/  _/_/_/_/_/  _/_/_/_/  _/      _/  _/      _/ │    
 │    _/      _/    _/  _/_/    _/  _/        _/            _/      _/        _/_/    _/    _/  _/    │   
 │   _/      _/    _/  _/  _/  _/  _/  _/_/    _/_/        _/      _/_/_/    _/  _/  _/      _/       │   
@@ -8,7 +8,10 @@
 ├────────────────────────────────────────────────────────────────────────────────────────────────────┤
 │ © Copyright 2024                                                                                   │ 
 └────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+TODO: Sound of wine decating
 */
+
 module Base {
   /* Wallets => leather strips*/
   /* I can't get "destroy Wallet/Wallet3/Wallet4;2," to work. It is suppose to use 2 wallets but the game only use one at a time? */
@@ -70,16 +73,73 @@ module Base {
   
   /* Maps => Sheet paper*/
   recipe Shredding-Map {
-    destroy Map/LouisvilleMap1/LouisvilleMap2/LouisvilleMap3/LouisvilleMap4/LouisvilleMap5/LouisvilleMap6/LouisvilleMap7/LouisvilleMap8/LouisvilleMap9/MarchRidgeMap/MuldraughMap/WestpointMap/RosewoodMap/RiversideMap,    
+    destroy Map/LouisvilleMap1/LouisvilleMap2/LouisvilleMap3/LouisvilleMap4/LouisvilleMap5/LouisvilleMap6/LouisvilleMap7/LouisvilleMap8/LouisvilleMap9/MarchRidgeMap/MuldraughMap/WestpointMap/RosewoodMap/RiversideMap,
     keep [Recipe.GetItemTypes.Scissors]/[Recipe.GetItemTypes.SharpKnife],
 
-    Result:SheetPaper=6,
+    Result:SheetPaper2=6,
     Sound:ClothesRipping,
     Time:100.0,
     AnimNode:RipSheets,
 	}
   
-  /* Mug => Crucible 
+  /* Winebottle => Open bottle */
+  recipe Open-Wine-Bottle {
+    destroy Wine,
+    keep Corkscrew,
+    
+    Result:OpenWine,
+    Time:80.0,
+    Category:Cooking,
+    OnGiveXP:Recipe.OnGiveXP.None,
+    OnCreate:Recipe.OnCreate.OpenWine,
+  }
+  recipe Open-Wine-Bottle2 {
+    destroy Wine2,
+    keep Corkscrew,
+    
+    Result:OpenWine2,
+    Time:80.0,
+    Category:Cooking,
+    OnGiveXP:Recipe.OnGiveXP.None,
+    OnCreate:Recipe.OnCreate.OpenWine,
+  }
+  
+  /* Open Wine bottle => Open Wine bottle Covered */
+  recipe Open-Wine-Bottle-Covered {
+    destroy OpenWine, RubberBand, DishCloth, 
+    
+    Result:OpenWineCovered,
+    Time:80.0,
+    Category:Cooking,
+    OnGiveXP:Recipe.OnGiveXP.None,
+  }  
+  recipe Open-Wine-Bottle-Covered2 {
+    destroy OpenWine2, RubberBand, DishCloth, 
+    
+    Result:OpenWineCovered,
+    Time:80.0,
+    Category:Cooking,
+    OnGiveXP:Recipe.OnGiveXP.None,
+  }  
+  
+  /* Open Wine bottle Covered => Vinegar */
+  recipe Decant-Wine-Bottle-Covered {
+    destroy OpenWineCovered, BeerEmpty/WineEmpty/WineEmpty2, WaterBottleEmpty/MayonnaiseEmpty/PopBottleEmpty,
+    keep [Recipe.GetItemTypes.Scissors]/[Recipe.GetItemTypes.SharpKnife],
+        
+    Result:Vinegar,
+    Time:160.0,
+    Category:Cooking,
+    AllowRottenItem:true,
+    CanBeDoneFromFloor:true,
+    StopOnWalk:true,
+    StopOnRun:true,
+    OnGiveXP:Recipe.OnGiveXP.None,
+    OnTest:Recipe.OnTest.CanDecantWine,
+    OnCreate:Recipe.OnCreate.DecantCoveredWine,
+  }
+  
+  /* Mug => Crucible -- on hold
   recipe Make-Crucible {
     Water=5,		
 		Sandbag=1,

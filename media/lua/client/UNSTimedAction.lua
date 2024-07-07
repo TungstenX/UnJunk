@@ -1,45 +1,44 @@
--- ┌────────────────────────────────────────────────────────────────────────────────────────────────────┐                                                                                                     
--- │ _/_/_/_/_/  _/    _/  _/      _/    _/_/_/    _/_/_/  _/_/_/_/_/  _/_/_/_/  _/      _/  _/      _/ │    
--- │    _/      _/    _/  _/_/    _/  _/        _/            _/      _/        _/_/    _/    _/  _/    │   
--- │   _/      _/    _/  _/  _/  _/  _/  _/_/    _/_/        _/      _/_/_/    _/  _/  _/      _/       │   
--- │  _/      _/    _/  _/    _/_/  _/    _/        _/      _/      _/        _/    _/_/    _/  _/      │   
--- │ _/        _/_/    _/      _/    _/_/_/  _/_/_/        _/      _/_/_/_/  _/      _/  _/      _/     │   
--- ├────────────────────────────────────────────────────────────────────────────────────────────────────┤
--- │ © Copyright 2024                                                                                   │ 
--- ├────────────────────────────────────────────────────────────────────────────────────────────────────┤
--- │ Credits:                                                                                           │
--- │   Braven's CommonSense mod                                                                         │
--- │   Workshop ID: 2875848298                                                                          │
--- │   Mod ID: BB_CommonSense                                                                           │
--- └────────────────────────────────────────────────────────────────────────────────────────────────────┘
---
--- TODO:
--- 1. Pick sounds
--- 2. Pick animations
+--[[
+┌────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ _/_/_/_/_/  _/    _/  _/      _/    _/_/_/    _/_/_/  _/_/_/_/_/  _/_/_/_/  _/      _/  _/      _/ │    
+│    _/      _/    _/  _/_/    _/  _/        _/            _/      _/        _/_/    _/    _/  _/    │   
+│   _/      _/    _/  _/  _/  _/  _/  _/_/    _/_/        _/      _/_/_/    _/  _/  _/      _/       │   
+│  _/      _/    _/  _/    _/_/  _/    _/        _/      _/      _/        _/    _/_/    _/  _/      │   
+│ _/        _/_/    _/      _/    _/_/_/  _/_/_/        _/      _/_/_/_/  _/      _/  _/      _/     │ ├────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ © Copyright 2024                                                                                   │ 
+├────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ Credits:                                                                                           │
+│   Braven's CommonSense mod                                                                         │
+│   Workshop ID: 2875848298                                                                          │
+│   Mod ID: BB_CommonSense                                                                           │
+└────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────┐
+│ UNS Timed Action │
+└──────────────────┘
+
+- This handles the TimedAction functionality for UnJunk 
+]]
 
 require "TimedActions/ISBaseTimedAction"
+require "UnJunk" -- just in case
+
 UNSTimedAction = ISBaseTimedAction:derive("UNSTimedAction")
-UNSTimedAction.DEBUG = UNSTimedAction.DEBUG or {}
-UNSTimedAction.DEBUG.info = getDebug() or false
-UNSTimedAction.DEBUG.trace = true
 
 UNSTimedAction.isValid = function(self)
   return true
 end
 
--- TODO: Animations and Util functions
 UNSTimedAction.start = function(self)
-  if UNSTimedAction.DEBUG.trace then print("UNSTimedAction.start") end
-  
-  UNSSoundUtils.playSoundClip(self.character, "WindowRattle")
+  if UnJunk.LOG.trace then print("UNSTimedAction.start") end  
+  UNSSoundUtils.playSoundClip(self.character, "SkelentonKey")
   self:setActionAnim("BlowTorchFloor")
   self.character:faceThisObject(self.lockedObject)
 end
 
--- TODO: Animations and Util functions
 UNSTimedAction.stop = function(self)
-  if UNSTimedAction.DEBUG.trace then print("UNSTimedAction.stop") end  
-  UNSSoundUtils.stopSoundClip(self.character, "WindowRattle")
+  if UnJunk.LOG.debug then print("UNSTimedAction.stop") end  
+  UNSSoundUtils.stopSoundClip(self.character, "SkelentonKey")
   ISBaseTimedAction.stop(self)
 end
 
@@ -73,7 +72,6 @@ end
 
 UNSTimedAction.update = function(self)
   self.character:faceThisObject(self.lockedObject)
-  UNSSoundUtils.playSoundClip(self.character, "WindowRattle")
 end
 
 UNSTimedAction.waitToStart = function(self)
@@ -82,10 +80,11 @@ UNSTimedAction.waitToStart = function(self)
 end
 
 UNSTimedAction.perform = function(self)
-  if UNSTimedAction.DEBUG.trace then print("UNSTimedAction.perform") end
+  if UnJunk.LOG.debug then print("UNSTimedAction.perform") end
+  UNSSoundUtils.stopSoundClip(self.character, "SkelentonKey")
   local nimbleLevel = self.character:getPerkLevel(Perks.Nimble) + 1
   if self.typeTimeAction == UnJunk.BYPASS_DOOR then
-    local success = true --isSuccessfull(self.character, nimbleLevel, 0)
+    local success = isSuccessfull(self.character, nimbleLevel, 0)
     if success then
       UNSServer.unlockDoorOpen(self.lockedObject, self.character)
       returnTool(self)
@@ -100,18 +99,10 @@ UNSTimedAction.perform = function(self)
       else
         self.character:Say(getText("IGUI_Skelenton_fail_1"))
         self.character:getXp():AddXP(Perks.Nimble, 0.25)
-        -- TODO: Figure out what sound
-        --if BB_CS_Utils.GetProperSound(self.lockedObject, true) == "Wooden" then
-        --  BB_CS_Utils.TryplaySoundClip(self.character, "BreakLockOnWindow")
-        --else
-        --  BB_CS_Utils.TryplaySoundClip(self.character, "MetalBarBreak")
-        --end
+        UNSSoundUtils.playFailSoundClip(self.character)
       end
     end
   else
-    -- TODO: Figure out what sound
-    --UNSSoundUtils.stopSoundClip(self.character, BB_CS_Utils.GetProperSound(self.lockedObject, false))
-
     if isSuccessfull(self.character, nimbleLevel, 20) == true then
       local args = {vehicle = self.vehicleID, part = self.lockedObjectID, locked = false, open = true}
       sendClientCommand(self.character, 'vehicle', 'setDoorLocked', args)
@@ -119,9 +110,9 @@ UNSTimedAction.perform = function(self)
 
       local isTrunk = self.lockedObjectID == "TrunkDoor" or self.lockedObjectID == "DoorRear"
       if not (isTrunk) then
-        --BB_CS_Utils.TryplaySoundClip(self.character, "VehicleDoorOpen")
+        UNSSoundUtils.playSoundClip(self.character, "VehicleDoorOpen")
       else
-        --BB_CS_Utils.TryplaySoundClip(self.character, "VehicleTrunkOpen")
+        UNSSoundUtils.playSoundClip(self.character, "VehicleTrunkOpen")
       end
 
       self.character:getXp():AddXP(Perks.Nimble, 10)
@@ -138,13 +129,8 @@ UNSTimedAction.perform = function(self)
         removeTool(self)
       else
         self.character:Say(getText("IGUI_Skelenton_fail_2"))
-        self.character:getXp():AddXP(Perks.Nimble, 0.25)
-        -- TODO: Figure out what sound
-        --if BB_CS_Utils.GetProperSound(self.lockedObject, true) == "Wooden" then
-        --  BB_CS_Utils.TryplaySoundClip(self.character, "BreakLockOnWindow")
-        --else
-        --  BB_CS_Utils.TryplaySoundClip(self.character, "MetalBarBreak")
-        --end
+        self.character:getXp():AddXP(Perks.Nimble, 0.25)        
+        UNSSoundUtils.playFailSoundClip(self.character)
       end
     end
   end
@@ -153,10 +139,11 @@ UNSTimedAction.perform = function(self)
 end
 
 function UNSTimedAction.bypass(self, character, container, time, typeTimeAction)
-  if UNSTimedAction.DEBUG.trace then print("bypass: character      ", character) end
-  if UNSTimedAction.DEBUG.trace then print("bypass: container      ", container) end
-  if UNSTimedAction.DEBUG.trace then print("bypass: time           ", time) end
-  if UNSTimedAction.DEBUG.trace then print("bypass: typeTimeAction ", typeTimeAction) end
+  -- TODO: Remove when stable
+  if UnJunk.LOG.trace then print("bypass: character      ", character) end
+  if UnJunk.LOG.trace then print("bypass: container      ", container) end
+  if UnJunk.LOG.trace then print("bypass: time           ", time) end
+  if UnJunk.LOG.trace then print("bypass: typeTimeAction ", typeTimeAction) end
   local o = {}
   setmetatable(o, self)
   self.__index = self
@@ -164,27 +151,33 @@ function UNSTimedAction.bypass(self, character, container, time, typeTimeAction)
   o.container = container
   o.stopOnWalk = true
 	o.stopOnRun = true
---  o.fromHotbar = false
   o.typeTimeAction = typeTimeAction
   o.maxTime = time -- Time take by the action
   if o.character:isTimedActionInstant() then o.maxTime = 1 end
-  if UNSTimedAction.DEBUG.trace then print("UNSTimedAction done") end
+  if UnJunk.LOG.debug then print("UNSTimedAction done") end
   return o
 end
 
 function UNSTimedAction:bypassDoor(worldobjects, lockedObject, character, container, time)
-  if UNSTimedAction.DEBUG.trace then print("UNSTimedAction.bypassDoor: worldobjects ", worldobjects) end
-  if UNSTimedAction.DEBUG.trace then print("UNSTimedAction.bypassDoor: lockedObject ", lockedObject) end
-  if UNSTimedAction.DEBUG.trace then print("UNSTimedAction.bypassDoor: character    ", character) end
-  if UNSTimedAction.DEBUG.trace then print("UNSTimedAction.bypassDoor: container    ", container) end
-  if UNSTimedAction.DEBUG.trace then print("UNSTimedAction.bypassDoor: time         ", time) end
+  -- TODO: Remove when stable
+  if UnJunk.LOG.trace then print("UNSTimedAction.bypassDoor: worldobjects ", worldobjects) end
+  if UnJunk.LOG.trace then print("UNSTimedAction.bypassDoor: lockedObject ", lockedObject) end
+  if UnJunk.LOG.trace then print("UNSTimedAction.bypassDoor: character    ", character) end
+  if UnJunk.LOG.trace then print("UNSTimedAction.bypassDoor: container    ", container) end
+  if UnJunk.LOG.trace then print("UNSTimedAction.bypassDoor: time         ", time) end
   local action = UNSTimedAction.bypass(self, character, container, time, UnJunk.BYPASS_DOOR)
   action.worldObjects = worldObjects
   action.lockedObject = lockedObject
   return action
 end
 
-function UNSTimedAction.bypassVehicleDoor(lockedObject, character, container, time)
+function UNSTimedAction:bypassVehicleDoor(vehicle, lockedObject, character, container, time)
+  -- TODO: Remove when stable
+  if UnJunk.LOG.trace then print("UNSTimedAction.bypassDoor: vehicle      ", vehicle) end
+  if UnJunk.LOG.trace then print("UNSTimedAction.bypassDoor: lockedObject ", lockedObject) end
+  if UnJunk.LOG.trace then print("UNSTimedAction.bypassDoor: character    ", character) end
+  if UnJunk.LOG.trace then print("UNSTimedAction.bypassDoor: container    ", container) end
+  if UnJunk.LOG.trace then print("UNSTimedAction.bypassDoor: time         ", time) end
   local action = UNSTimedAction:bypass(self, character, container, time, UnJunk.BYPASS_VEHICLE_DOOR)
   action.vehicleID = vehicle:getId()
   action.lockedObjectID = lockedObject:getId()

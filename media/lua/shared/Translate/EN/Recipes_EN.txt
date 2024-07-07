@@ -1,10 +1,26 @@
+/*
+┌────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ _/_/_/_/_/  _/    _/  _/      _/    _/_/_/    _/_/_/  _/_/_/_/_/  _/_/_/_/  _/      _/  _/      _/ │    
+│    _/      _/    _/  _/_/    _/  _/        _/            _/      _/        _/_/    _/    _/  _/    │   
+│   _/      _/    _/  _/  _/  _/  _/  _/_/    _/_/        _/      _/_/_/    _/  _/  _/      _/       │   
+│  _/      _/    _/  _/    _/_/  _/    _/        _/      _/      _/        _/    _/_/    _/  _/      │   
+│ _/        _/_/    _/      _/    _/_/_/  _/_/_/        _/      _/_/_/_/  _/      _/  _/      _/     │   
+├────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ © Copyright 2024                                                                                   │ 
+└────────────────────────────────────────────────────────────────────────────────────────────────────┘
+*/
 Recipes_EN = {
   Cut-Up-Wallet = "Cut up wallets",
   Cut-Up-Wallet3 = "Cut up wallets",
   Cut-Up-Wallet4 = "Cut up wallets",
   Whittle-Skeleton-Key = "Whittle skeleton a Key",
-  Shredding-Map = "Shredding map into paper strips",
+  Shredding-Map = "Shredding map into paper sheets",
   Make-Crucible = "Make a crucible",
   Make-Slingshot-Ammo = "Cast slingshot ammo",
   Make-Slingshot-Ammo-more = "Cast slingshot ammo",
+  Open-Wine-Bottle = "Open wine bottle",
+  Open-Wine-Bottle2 = "Open wine bottle",
+  Open-Wine-Bottle-Covered = "Cover open wine bottle",
+  Open-Wine-Bottle-Covered2 = "Cover open wine bottle",
+  Decant-Wine-Bottle-Covered = "Decant covered open wine bottle",
 }

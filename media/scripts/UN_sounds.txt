@@ -9,7 +9,33 @@
 │ © Copyright 2024                                                                                   │ 
 └────────────────────────────────────────────────────────────────────────────────────────────────────┘
 */
-IGUI_EN = {
-    IGUI_Skelenton_fail_1 = "Couldn't unlock. I can try again... ",
-    IGUI_Skelenton_fail_2 = "Skelenton key broke off in lock.",
+module Base {
+	sound SkelentonKey 	{
+		category = Item,
+    loop = true,
+		maxInstancesPerEmitter = 1,	
+		clip { 
+      file = media/sound/SkelentonKey.ogg,
+    }
+	}
+  
+  sound SkelentonKeyFail1 {  
+		category = Item,
+		maxInstancesPerEmitter = 1,	
+		clip { 
+      file = media/sound/SkelentonKeyFail1.ogg,
+      reverbFactor = 0.1,
+      reverbMaxRange = 5.0,
+    }
+  }
+  
+  sound SkelentonKeyFail2 {  
+		category = Item,
+		maxInstancesPerEmitter = 1,	
+		clip { 
+      file = media/sound/SkelentonKeyFail2.ogg,
+      reverbFactor = 0.1,
+      reverbMaxRange = 5.0,
+    }
+  }
 }

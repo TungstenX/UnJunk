@@ -1,22 +1,28 @@
--- ┌────────────────────────────────────────────────────────────────────────────────────────────────────┐                                                                                                     
--- │ _/_/_/_/_/  _/    _/  _/      _/    _/_/_/    _/_/_/  _/_/_/_/_/  _/_/_/_/  _/      _/  _/      _/ │    
--- │    _/      _/    _/  _/_/    _/  _/        _/            _/      _/        _/_/    _/    _/  _/    │   
--- │   _/      _/    _/  _/  _/  _/  _/  _/_/    _/_/        _/      _/_/_/    _/  _/  _/      _/       │   
--- │  _/      _/    _/  _/    _/_/  _/    _/        _/      _/      _/        _/    _/_/    _/  _/      │   
--- │ _/        _/_/    _/      _/    _/_/_/  _/_/_/        _/      _/_/_/_/  _/      _/  _/      _/     │   
--- ├────────────────────────────────────────────────────────────────────────────────────────────────────┤
--- │ © Copyright 2024                                                                                   │ 
--- ├────────────────────────────────────────────────────────────────────────────────────────────────────┤
--- │ Credits:                                                                                           │
--- │   Braven's CommonSense mod                                                                         │
--- │   Workshop ID: 2875848298                                                                          │
--- │   Mod ID: BB_CommonSense                                                                           │
--- └────────────────────────────────────────────────────────────────────────────────────────────────────┘
---
--- This handles the OnFillWorldObjectContextMenu event as well as the radial menu (outside the vehicle)
+--[[
+┌────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ _/_/_/_/_/  _/    _/  _/      _/    _/_/_/    _/_/_/  _/_/_/_/_/  _/_/_/_/  _/      _/  _/      _/ │    
+│    _/      _/    _/  _/_/    _/  _/        _/            _/      _/        _/_/    _/    _/  _/    │   
+│   _/      _/    _/  _/  _/  _/  _/  _/_/    _/_/        _/      _/_/_/    _/  _/  _/      _/       │   
+│  _/      _/    _/  _/    _/_/  _/    _/        _/      _/      _/        _/    _/_/    _/  _/      │   
+│ _/        _/_/    _/      _/    _/_/_/  _/_/_/        _/      _/_/_/_/  _/      _/  _/      _/     │ ├────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ © Copyright 2024                                                                                   │ 
+├────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ Credits:                                                                                           │
+│   Braven's CommonSense mod                                                                         │
+│   Workshop ID: 2875848298                                                                          │
+│   Mod ID: BB_CommonSense                                                                           │
+└────────────────────────────────────────────────────────────────────────────────────────────────────┘
 
+┌──────────┐
+│ UNS Menu │
+└──────────┘
+
+- This handles the OnFillWorldObjectContextMenu event as well as the radial menu (outside the vehicle)
+]]
+
+require "UnJunk"
 UNSMenu = UNSMenu or {}
-UNSMenu.DEBUG = getDebug() or false
+
 
 function UNSMenu.calcTime(player)
   return 250 / (player:getPerkLevel(Perks.Nimble) + 1)
@@ -106,6 +112,7 @@ UNSMenu.OnFillWorldObjectContextMenuBypass = function(playerSup, context, worldo
   if not SandboxVars.UnJunk.Bypass then return end
 
   local player = getSpecificPlayer(playerSup)
+    
   if player:getVehicle() then return end
 
   local playerInv =  player:getInventory()
