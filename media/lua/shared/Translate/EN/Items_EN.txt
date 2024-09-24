@@ -16,4 +16,13 @@ Items_EN = {
   DisplayNameOpenRedWine          = "Open Merlot",
   DisplayNameOpenRedWineRotten    = "Open Merlot Rotten",
   DisplayNameOpenWineCovered      = "Covered Open Wine Bottle",
+  DisplayNameTaticalGrannyMag1    = "The Tatical Granny Magazine vol 1",
+  DisplayNameTaticalGrannyMag2    = "The Tatical Granny Magazine vol 2",
+  DisplayNamePotOfSurvivalStew    = "Pot of Survival Stew",
+  DisplayNameStrawberryJam        = "Strawberry Jam",
+  DisplayNameTomatoJam            = "Tomato Jam",
+  DisplayNameTacticalBoxers       = "Tactical Boxers",
+  DisplayNameTacticalSpeedo       = "Tactical Trunks",
+  DisplayNameTacticalBriefs       = "Tactical Briefs",
+  DisplayNameTacticalAnimalPrintUnderpants = "Tactical Animal Print Underpants",
 }

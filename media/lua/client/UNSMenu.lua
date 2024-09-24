@@ -21,6 +21,7 @@
 ]]
 
 require "UnJunk"
+
 UNSMenu = UNSMenu or {}
 
 
@@ -157,6 +158,7 @@ UNSMenu.OnFillWorldObjectContextMenuBypass = function(playerSup, context, worldo
 end
 
 Events.OnFillWorldObjectContextMenu.Add(UNSMenu.OnFillWorldObjectContextMenuBypass)
+
 
 -- Not working correctly, needs testing
 local OnShowRadialMenuOutside = ISVehicleMenu.showRadialMenuOutside

@@ -1,0 +1,12 @@
+module Base
+{
+  evolvedrecipe SurvivalStew {
+    BaseItem:              WaterPot,
+    MaxItems:              12,
+    ResultItem:            PotOfSurvivalStew,
+    Name:                  Prepare Survival Stew,
+    CanAddSpicesEmpty:     true,
+    AddIngredientIfCooked: true,
+		Cookable:              true,
+  }  
+}

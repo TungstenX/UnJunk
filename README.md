@@ -23,9 +23,13 @@ Making junk items more useful
 ## Items
 - Skeleton Key
     - Can be used to bypass locked doors (including vehicle doors) but be careful, you can break off the skeleton key in the lock, which will break the lock
-- Crucible 
+- Open Wine Bottle
+    - Same as normal wine bottle except it will go stale in 7 days and rot in 14 days after opening
+- Covered open wine bottle
+    - Prevent fruit-flies from contaminating the vinegar making process (Can be used to make vinegar after opening + covering between 7 to 14 days - stale not rotten)
+- Crucible **[Not yet implemented]**
     - Used for smelting soft metals
-- SlingshotAmmo
+- SlingshotAmmo **[Not yet implemented]**
     - To be used by the slingshot weapon
 
 ## Acknowledgements

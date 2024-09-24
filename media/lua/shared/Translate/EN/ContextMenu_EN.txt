@@ -10,5 +10,18 @@
 └────────────────────────────────────────────────────────────────────────────────────────────────────┘
 */
 ContextMenu_EN = {
-  ContextMenu_Use_Skelenton = "Use skelenton key",
+  ContextMenu_Use_Skelenton              = "Use skelenton key",
+  ContextMenu_Cast                       = "Cast projectile ",
+  ContextMenu_Mug                        = "Make a makeshift crucible-mold combo",
+  ContextMenu_Make-Crucible57            = "For 5.7mm",
+  ContextMenu_Make-Crucible9             = "For 9mm",
+  ContextMenu_Make-Crucible38            = "For 38-Cal",
+  ContextMenu_Make-Crucible45            = "For 45-Cal",
+  ContextMenu_Make-Crucible44            = "For 44-Cal",
+  ContextMenu_Make-Crucible556           = "For 5.56mm",
+  ContextMenu_Make-Crucible545           = "For 5.45mm",
+  ContextMenu_Make-Crucible30            = "For 30-cal",
+  ContextMenu_Make-Crucible50            = "For 50-cal",
+  ContextMenu_Make-Crucible00            = "For 00-Buckshot",
+  ContextMenu_EvolvedRecipe_SurvivalStew = "Survival Stew"
 }
