@@ -29,6 +29,7 @@ module Base {
     Prop1:Scissors,
     Prop2:Source=1,
 	}
+  
   recipe Cut-Up-Wallet3 {
     Thread=0.1,
     destroy Wallet3=2,    
@@ -43,6 +44,7 @@ module Base {
     Prop1:Scissors,
     Prop2:Source=1,
 	}
+  
   recipe Cut-Up-Wallet4 {
     Thread=0.1,
     destroy Wallet4=2,    
@@ -82,7 +84,8 @@ module Base {
     AnimNode:RipSheets,
 	}
   
-  /* Winebottle => Open bottle */
+  /* Winebottle => Open bottle 
+  Not working needs more tesing
   recipe Open-Wine-Bottle {
     destroy Wine,
     keep Corkscrew,
@@ -93,6 +96,7 @@ module Base {
     OnGiveXP:Recipe.OnGiveXP.None,
     OnCreate:Recipe.OnCreate.OpenWine,
   }
+  
   recipe Open-Wine-Bottle2 {
     destroy Wine2,
     keep Corkscrew,
@@ -103,8 +107,10 @@ module Base {
     OnGiveXP:Recipe.OnGiveXP.None,
     OnCreate:Recipe.OnCreate.OpenWine,
   }
+  */
   
-  /* Open Wine bottle => Open Wine bottle Covered */
+  /* Open Wine bottle => Open Wine bottle Covered 
+  Not working needs more tesing
   recipe Open-Wine-Bottle-Covered {
     destroy OpenWine/OpenWine2, RubberBand, DishCloth, 
     
@@ -113,8 +119,9 @@ module Base {
     Category:Cooking,
     OnGiveXP:Recipe.OnGiveXP.None,
   }  
-  
-  /* Decant Wine bottle Covered => Vinegar */
+  */
+  /* Decant Wine bottle Covered => Vinegar 
+  Not working needs more tesing
   recipe Decant-Wine-Bottle-Covered {
     destroy OpenWineCovered, BeerEmpty/WineEmpty/WineEmpty2, WaterBottleEmpty/MayonnaiseEmpty/PopBottleEmpty,
     keep [Recipe.GetItemTypes.Scissors]/[Recipe.GetItemTypes.SharpKnife],
@@ -130,8 +137,9 @@ module Base {
     OnTest:Recipe.OnTest.CanDecantWine,
     OnCreate:Recipe.OnCreate.DecantCoveredWine,
   }
-  
+  */
   /* Mug => Crucible 
+  Moved to code
   recipe Make-Crucible57 {
     Water=2,		
 		Sandbag=0.01,
@@ -485,7 +493,7 @@ module Base {
     StopOnRun:true,
     NeedToBeLearn:true,
   }
-  
+  /* Not working as expected
   recipe Make_Tactical_Boxers {
     destroy Boxers_White/Boxers_Silk_Black/Boxers_Silk_Red/Boxers_RedStripes/Boxers_Hearts,
     destroy CreditCard,
@@ -560,29 +568,43 @@ module Base {
     StopOnWalk:true,
     StopOnRun:true,
     NeedToBeLearn:true,  
-  }
+  } */
   
   recipe Make_Tomato_Jam {
-    TinCanEmpty,
-    farming.Tomato=12,
+    destroy TinCanEmpty=3,
+    destroy farming.Tomato=12,
+    destroy WaterPot,
     [Recipe.GetItemTypes.Sugar];2,
+    keep [Recipe.GetItemTypes.SharpKnife],
 
-    Result:JamTomato,
+    Result:RawTomatoJam,
     Time:100.0,
-    OnCreate:Recipe.OnCreate.CannedFood,
     Category:Cooking,
-    OnGiveXP:Recipe.OnGiveXP.Cooking10,
+    Sound:SliceMeat,
+    NeedToBeLearn:true,  
+    Prop1:WaterPot,
+    Prop2:Source=5,
+    StopOnWalk:true,
+    StopOnRun:true,
+    AnimNode:Craft,
   }
   
   recipe Make_Strawberry_Jam {
-    TinCanEmpty,
-    farming.Strawberrie=16,
+    destroy TinCanEmpty=3,
+    destroy farming.Strewberrie=16,
+    destroy WaterPot,
     [Recipe.GetItemTypes.Sugar];2,
+    keep [Recipe.GetItemTypes.SharpKnife],
 
-    Result:JamStrawberry,
+    Result:RawStrawberryJam,
     Time:100.0,
-    OnCreate:Recipe.OnCreate.CannedFood,
     Category:Cooking,
-    OnGiveXP:Recipe.OnGiveXP.Cooking10,
+    Sound:SliceMeat,
+    NeedToBeLearn:true,  
+    Prop1:WaterPot,
+    Prop2:Source=5,
+    StopOnWalk:true,
+    StopOnRun:true,
+    AnimNode:Craft,
   }
 }

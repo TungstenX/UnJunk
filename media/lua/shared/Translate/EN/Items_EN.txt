@@ -9,20 +9,22 @@
 │ © Copyright 2024                                                                                   │ 
 └────────────────────────────────────────────────────────────────────────────────────────────────────┘
 */
-
 Items_EN = {
-  DisplayNameOpenChardonnay       = "Open Chardonnay",
-  DisplayNameOpenChardonnayRotten = "Open Chardonnay Rotten",
-  DisplayNameOpenRedWine          = "Open Merlot",
-  DisplayNameOpenRedWineRotten    = "Open Merlot Rotten",
-  DisplayNameOpenWineCovered      = "Covered Open Wine Bottle",
-  DisplayNameTaticalGrannyMag1    = "The Tatical Granny Magazine vol 1",
-  DisplayNameTaticalGrannyMag2    = "The Tatical Granny Magazine vol 2",
-  DisplayNamePotOfSurvivalStew    = "Pot of Survival Stew",
-  DisplayNameStrawberryJam        = "Strawberry Jam",
-  DisplayNameTomatoJam            = "Tomato Jam",
-  DisplayNameTacticalBoxers       = "Tactical Boxers",
-  DisplayNameTacticalSpeedo       = "Tactical Trunks",
-  DisplayNameTacticalBriefs       = "Tactical Briefs",
-  DisplayNameTacticalAnimalPrintUnderpants = "Tactical Animal Print Underpants",
+  DisplayNameOpenChardonnay                 = "Open Chardonnay",
+  DisplayNameOpenChardonnayRotten           = "Open Chardonnay Rotten",
+  DisplayNameOpenRedWine                    = "Open Merlot",
+  DisplayNameOpenRedWineRotten              = "Open Merlot Rotten",
+  DisplayNameOpenWineCovered                = "Covered Open Wine Bottle",
+  DisplayNameTacticalGrannyMag1             = "The Tactical Granny Magazine vol 1",  
+  DisplayNameTacticalGrannyMag2             = "The Tactical Granny Magazine vol 2",
+  DisplayNameKentuckyAppalachianCookingMag1 = "Kentucky Appalachian Cooking Magazine Vol. 1",
+  DisplayNamePotOfSurvivalStew              = "Pot of Survival Stew",
+  DisplayNameStrawberryJam                  = "Strawberry Jam",
+  DisplayNameTomatoJam                      = "Tomato Jam",
+  DisplayNameRawTomatoJam                   = "Raw Tomato Jam Preparation",
+  DisplayNameRawStrawberryJam               = "Raw Strawberry Jam Preparation",
+  DisplayNameTacticalBoxers                 = "Tactical Boxers",
+  DisplayNameTacticalSpeedo                 = "Tactical Trunks",
+  DisplayNameTacticalBriefs                 = "Tactical Briefs",
+  DisplayNameTacticalAnimalPrintUnderpants  = "Tactical Animal Print Underpants",
 }

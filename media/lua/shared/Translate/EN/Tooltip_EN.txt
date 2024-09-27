@@ -10,7 +10,8 @@
 └────────────────────────────────────────────────────────────────────────────────────────────────────┘
 */
 Tooltip_EN = {
-  Tooltip_item_use_skelenton_key = "Use skelenton key to unlock locks",
-  Tooltip_item_crucible          = "Used for melting soft metals into lead projectile",
-  Tooltip_item_TaticalGrannyMag  = "Tatical Granny will teach you how to craft some useful items",
+  Tooltip_item_use_skelenton_key             = "Use skelenton key to unlock locks",
+  Tooltip_item_crucible                      = "Used for melting soft metals into lead projectile",
+  Tooltip_item_TacticalGrannyMag             = "Tactical Granny will teach you how to craft some useful items",
+  Tooltip_item_KentuckyAppalachianCookingMag = "Kentucky Appalachian Cooking and More: A unique cookbook of old fashioned recipes and more",
 }

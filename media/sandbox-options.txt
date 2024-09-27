@@ -4,14 +4,14 @@ option UnJunk.Bypass {
   type = boolean,
   default = true,
   page = UnJunk,
-  translation = Sandbox_UnJunk_Bypass,
+  translation = UnJunk_Bypass,
 }
 
 option UnJunk.BypassAllDoors {
   type = boolean,
   default = false,
   page = UnJunk,
-  translation = Sandbox_UnJunk_BypassAllDoors,
+  translation = UnJunk_BypassAllDoors,
 }
 
 option UnJunk.BypassChanceMultiplier {

@@ -17,9 +17,9 @@
 │ UNS Sound Utils │
 └─────────────────┘
 ]]
-require "UnJunk"
-
 UNSSoundUtils = UNSSoundUtils or {}
+UNSSoundUtils.LOG = UNSSoundUtils.LOG or {}
+UNSSoundUtils.LOG.debug = getDebug() or false
 
 -- Play either one of two  fail sounds for skelenton ket
 function UNSSoundUtils.playFailSoundClip(obj)
@@ -34,7 +34,7 @@ function UNSSoundUtils.playSoundClip(obj, soundName)
 	if obj and obj:getEmitter() and obj:getEmitter():isPlaying(soundName) then return end
   if not obj or not obj:getEmitter() then return end
   local sound = obj:getEmitter():playSoundImpl(soundName, nil)
-  if sound == 0 and UnJunk.LOG.debug then
+  if sound == 0 and UNSSoundUtils.LOG.debug then
     print("Sound " .. soundName .. " could not be played")
   end
   return sound  
@@ -43,7 +43,7 @@ end
 function UNSSoundUtils.stopSoundClip(obj, soundName)
 	if not obj:getEmitter():isPlaying(soundName) then return end
 	local sound = obj:getEmitter():stopSoundByName(soundName)
-  if sound == 0 and UnJunk.LOG.debug then
+  if sound == 0 and UNSSoundUtils.LOG.debug then
     print("Sound " .. soundName .. " could not be stopped")
   end
   return sound
