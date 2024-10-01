@@ -84,8 +84,7 @@ module Base {
     AnimNode:RipSheets,
 	}
   
-  /* Winebottle => Open bottle 
-  Not working needs more tesing
+  /* Winebottle => Open bottle */
   recipe Open-Wine-Bottle {
     destroy Wine,
     keep Corkscrew,
@@ -107,10 +106,8 @@ module Base {
     OnGiveXP:Recipe.OnGiveXP.None,
     OnCreate:Recipe.OnCreate.OpenWine,
   }
-  */
   
-  /* Open Wine bottle => Open Wine bottle Covered 
-  Not working needs more tesing
+  /* Open Wine bottle => Open Wine bottle Covered */
   recipe Open-Wine-Bottle-Covered {
     destroy OpenWine/OpenWine2, RubberBand, DishCloth, 
     
@@ -119,11 +116,10 @@ module Base {
     Category:Cooking,
     OnGiveXP:Recipe.OnGiveXP.None,
   }  
-  */
-  /* Decant Wine bottle Covered => Vinegar 
-  Not working needs more tesing
+  
+  /* Decant Wine bottle Covered => Vinegar */
   recipe Decant-Wine-Bottle-Covered {
-    destroy OpenWineCovered, BeerEmpty/WineEmpty/WineEmpty2, WaterBottleEmpty/MayonnaiseEmpty/PopBottleEmpty,
+    destroy OpenWineCovered,BeerEmpty/WineEmpty/WineEmpty2,WaterBottleEmpty/MayonnaiseEmpty/PopBottleEmpty,
     keep [Recipe.GetItemTypes.Scissors]/[Recipe.GetItemTypes.SharpKnife],
         
     Result:Vinegar,
@@ -137,164 +133,13 @@ module Base {
     OnTest:Recipe.OnTest.CanDecantWine,
     OnCreate:Recipe.OnCreate.DecantCoveredWine,
   }
-  */
-  /* Mug => Crucible 
-  Moved to code
-  recipe Make-Crucible57 {
-    Water=2,		
-		Sandbag=0.01,
-    keep WoodenStick,
-    keep [Recipe.GetItemTypes.SharpKnife],
-    destroy Mugl/MugRed/MugWhite/MugSpiffo,
-
-		Result:Crucible,
-		Sound:MakePlaster,
-		AnimNode:Dig,
-		Time:100.0,
-		Category:Smithing,
-		CanBeDoneFromFloor:TRUE,
-  }
   
-  recipe Make-Crucible9 {
-    Water=2,		
-		Sandbag=0.01,
-    keep WoodenStick,
-    keep [Recipe.GetItemTypes.SharpKnife],
-    destroy Mugl/MugRed/MugWhite/MugSpiffo,
-
-		Result:Crucible9,
-		Sound:MakePlaster,
-		AnimNode:Dig,
-		Time:100.0,
-		Category:Smithing,
-		CanBeDoneFromFloor:TRUE,
-  }
-  
-  recipe Make-Crucible38 {
-    Water=2,		
-		Sandbag=0.01,
-    keep WoodenStick,
-    keep [Recipe.GetItemTypes.SharpKnife],
-    destroy Mugl/MugRed/MugWhite/MugSpiffo,
-
-		Result:Crucible38,
-		Sound:MakePlaster,
-		AnimNode:Dig,
-		Time:100.0,
-		Category:Smithing,
-		CanBeDoneFromFloor:TRUE,
-  }
-  
-  recipe Make-Crucible45 {
-    Water=2,		
-		Sandbag=0.01,
-    keep WoodenStick,
-    keep [Recipe.GetItemTypes.SharpKnife],
-    destroy Mugl/MugRed/MugWhite/MugSpiffo,
-
-		Result:Crucible45,
-		Sound:MakePlaster,
-		AnimNode:Dig,
-		Time:100.0,
-		Category:Smithing,
-		CanBeDoneFromFloor:TRUE,
-  }
-  
-  recipe Make-Crucible44 {
-    Water=2,		
-		Sandbag=0.01,
-    keep WoodenStick,
-    keep [Recipe.GetItemTypes.SharpKnife],
-    destroy Mugl/MugRed/MugWhite/MugSpiffo,
-
-		Result:Crucible44,
-		Sound:MakePlaster,
-		AnimNode:Dig,
-		Time:100.0,
-		Category:Smithing,
-		CanBeDoneFromFloor:TRUE,
-  }
-  
-  recipe Make-Crucible556 {
-    Water=2,		
-		Sandbag=0.01,
-    keep WoodenStick,
-    keep [Recipe.GetItemTypes.SharpKnife],
-    destroy Mugl/MugRed/MugWhite/MugSpiffo,
-
-		Result:Crucible556,
-		Sound:MakePlaster,
-		AnimNode:Dig,
-		Time:100.0,
-		Category:Smithing,
-		CanBeDoneFromFloor:TRUE,
-  }
-  
-  recipe Make-Crucible545 {
-    Water=2,		
-		Sandbag=0.01,
-    keep WoodenStick,
-    keep [Recipe.GetItemTypes.SharpKnife],
-    destroy Mugl/MugRed/MugWhite/MugSpiffo,
-
-		Result:Crucible545,
-		Sound:MakePlaster,
-		AnimNode:Dig,
-		Time:100.0,
-		Category:Smithing,
-		CanBeDoneFromFloor:TRUE,
-  }
-  
-  recipe Make-Crucible30 {
-    Water=2,		
-		Sandbag=0.01,
-    keep WoodenStick,
-    keep [Recipe.GetItemTypes.SharpKnife],
-    destroy Mugl/MugRed/MugWhite/MugSpiffo,
-
-		Result:Crucible30,
-		Sound:MakePlaster,
-		AnimNode:Dig,
-		Time:100.0,
-		Category:Smithing,
-		CanBeDoneFromFloor:TRUE,
-  }
-  
-  recipe Make-Crucible50 {
-    Water=2,		
-		Sandbag=0.1,
-    keep WoodenStick,
-    keep [Recipe.GetItemTypes.SharpKnife],
-    destroy Mugl/MugRed/MugWhite/MugSpiffo,
-
-		Result:Crucible50,
-		Sound:MakePlaster,
-		AnimNode:Dig,
-		Time:100.0,
-		Category:Smithing,
-		CanBeDoneFromFloor:TRUE,
-  }
-  
-  recipe Make-Crucible00 {
-    Water=2,		
-		Sandbag=0.01,
-    keep Chopsticks,
-    keep [Recipe.GetItemTypes.SharpKnife],
-    destroy Mugl/MugRed/MugWhite/MugSpiffo,
-
-		Result:Crucible00Buck,
-		Sound:MakePlaster,
-		AnimNode:Dig,
-		Time:100.0,
-		Category:Smithing,
-		CanBeDoneFromFloor:TRUE,
-  }*/ 
   
   /* Projectiles */  
  recipe Make-Projectile57 {
     Necklace_DogTag/Necklace_Gold/Necklace_GoldRuby/Necklace_GoldDiamond/Necklace_Silver/Necklace_SilverSapphire/Necklace_SilverCrucifix/Necklace_SilverDiamond/Necklace_Crucifix/Necklace_YingYang/Necklace_Pearl/NecklaceLong_Gold/NecklaceLong_GoldDiamond/NecklaceLong_Silver/NecklaceLong_SilverEmerald/NecklaceLong_SilverSapphire/NecklaceLong_SilverDiamond/NecklaceLong_Amber/NoseRing_Gold/NoseRing_Silver/NoseStud_Gold/NoseStud_Silver/Earring_LoopLrg_Gold/Earring_LoopLrg_Silver/Earring_LoopMed_Silver/Earring_LoopMed_Gold/Earring_LoopSmall_Silver_Both/Earring_LoopSmall_Silver_Top/Earring_LoopSmall_Gold_Both/Earring_LoopSmall_Gold_Top/Earring_Stud_Gold/Earring_Stud_Silver/Earring_Stone_Sapphire/Earring_Stone_Emerald/Earring_Stone_Ruby/Earring_Pearl/Earring_Dangly_Sapphire/Earring_Dangly_Emerald/Earring_Dangly_Ruby/Earring_Dangly_Diamond/Earring_Dangly_Pearl/Ring_Right_MiddleFinger_Gold/Ring_Left_MiddleFinger_Gold/Ring_Right_RingFinger_Gold/Ring_Left_RingFinger_Gold/Ring_Right_MiddleFinger_Silver/Ring_Left_MiddleFinger_Silver/Ring_Right_RingFinger_Silver/Ring_Left_RingFinger_Silver/Ring_Right_MiddleFinger_SilverDiamond/Ring_Left_MiddleFinger_SilverDiamond/Ring_Right_RingFinger_SilverDiamond/Ring_Left_RingFinger_SilverDiamond/Ring_Right_MiddleFinger_GoldRuby/Ring_Left_MiddleFinger_GoldRuby/Ring_Right_RingFinger_GoldRuby/Ring_Left_RingFinger_GoldRuby/Ring_Right_MiddleFinger_GoldDiamond/Ring_Left_MiddleFinger_GoldDiamond/Ring_Right_RingFinger_GoldDiamond/Ring_Left_RingFinger_GoldDiamond/WristWatch_Right_ClassicBlack/WristWatch_Left_ClassicBlack/WristWatch_Right_ClassicBrown/WristWatch_Left_ClassicBrown/WristWatch_Right_ClassicMilitary/WristWatch_Left_ClassicMilitary/WristWatch_Right_ClassicGold/WristWatch_Left_ClassicGold/Bracelet_BangleRightGold/Bracelet_BangleLeftGold/Bracelet_ChainRightGold/Bracelet_ChainLeftGold/Bracelet_BangleRightSilver/Bracelet_BangleLeftSilver/Bracelet_ChainRightSilver/Bracelet_ChainLeftSilver/Bracelet_RightFriendshipTINT/Bracelet_LeftFriendshipTINT/BellyButton_DangleGold/BellyButton_DangleGoldRuby/BellyButton_DangleSilver/BellyButton_DangleSilverDiamond/BellyButton_RingGold/BellyButton_RingGoldDiamond/BellyButton_RingGoldRuby/BellyButton_RingSilver/BellyButton_RingSilverAmethyst/BellyButton_RingSilverDiamond/BellyButton_RingSilverRuby/BellyButton_StudGold/BellyButton_StudGoldDiamond/BellyButton_StudSilver/BellyButton_StudSilverDiamond/Corkscrew/Locket/Necklacepearl/Ring/WeddingRing_Man/WeddingRing_Woman=1, 
     BlowTorch=1,
-    keep Crucible,
+    keep Crucible57,
     keep [Recipe.GetItemTypes.WeldingMask],
 
 		Result:Lead57,
@@ -450,7 +295,7 @@ module Base {
     keep Crucible00Buck,
     keep [Recipe.GetItemTypes.WeldingMask],
 
-		Result:Lead00Buck=5,
+		Result:Lead00Buck=20,
 		AnimNode:Pour,
 		Time:100.0,
 		Category:Smithing,
@@ -607,4 +452,88 @@ module Base {
     StopOnRun:true,
     AnimNode:Craft,
   }
+  
+  recipe Make_Carrot_Seed_Snack {
+    keep Spatula/[Recipe.GetItemTypes.Spoon]/[Recipe.GetItemTypes.Fork],
+    keep Bowl,
+    destroy farming.CarrotSeed=20,
+    Butter/Lard/Margarine;15,
+    Salt;2,
+    
+    Result:CarrotSeedSnack,
+    NeedToBeLearn:true,
+    Time:50.0,
+    Category:Cooking,
+    OnGiveXP:Recipe.OnGiveXP.Cooking10,    
+  }
+  
+  /** Tinned meats **/
+  recipe Make_Canned_Lard_Meat {
+    destroy Rabbitmeat:1/Smallanimalmeat:2/Smallbirdmeat:2/FrogMeat:3,
+    destroy TinCanEmpty,
+    Salt;1,
+    keep [Recipe.GetItemTypes.SharpKnife],
+    
+    Result:CannedLardMeat,
+    OnTest:Recipe.OnTest.IsCookedMeat,
+    NeedToBeLearn:true,
+    Time:100.0,
+    Category:Cooking,
+    OnGiveXP:Recipe.OnGiveXP.Cooking10, 
+  }
+  
+  /** Game Meat to jerky (needs code to cure) **/
+  recipe Make_Rabbit_Jerky {
+    destroy Rabbitmeat,
+    Salt;5,
+    keep [Recipe.GetItemTypes.SharpKnife],
+    
+    Result:RabbitJerky,
+    OnTest:Recipe.OnTest.IsUncookedMeat,
+    NeedToBeLearn:true,
+    Time:100.0,
+    Category:Cooking,
+    OnGiveXP:Recipe.OnGiveXP.Cooking10, 
+  }
+  
+  recipe Make_Rodent_Jerky {
+    destroy Smallanimalmeat,
+    Salt;5,
+    keep [Recipe.GetItemTypes.SharpKnife],
+    
+    Result:RodentJerky,
+    OnTest:Recipe.OnTest.IsUncookedMeat,
+    NeedToBeLearn:true,
+    Time:100.0,
+    Category:Cooking,
+    OnGiveXP:Recipe.OnGiveXP.Cooking10, 
+  }
+  
+  recipe Make_Bird_Jerky {
+    destroy Smallbirdmeat,
+    Salt;5,
+    keep [Recipe.GetItemTypes.SharpKnife],
+    
+    Result:BirdJerky,
+    OnTest:Recipe.OnTest.IsUncookedMeat,
+    NeedToBeLearn:true,
+    Time:100.0,
+    Category:Cooking,
+    OnGiveXP:Recipe.OnGiveXP.Cooking10, 
+  }
+  
+  recipe Make_Frog_Jerky {
+    destroy FrogMeat,
+    Salt;5,
+    keep [Recipe.GetItemTypes.SharpKnife],
+    
+    Result:FrogJerky,
+    OnTest:Recipe.OnTest.IsUncookedMeat,
+    NeedToBeLearn:true,
+    Time:100.0,
+    Category:Cooking,
+    OnGiveXP:Recipe.OnGiveXP.Cooking10, 
+  }
+  
+  /* Roasted Cricket & Grasshopper */
 }

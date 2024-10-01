@@ -14,4 +14,9 @@ Tooltip_EN = {
   Tooltip_item_crucible                      = "Used for melting soft metals into lead projectile",
   Tooltip_item_TacticalGrannyMag             = "Tactical Granny will teach you how to craft some useful items",
   Tooltip_item_KentuckyAppalachianCookingMag = "Kentucky Appalachian Cooking and More: A unique cookbook of old fashioned recipes and more",
+  Tooltip_item_OpenBottleReady               = "Vinegar is ready to be decanted",
+  Tooltip_item_OpenBottleNotReady            = "Vinegar will be ready in the following days: ",
+  Tooltip_item_OpenBottleRotten              = "Wine is rotten",
+  Tooltip_item_JerkyReady                    = "Jerky is ready",
+  Tooltip_item_JerkyNotReady                 = "Jerky is still wet, dangerous to eat. Ready in the following days: ",
 }

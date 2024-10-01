@@ -99,11 +99,18 @@ function UNSMenuAmmo.useMaterial(player, material, amount)
   local typeMaterial = string.split(material, '\\.')[2]
   if tonumber(amount) > 0 then
     local item = inv:getFirstTypeRecurse(typeMaterial)
-
+    print("typeMaterial: " .. typeMaterial)
+    print("amount:       " .. tostring(amount))
+    print("item:         " .. tostring(item))
     if item and instanceof(item, "DrainableComboItem") then
+      print("DrainableComboItem type:                  " .. tostring(item:getType()))
+      print("DrainableComboItem IsDrainable:           " .. tostring(item:IsDrainable()))
+      print("DrainableComboItem getDrainableUsesFloat: " .. tostring(item:getDrainableUsesFloat()))
+      --print("DrainableComboItem IsDrainable(): " .. tostring(item:IsDrainable()()))
       item:Use()
       return true
-    elseif item then
+    elseif item then      
+      print("item type:    " .. tostring(item:getType()))
       inv:Remove(item)
       return true
     end
@@ -143,27 +150,30 @@ UNSMenuAmmo.castProjectile = function(worldobjects, player, item)
   print(tostring(item))
 end
 
-UNSMenuAmmo.makeCrucible = function(mug, player, which)
-  ISTimedActionQueue.add(UNSTimedCrucible.new(player, mug, which, 50))
-  
+UNSMenuAmmo.makeCrucible = function(mug, playerIndex, which)
+  local player = getSpecificPlayer(playerIndex)
+  ISTimedActionQueue.add(UNSTimedCrucible:new(player, mug, which, 50))  
 end
 
 function UNSMenuAmmo.tooltipCheckForTool(player, tool, tooltip)
   local tools = UNSTools.getAvailableTool(player:getInventory(), tool)
   if tools then
-    tooltip.description = tooltip.description .. ' <RGB:1,1,1>' .. tools:getName() .. ' <LINE>'
+    tooltip.description = tooltip.description .. ' <RGB:0,1,0>' .. tools:getName() .. ' <LINE>'
     return true
   else
-    for _, toolT in pairs (UNSTools.TOOLS[tool]) do
+    for _, toolTypes in pairs(UNSTools.TOOLS[tool]) do
+      --for k, v in pairs(toolTypes) do
+      --  print(tostring(k) .. "] " .. tostring(v))
+      --end
       local toolsRequired = ""
       local count = 0
-      if toolT and toolT.types then
-        for _, toolType in pairs (toolT.types) do
+      if toolTypes then
+        for _, toolType in pairs(toolTypes) do
           if count > 1 then
             toolsRequired = toolsRequired + " / "
           end
           count = count + 1
-          toolsRequired = toolsRequired + getItemNameFromFullType(toolType)
+          toolsRequired = toolsRequired .. getItemNameFromFullType(toolType)
         end
       end  
       tooltip.description = tooltip.description .. ' <RGB:1,0,0>' .. toolsRequired .. ' <LINE>'
@@ -226,6 +236,90 @@ function UNSMenuAmmo.tooltipCheckForUses(player, material, amount, tooltip)
 	end
 end
 
+function UNSMenuAmmo.testOrUse(character, hasWater, tooltip)
+  if not character then
+    error("[UNS ERROR] Supply character")
+    return
+  end
+  
+  local canBuild = true
+  local currentResult = true
+  
+  if UNSRecipe.CRUCIBLE.useConsumable then
+    for _, currentMaterial in pairs(UNSRecipe.CRUCIBLE.useConsumable) do
+      if not currentMaterial.Consumable then
+        for key, consumableData in pairs(currentMaterial) do
+          local consumable = consumableData["Consumable"]
+          local amount = consumableData["Amount"]
+          if tooltip then
+            if key > 1 then
+              tooltip.description = tooltip.description .. " Or " -- TODO: Translate
+            end
+            if UNSUtils.hasUseDelta(consumable) then
+              currentResult = UNSMenuAmmo.tooltipCheckForUses(character, consumable, amount, tooltip)
+            else
+              currentResult = UNSMenuAmmo.tooltipCheckForMaterial(character, consumable, amount, tooltip)
+           end
+          else
+            currentResult = UNSMenuAmmo.useMaterial(character, consumable, amount)
+          end
+          if not currentResult then
+            canBuild = false            
+            if not tooltip then
+              error("[UNS ERROR] " .. string.format("Could not consume item for: %s", consumable or "nil"))
+            end
+          end       
+        end
+      elseif currentMaterial.Consumable and currentMaterial.Amount then
+        if currentMaterial.Consumable == 'Base.Water' then
+          print("checking water")
+          if hasWater then
+            print("mug got water already")
+            if tooltip then
+              local usesText = " (uses)" -- TODO: Translate
+              tooltip.description = tooltip.description .. ' <RGB:0,1,0>H2O 1/' .. currentMaterial.Amount .. usesText .. ' <LINE>'
+            end
+            currentResult = true
+          else
+            print("have to use water")
+            if tooltip then
+              currentResult = UNSMenuAmmo.tooltipCheckForWater(character, currentMaterial.Amount, tooltip)
+            else
+              --getWater
+              --currentResult = UNSMenuAmmo.useMaterial(character, currentMaterial.Consumable, currentMaterial.Amount)
+              --Todo use water
+            end
+          end
+        else
+          if UNSUtils.hasUseDelta(currentMaterial.Consumable) then            
+            if tooltip then
+              currentResult = UNSMenuAmmo.tooltipCheckForUses(character, currentMaterial.Consumable, currentMaterial.Amount, tooltip)              
+            else
+              currentResult = UNSMenuAmmo.useMaterial(character, currentMaterial.Consumable, currentMaterial.Amount)
+            end
+          else
+            if tooltip then
+              currentResult = UNSMenuAmmo.tooltipCheckForMaterial(character, currentMaterial.Consumable, currentMaterial.Amount, tooltip)
+            else
+              currentResult = UNSMenuAmmo.useMaterial(character, currentMaterial.Consumable, currentMaterial.Amount)
+            end
+          end
+        end        
+        if not currentResult then
+          canBuild = false
+          if not tooltip then
+            error("[UNS ERROR] " .. string.format("Could not consume item for: %s", currentMaterial.Consumable or "nil"))
+          end
+        end 
+      else
+        canBuild = false
+        error("[UNS ERROR] Error in required material definition.")
+      end
+    end
+  end 
+  return canBuild
+end
+
 function UNSMenuAmmo.canBuildObject(skills, option, player, mugInfo)
   local tooltip = ISToolTip:new()
   tooltip:initialise()
@@ -234,72 +328,37 @@ function UNSMenuAmmo.canBuildObject(skills, option, player, mugInfo)
 
   tooltip.description = UNSMenuAmmo.textTooltipHeader
 
-  local canBuild = true
   local currentResult = true
   
-  for _, currentMaterial in pairs(UNSRecipe.CRUCIBLE.useConsumable) do
-    if not currentMaterial.Consumable then
-      for k, v in pairs(currentMaterial) do
-        local consumable = v["Consumable"]
-        local amount = v["Amount"]
-        if k > 1 then
-          tooltip.description = tooltip.description .. "Or " -- TODO: Translate
-        end
-        if UNSUtils.hasUseDelta(consumable) then
-          currentResult = UNSMenuAmmo.tooltipCheckForUses(player, consumable, amount, tooltip)
-        else
-          currentResult = UNSMenuAmmo.tooltipCheckForMaterial(player, consumable, amount, tooltip)
-       end
-        if not currentResult then
-          canBuild = false
-        end       
-      end
-    elseif currentMaterial.Consumable and currentMaterial.Amount then
-      if currentMaterial.Consumable == 'Base.Water' then
-        if mugInfo == "Water" then
-          local usesText = " (uses)" -- TODO: Translate
-          tooltip.description = tooltip.description .. ' <RGB:0,1,0>H2O 1/' .. currentMaterial.Amount .. usesText .. ' <LINE>'
-          currentResult = true
-        else
-          currentResult = UNSMenuAmmo.tooltipCheckForWater(player, currentMaterial.Amount, tooltip)
-        end
-      else
-        if UNSUtils.hasUseDelta(currentMaterial.Consumable) then
-          currentResult = UNSMenuAmmo.tooltipCheckForUses(player, currentMaterial.Consumable, currentMaterial.Amount, tooltip)
-        else
-          currentResult = UNSMenuAmmo.tooltipCheckForMaterial(player, currentMaterial.Consumable, currentMaterial.Amount, tooltip)
-        end
-        if not currentResult then
-          canBuild = false
-        end
-      end
-    else
-      tooltip.description = tooltip.description .. ' <RGB:1,0,0> Error in required material definition. <LINE>'
-      canBuild = false
-    end
-  end
+  local canBuild = UNSMenuAmmo.testOrUse(player, mugInfo == "Water", tooltip)
   
-  for _, currentTool in pairs(UNSRecipe.CRUCIBLE.neededTools) do
-    currentResult = UNSMenuAmmo.tooltipCheckForTool(player, currentTool, tooltip)    
-    if not currentResult then
-      canBuild = false
+  if UNSRecipe.CRUCIBLE.neededTools then
+    tooltip.description = tooltip.description .. "<LINE>"
+    for _, currentTool in pairs(UNSRecipe.CRUCIBLE.neededTools) do
+      currentResult = UNSMenuAmmo.tooltipCheckForTool(player, currentTool, tooltip)    
+      if not currentResult then
+        canBuild = false
+      end
     end
   end
 
   tooltip.description = tooltip.description .. ' <LINE>'
-  for _, skill in pairs (skills) do
-    local localSkillName = skill.Skill
-    local level = skill.Level
-    if (UNSMenuAmmo.playerSkills[localSkillName] < level) then
-      tooltip.description = tooltip.description .. UNSMenuAmmo.textSkillsRed[localSkillName]
-      canBuild = false
-    else
-      tooltip.description = tooltip.description .. UNSMenuAmmo.textSkillsGreen[localSkillName]
+  if skills then
+    for _, skill in pairs (skills) do
+      local localSkillName = skill.Skill
+      local level = skill.Level
+      if (UNSMenuAmmo.playerSkills[localSkillName] < level) then
+        tooltip.description = tooltip.description .. UNSMenuAmmo.textSkillsRed[localSkillName]
+        canBuild = false
+      else
+        tooltip.description = tooltip.description .. UNSMenuAmmo.textSkillsGreen[localSkillName]
+      end
+      tooltip.description = tooltip.description .. level .. ' <LINE>'
     end
-    tooltip.description = tooltip.description .. level .. ' <LINE>'
   end
 
-  if not canBuild and not ISBuildMenu.cheat then
+  
+  if not canBuild then -- and not ISBuildMenu.cheat
     option.onSelect = nil
     option.notAvailable = true
   end
@@ -311,7 +370,7 @@ function UNSMenuAmmo.mugMenuBuilder(subMenu, playerNum, player, mug, mugInfo)
   local option
   local tooltip
   local name = '' 
-  print("PlayerNum = ", tostring(playerNum))
+  
 	--path
   for k, v in pairs(UNSMenuAmmo.MUGS_SUBMENU) do
     name = getText(v)
@@ -362,7 +421,8 @@ UNSMenuAmmo.OnFillInventoryObjectContextMenu = function(playerIndex, context, it
     UNSMenuAmmo.preWork(player)
   end
 	if crucible then
-		context:addOption(getText("ContextMenu_Cast") .. calibre, items, UNSMenuAmmo.castProjectile, crucible, player)
+  -- Using normal recipes for this?
+	-- 	context:addOption(getText("ContextMenu_Cast") .. calibre, items, UNSMenuAmmo.castProjectile, crucible, player)
 	end
 	if mug then
     local menu = context:addOption(getText("ContextMenu_Mug"))

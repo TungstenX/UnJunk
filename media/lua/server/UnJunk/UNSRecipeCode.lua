@@ -32,7 +32,22 @@ function Recipe.OnCreate.DecantCoveredWine(items, result, player)
   end
 end
 
+function Recipe.OnTest.IsCookedMeat(sourceItem, result)    
+  if sourceItem:getFullType() == "Base.Rabbitmeat" or sourceItem:getFullType() == "Base.Smallanimalmeat" or sourceItem:getFullType() == "Base.Smallbirdmeat"  or sourceItem:getFullType() == "Base.FrogMeat" then
+    return sourceItem:isCooked() or sourceItem:isBurnt()
+  end
+  return true
+end
+
+function Recipe.OnTest.IsUncookedMeat(sourceItem, result)
+  if sourceItem:getFullType() == "Base.Rabbitmeat" or sourceItem:getFullType() == "Base.Smallanimalmeat" or sourceItem:getFullType() == "Base.Smallbirdmeat"  or sourceItem:getFullType() == "Base.FrogMeat" then
+    return not (sourceItem:isCooked() or sourceItem:isBurnt())
+  end
+  return true
+end
+
 function Recipe.OnTest.CanDecantWine(item)
+  -- to be removed
   --if item:HowRotten() > 0 then
   if UNSRecipeCode.LOG.debug then print("How rotten: " .. tostring(item:IsRotten()) .. ": " .. tostring(item:HowRotten())) end
   --end

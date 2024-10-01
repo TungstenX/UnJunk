@@ -94,10 +94,11 @@ function UNSTimedCrucible:perform()
     local newItem = nil
   
     if self.which >= 1 and self.which <= 10 then
-      local allGood = true
+      --consumables
+      local allGood = UNSMenuAmmo.testOrUse(self.character, not useWater, nil)
       --Tools
       local neededTools = UNSRecipe.CRUCIBLE.neededTools
-      if neededTools and #neededTools >= 1 then
+      if allGood and neededTools and #neededTools >= 1 then
         local item = UNSTimedCrucible.equipToolPrimary(self.character, self.character:getPlayerNum(), neededTools[1])
 
         if not item or not instanceof(item, "InventoryItem") then
@@ -114,42 +115,30 @@ function UNSTimedCrucible:perform()
           end
         end
       end
-      -- TODO: maybe test before use?
-      if UNSRecipe.CRUCIBLE.useConsumable then
-        for _, consumable in pairs(UNSRecipe.CRUCIBLE.useConsumable) do
-          if consumable.Consumable ~= "Base.Water" or (consumable.Consumable == "Base.Water" and useWater) then
-            local ok = UNSMenuAmmo.useMaterial(self.character, consumable.Consumable, consumable.Amount)
-            if not ok then
-              error("[UNS ERROR] " .. string.format("Could not consume item for: %s", consumable.Consumable or "nil"))
-              allGood = false
-            end
-          end
-        end
-      end
-      if not allGood then
+      
+      if not allGood then -- this will not happen due to the error?
         ISBaseTimedAction.perform(self)
         return
       end
       if UNSRecipe.CRUCIBLE.skills then
         for _, skill in pairs(UNSRecipe.CRUCIBLE.skills) do
-          -- Increa players's skill
+          -- Increase players's skill ?
         end
       end
-      newItem = InventoryItemFactory.CreateItem(UNSMenuAmmo.TYPE_OF_CRUCIBLES[self.which])
+      local newItemName = UNSMenuAmmo.TYPE_OF_CRUCIBLES[self.which]
+      newItem = InventoryItemFactory.CreateItem(newItemName)
       if newItem then
         self.character:getInventory():Remove(self.item)
         self.character:getInventory():AddItem(newItem)
       else
-        error("[UNS ERROR] " .. string.format("Could not make new item for: %s", itemTypes[self.which] or "nil"))
+        error("[UNS ERROR] " .. string.format("Could not make new item for: %s", newItemName or "nil"))
       end      
     end
-    
-    if UNSTimedCrucible.DEBUG.trace then print("") end
   end
   ISBaseTimedAction.perform(self)
 end
 
-function UNSTimedCrucible:new(character, item, which, time)
+function UNSTimedCrucible.new(self, character, item, which, time)
   
   local o = {}
   setmetatable(o, self)
@@ -161,6 +150,6 @@ function UNSTimedCrucible:new(character, item, which, time)
 	o.stopOnRun = true
   o.maxTime = time -- Time take by the action
   if o.character:isTimedActionInstant() then o.maxTime = 1 end
-  if UNSTimedCrucible.DEBUG.trace then print("UNSTA done") end
+  if UNSTimedCrucible.DEBUG.trace then print("UNSTAC done") end
   return o
 end
