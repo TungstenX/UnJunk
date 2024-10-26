@@ -61,7 +61,7 @@ item PotOfSurvivalStew {
     Tags              = HasMetal,
     ReplaceOnCooked   = TomatoJam;TomatoJam;TomatoJam;Pot,
     BadInMicrowave    = true,
-    ReplaceOnUse      = TinCanEmpty,
+    ReplaceOnUse      = TinCanEmpty;TinCanEmpty;TinCanEmpty;Pot,
     StaticModel       = CookingPot,
     WorldStaticModel  = CookingPotSoup_Ground,
   }   
@@ -88,7 +88,7 @@ item PotOfSurvivalStew {
     Tags              = HasMetal,
     ReplaceOnCooked   = StrawberryJam;StrawberryJam;StrawberryJam;Pot,
     BadInMicrowave    = true,
-    ReplaceOnUse      = TinCanEmpty,
+    ReplaceOnUse      = TinCanEmpty;TinCanEmpty;TinCanEmpty;Pot,
     StaticModel       = CookingPot,
     WorldStaticModel  = CookingPotSoup_Ground,
   }
@@ -322,8 +322,6 @@ item PotOfSurvivalStew {
     CantBeFrozen      = TRUE,
     EatType           = Bourbon,
     Packaged          = TRUE,
-    DaysFresh         = 1,
-    DaysTotallyRotten = 1,
     ReplaceOnUse      = WineEmpty,
     HungerChange      = -1,
     ThirstChange      = 20,
@@ -346,8 +344,6 @@ item PotOfSurvivalStew {
     CantBeFrozen      = TRUE,
     EatType           = Bourbon,
     Packaged          = TRUE,
-    DaysFresh         = 1,
-    DaysTotallyRotten = 1,
     ReplaceOnUse      = WineEmpty2,
     HungerChange      = -1,
     ThirstChange      = 20,
@@ -366,7 +362,25 @@ item PotOfSurvivalStew {
     Type             = Food,
     Weight           = 0.2,
     Icon             = CarrotSeedSnack,
+    Packaged         = TRUE,
+    HungerChange     = -15,
+    Calories         = 720,
+    Carbohydrates    = 72,
+    Lipids           = 45,
+    Proteins         = 4.5,
+    UnhappyChange    = -10,
+    CustomEatSound   = EatingCrispy,
+    WorldStaticModel = Chips,
+  }
+    
+  item RawCarrotSeedSnack {
+    DisplayName      = Raw Carrot Seed Snack,
+    DisplayCategory  = Food,
+    Type             = Food,
+    Weight           = 0.2,
+    Icon             = RawCarrotSeedSnack,
     CookingSound     = FryingFood,
+		IsCookable       = TRUE,
     MinutesToCook    = 35,
     MinutesToBurn    = 70,
     CantBeFrozen     = TRUE,
@@ -379,7 +393,10 @@ item PotOfSurvivalStew {
     UnhappyChange    = 20,
     CustomEatSound   = EatingCrispy,
     WorldStaticModel = Chips,
-    RemoveNegativeEffectOnCooked = TRUE,
+    Tags             = HasMetal,
+    ReplaceOnCooked  = CarrotSeedSnack;RoastingPan,
+    BadInMicrowave   = true,
+    ReplaceOnUse     = RoastingPan,
   }
   
   item CannedLardMeat {

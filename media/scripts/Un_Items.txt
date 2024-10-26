@@ -134,18 +134,6 @@ module Base {
     WorldStaticModel = MugWhite,
   }
   
-  item TacticalGrannyMag1 {
-    DisplayCategory  = SkillBook,
-    Weight           = 0.1,
-    Type             = Literature,
-    DisplayName      = The Tactical Granny Magazine Vol. 1,
-    Icon             = TacticalGrannyMag1,
-    TeachedRecipes   = Knit_a_Scarf;Make_a_Scarf,
-    Tooltip          = Tooltip_item_TacticalGrannyMag,
-    ReplaceOnUse     = TacticalGrannyMag1,
-    StaticModel      = Magazine,
-    WorldStaticModel = MagazineEngi1Ground,
-  }
   
   item KentuckyAppalachianCookingMag1 {
     DisplayCategory  = SkillBook,
@@ -1120,6 +1108,29 @@ module Base {
     EvolvedRecipeName = Dog Food,
     Tags              = HasMetal,
     EvolvedRecipe     = SurvivalStew:3,
+  }
+  
+  /* Adding metal value */
+  item Jack {
+    DisplayCategory  = Tool,
+    Weight           = 1.5,
+    Type             = Normal,
+    DisplayName      = Jack,
+    Icon             = CarJack,
+    MechanicsItem    = TRUE,
+    WorldStaticModel = CarJack,
+    MetalValue       = 30,
+  }
+
+  item LugWrench {
+    DisplayCategory  = Tool,
+    Weight           = 1,
+    Type             = Normal,
+    DisplayName      = Lug Wrench,
+    Icon             = LugWrench,
+    MechanicsItem    = TRUE,
+    WorldStaticModel = LugWrench,
+    MetalValue       = 25,
   }
   
   /* Needs more investigation

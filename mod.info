@@ -2,23 +2,26 @@ name=UnJunk
 id=3265140517
 description=Making junk items more useful items<LINE><LINE>
 description=Recipes:<LINE>
-description=* Cut up wallets: Cut up 2 wallets (of the same type) to produce one leather strip. Additionally requires a pair of scissors (or a sharp knife), needle, ice pick (or letter opened or cork screw) and thread<LINE>
-description=* Whittle skeleton a Key: Use a credit card (consumed) and a pair of scissors or a knife to create a skeleton key<LINE>
-description=* Shredding map into paper strips: Rip up a map to produce 6 sheets of paper<LINE>
-description=* Make crucibles: Use any of the mugs, 2 waters, Sturdy Stick (or Chopsticks for buckshot), Sharp Knife and 0.01 Sand to produce 1 Crucible. There are 10 recipes for crucibles, each for the 10 projectile types of the Arsenal[26] GunFighter Mod [2.0]. These projectiles are 5.45mm, 5.56mm, 9mm, 30-cal, 38-cal, 44-cal, 45-cal, 50-cal or 00-Buckshot<LINE>
-description=* Cast projectiles: Use most of the soft metal jewellery (consumed 2), propane/blow torch, Crucible (for the specific calibre: 5.45mm, 5.56mm, 9mm, 30-cal, 38-cal, 44-cal, 45-cal, 50-cal or 00-Buckshot) and Welding Mask to produce 1 projectile or 5 x 00-Buckshot<LINE>
-description=* Knit a scarf: Yarn + knitting needles = red scarf (need to read The Tatical Granny Magazine Vol. 1)<LINE>
-description=* Make a scarf: 3 Dish cloth + thread + sewing needle = white scarf (need to read The Tatical Granny Magazine Vol. 1)<LINE>
-description=* Make tomato or strawberry jam: Either 12 tomatos or 16 strawberries + 2 sugars = tomato or strawberry jam<LINE>
-description=* Prepare survival stew (evolved recipe): Any insects (up to 12) and/or dog food = survival stew, enjoy<LINE><LINE>
+description=* Cut up wallets<LINE>
+description=* Whittle skeleton a Key<LINE>
+description=* Shredding map into paper strips<LINE>
+description=* Make crucible molds<LINE>
+description=* Cast projectiles<LINE>
+description=* Knit a red scarf<LINE>
+description=* Make a white scarf<LINE>
+description=* Make a yellow poncho<LINE>
+description=* Make tomato or strawberry jam<LINE>
+description=* Canned lard meat<LINE>
+description=* Game jerky<LINE>
+description=* Craft a car battery charger<LINE>
+description=* Prepare survival stew (evolved recipe)<LINE><LINE>
 description=Items:<LINE>
-description=* Skeleton Key: Can be used to bypass locked doors (including vehicle doors) but be careful, you can break off the skeleton key in the lock, which will break the lock<LINE>
-description=* Crucibles: Used for smelting soft metals<LINE>
+description=* Skeleton Key<LINE>
+description=* Crucibles<LINE>
 description=* Jams: Tomato or Strawberry<LINE>
-description=* Pot of survival stew: Enjoy<LINE>
-description=* The Tactical Granny Magazine Vol. 1: Required to knit or making scarves<LINE>
-description=* Kentucky Appalachian Cooking Magazine Vol. 1: Kentucky Appalachian Cooking and More: A unique cookbook of old fashioned recipes and more<LINE>
-description=Acknowledgements:<LINE>
+description=* Game jerky<LINE>
+description=* Canned larded meats<LINE>
+description=* Pot of survival stew: Enjoy<LINE><LINE>
 description=Braven's CommonSense: https://steamcommunity.com/sharedfiles/filedetails/?id=2875848298<LINE>
 description=Arsenal[26] GunFighter Mod [2.0]: https://steamcommunity.com/sharedfiles/filedetails/?id=2297098490<LINE>
 poster=poster.png

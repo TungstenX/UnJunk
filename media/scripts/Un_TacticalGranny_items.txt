@@ -1,4 +1,4 @@
---[[
+/*
 ┌────────────────────────────────────────────────────────────────────────────────────────────────────┐
 │ _/_/_/_/_/  _/    _/  _/      _/    _/_/_/    _/_/_/  _/_/_/_/_/  _/_/_/_/  _/      _/  _/      _/ │    
 │    _/      _/    _/  _/_/    _/  _/        _/            _/      _/        _/_/    _/    _/  _/    │   
@@ -8,34 +8,33 @@
 ├────────────────────────────────────────────────────────────────────────────────────────────────────┤
 │ © Copyright 2024                                                                                   │ 
 └────────────────────────────────────────────────────────────────────────────────────────────────────┘
+The Tactical Granny Items
+*/
+module Base {
 
-┌────────────────────────────────┐
-│ UNS Recipe Serivce for Complex │
-└────────────────────────────────┘
-]]
-require "UnJunk/UNSSharedData"
-UNSRecipeService = UNSRecipeService or {}
+  item TacticalGrannyMag1 {
+    DisplayCategory  = SkillBook,
+    Weight           = 0.1,
+    Type             = Literature,
+    DisplayName      = The Tactical Granny Magazine Vol. 1,
+    Icon             = TacticalGrannyMag1,
+    TeachedRecipes   = Knit_a_Scarf;Make_a_Scarf,
+    Tooltip          = Tooltip_item_TacticalGrannyMag,
+    ReplaceOnUse     = TacticalGrannyMag1,
+    StaticModel      = Magazine,
+    WorldStaticModel = MagazineEngi1Ground,
+  }
 
-function UNSRecipeService.everyDays()
-  UNSSharedData.updateJerkyItems()
-  UNSSharedData.updateOpenWineItems()
-end    
-Events.EveryDays.Add(UNSRecipeService.everyDays)
-
-function UNSRecipeService.OnGameStart()
-  local allItems = getAllItems()
-
-  for i = 0, allItems:size()-1 do
-    local item = allItems:get(i)
-    local md = item:getModData()
-    if md.Jerky and not md.isReady then
-      UNSSharedData.addJerkyItems(item)
-    elseif md.OpenWine or md.OpenWineCovered then
-      UNSSharedData.addOpenWineItems(item)
-    end
-  end
-  
-  UNSSharedData.updateJerkyItems()
-  UNSSharedData.updateOpenWineItems()
-end
-Events.OnGameStart.Add(OnGameStart)
+  item TacticalGrannyMag2 {
+    DisplayCategory  = SkillBook,
+    Weight           = 0.1,
+    Type             = Literature,
+    DisplayName      = The Tactical Granny Magazine Vol. 2,
+    Icon             = TacticalGrannyMag1,
+    TeachedRecipes   = Make_a_Poncho,
+    Tooltip          = Tooltip_item_TacticalGrannyMag,
+    ReplaceOnUse     = TacticalGrannyMag2,
+    StaticModel      = Magazine,
+    WorldStaticModel = MagazineEngi1Ground,
+  }
+}

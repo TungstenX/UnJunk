@@ -25,4 +25,6 @@ ContextMenu_EN = {
   ContextMenu_Make-Crucible00            = "For 00-Buckshot",
   ContextMenu_EvolvedRecipe_SurvivalStew = "Survival stew",
   ContextMenu_Decant_Vinegar             = "Decant vinegar",
+  ContextMenu_MeltItemToScrap            = "Melt item to scrap metal",
+  ContextMenu_MeltItemsToScrap           = "Melt items to scrap metal",
 }

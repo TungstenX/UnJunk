@@ -119,7 +119,9 @@ module Base {
   
   /* Decant Wine bottle Covered => Vinegar */
   recipe Decant-Wine-Bottle-Covered {
-    destroy OpenWineCovered,BeerEmpty/WineEmpty/WineEmpty2,WaterBottleEmpty/MayonnaiseEmpty/PopBottleEmpty,
+    destroy OpenWineCovered,
+    destroy BeerEmpty/WineEmpty/WineEmpty2,
+    destroy WaterBottleEmpty/MayonnaiseEmpty/PopBottleEmpty,
     keep [Recipe.GetItemTypes.Scissors]/[Recipe.GetItemTypes.SharpKnife],
         
     Result:Vinegar,
@@ -138,7 +140,7 @@ module Base {
   /* Projectiles */  
  recipe Make-Projectile57 {
     Necklace_DogTag/Necklace_Gold/Necklace_GoldRuby/Necklace_GoldDiamond/Necklace_Silver/Necklace_SilverSapphire/Necklace_SilverCrucifix/Necklace_SilverDiamond/Necklace_Crucifix/Necklace_YingYang/Necklace_Pearl/NecklaceLong_Gold/NecklaceLong_GoldDiamond/NecklaceLong_Silver/NecklaceLong_SilverEmerald/NecklaceLong_SilverSapphire/NecklaceLong_SilverDiamond/NecklaceLong_Amber/NoseRing_Gold/NoseRing_Silver/NoseStud_Gold/NoseStud_Silver/Earring_LoopLrg_Gold/Earring_LoopLrg_Silver/Earring_LoopMed_Silver/Earring_LoopMed_Gold/Earring_LoopSmall_Silver_Both/Earring_LoopSmall_Silver_Top/Earring_LoopSmall_Gold_Both/Earring_LoopSmall_Gold_Top/Earring_Stud_Gold/Earring_Stud_Silver/Earring_Stone_Sapphire/Earring_Stone_Emerald/Earring_Stone_Ruby/Earring_Pearl/Earring_Dangly_Sapphire/Earring_Dangly_Emerald/Earring_Dangly_Ruby/Earring_Dangly_Diamond/Earring_Dangly_Pearl/Ring_Right_MiddleFinger_Gold/Ring_Left_MiddleFinger_Gold/Ring_Right_RingFinger_Gold/Ring_Left_RingFinger_Gold/Ring_Right_MiddleFinger_Silver/Ring_Left_MiddleFinger_Silver/Ring_Right_RingFinger_Silver/Ring_Left_RingFinger_Silver/Ring_Right_MiddleFinger_SilverDiamond/Ring_Left_MiddleFinger_SilverDiamond/Ring_Right_RingFinger_SilverDiamond/Ring_Left_RingFinger_SilverDiamond/Ring_Right_MiddleFinger_GoldRuby/Ring_Left_MiddleFinger_GoldRuby/Ring_Right_RingFinger_GoldRuby/Ring_Left_RingFinger_GoldRuby/Ring_Right_MiddleFinger_GoldDiamond/Ring_Left_MiddleFinger_GoldDiamond/Ring_Right_RingFinger_GoldDiamond/Ring_Left_RingFinger_GoldDiamond/WristWatch_Right_ClassicBlack/WristWatch_Left_ClassicBlack/WristWatch_Right_ClassicBrown/WristWatch_Left_ClassicBrown/WristWatch_Right_ClassicMilitary/WristWatch_Left_ClassicMilitary/WristWatch_Right_ClassicGold/WristWatch_Left_ClassicGold/Bracelet_BangleRightGold/Bracelet_BangleLeftGold/Bracelet_ChainRightGold/Bracelet_ChainLeftGold/Bracelet_BangleRightSilver/Bracelet_BangleLeftSilver/Bracelet_ChainRightSilver/Bracelet_ChainLeftSilver/Bracelet_RightFriendshipTINT/Bracelet_LeftFriendshipTINT/BellyButton_DangleGold/BellyButton_DangleGoldRuby/BellyButton_DangleSilver/BellyButton_DangleSilverDiamond/BellyButton_RingGold/BellyButton_RingGoldDiamond/BellyButton_RingGoldRuby/BellyButton_RingSilver/BellyButton_RingSilverAmethyst/BellyButton_RingSilverDiamond/BellyButton_RingSilverRuby/BellyButton_StudGold/BellyButton_StudGoldDiamond/BellyButton_StudSilver/BellyButton_StudSilverDiamond/Corkscrew/Locket/Necklacepearl/Ring/WeddingRing_Man/WeddingRing_Woman=1, 
-    BlowTorch=1,
+    BlowTorch=0.5,
     keep Crucible57,
     keep [Recipe.GetItemTypes.WeldingMask],
 
@@ -155,7 +157,7 @@ module Base {
   
   recipe Make-Projectile9 {
         Necklace_DogTag/Necklace_Gold/Necklace_GoldRuby/Necklace_GoldDiamond/Necklace_Silver/Necklace_SilverSapphire/Necklace_SilverCrucifix/Necklace_SilverDiamond/Necklace_Crucifix/Necklace_YingYang/Necklace_Pearl/NecklaceLong_Gold/NecklaceLong_GoldDiamond/NecklaceLong_Silver/NecklaceLong_SilverEmerald/NecklaceLong_SilverSapphire/NecklaceLong_SilverDiamond/NecklaceLong_Amber/NoseRing_Gold/NoseRing_Silver/NoseStud_Gold/NoseStud_Silver/Earring_LoopLrg_Gold/Earring_LoopLrg_Silver/Earring_LoopMed_Silver/Earring_LoopMed_Gold/Earring_LoopSmall_Silver_Both/Earring_LoopSmall_Silver_Top/Earring_LoopSmall_Gold_Both/Earring_LoopSmall_Gold_Top/Earring_Stud_Gold/Earring_Stud_Silver/Earring_Stone_Sapphire/Earring_Stone_Emerald/Earring_Stone_Ruby/Earring_Pearl/Earring_Dangly_Sapphire/Earring_Dangly_Emerald/Earring_Dangly_Ruby/Earring_Dangly_Diamond/Earring_Dangly_Pearl/Ring_Right_MiddleFinger_Gold/Ring_Left_MiddleFinger_Gold/Ring_Right_RingFinger_Gold/Ring_Left_RingFinger_Gold/Ring_Right_MiddleFinger_Silver/Ring_Left_MiddleFinger_Silver/Ring_Right_RingFinger_Silver/Ring_Left_RingFinger_Silver/Ring_Right_MiddleFinger_SilverDiamond/Ring_Left_MiddleFinger_SilverDiamond/Ring_Right_RingFinger_SilverDiamond/Ring_Left_RingFinger_SilverDiamond/Ring_Right_MiddleFinger_GoldRuby/Ring_Left_MiddleFinger_GoldRuby/Ring_Right_RingFinger_GoldRuby/Ring_Left_RingFinger_GoldRuby/Ring_Right_MiddleFinger_GoldDiamond/Ring_Left_MiddleFinger_GoldDiamond/Ring_Right_RingFinger_GoldDiamond/Ring_Left_RingFinger_GoldDiamond/WristWatch_Right_ClassicBlack/WristWatch_Left_ClassicBlack/WristWatch_Right_ClassicBrown/WristWatch_Left_ClassicBrown/WristWatch_Right_ClassicMilitary/WristWatch_Left_ClassicMilitary/WristWatch_Right_ClassicGold/WristWatch_Left_ClassicGold/Bracelet_BangleRightGold/Bracelet_BangleLeftGold/Bracelet_ChainRightGold/Bracelet_ChainLeftGold/Bracelet_BangleRightSilver/Bracelet_BangleLeftSilver/Bracelet_ChainRightSilver/Bracelet_ChainLeftSilver/Bracelet_RightFriendshipTINT/Bracelet_LeftFriendshipTINT/BellyButton_DangleGold/BellyButton_DangleGoldRuby/BellyButton_DangleSilver/BellyButton_DangleSilverDiamond/BellyButton_RingGold/BellyButton_RingGoldDiamond/BellyButton_RingGoldRuby/BellyButton_RingSilver/BellyButton_RingSilverAmethyst/BellyButton_RingSilverDiamond/BellyButton_RingSilverRuby/BellyButton_StudGold/BellyButton_StudGoldDiamond/BellyButton_StudSilver/BellyButton_StudSilverDiamond/Corkscrew/Locket/Necklacepearl/Ring/WeddingRing_Man/WeddingRing_Woman=1, 
-    BlowTorch=2,
+    BlowTorch=0.5,
     keep Crucible9,
     keep [Recipe.GetItemTypes.WeldingMask],
 
@@ -172,7 +174,7 @@ module Base {
   
   recipe Make-Projectile38 {
         Necklace_DogTag/Necklace_Gold/Necklace_GoldRuby/Necklace_GoldDiamond/Necklace_Silver/Necklace_SilverSapphire/Necklace_SilverCrucifix/Necklace_SilverDiamond/Necklace_Crucifix/Necklace_YingYang/Necklace_Pearl/NecklaceLong_Gold/NecklaceLong_GoldDiamond/NecklaceLong_Silver/NecklaceLong_SilverEmerald/NecklaceLong_SilverSapphire/NecklaceLong_SilverDiamond/NecklaceLong_Amber/NoseRing_Gold/NoseRing_Silver/NoseStud_Gold/NoseStud_Silver/Earring_LoopLrg_Gold/Earring_LoopLrg_Silver/Earring_LoopMed_Silver/Earring_LoopMed_Gold/Earring_LoopSmall_Silver_Both/Earring_LoopSmall_Silver_Top/Earring_LoopSmall_Gold_Both/Earring_LoopSmall_Gold_Top/Earring_Stud_Gold/Earring_Stud_Silver/Earring_Stone_Sapphire/Earring_Stone_Emerald/Earring_Stone_Ruby/Earring_Pearl/Earring_Dangly_Sapphire/Earring_Dangly_Emerald/Earring_Dangly_Ruby/Earring_Dangly_Diamond/Earring_Dangly_Pearl/Ring_Right_MiddleFinger_Gold/Ring_Left_MiddleFinger_Gold/Ring_Right_RingFinger_Gold/Ring_Left_RingFinger_Gold/Ring_Right_MiddleFinger_Silver/Ring_Left_MiddleFinger_Silver/Ring_Right_RingFinger_Silver/Ring_Left_RingFinger_Silver/Ring_Right_MiddleFinger_SilverDiamond/Ring_Left_MiddleFinger_SilverDiamond/Ring_Right_RingFinger_SilverDiamond/Ring_Left_RingFinger_SilverDiamond/Ring_Right_MiddleFinger_GoldRuby/Ring_Left_MiddleFinger_GoldRuby/Ring_Right_RingFinger_GoldRuby/Ring_Left_RingFinger_GoldRuby/Ring_Right_MiddleFinger_GoldDiamond/Ring_Left_MiddleFinger_GoldDiamond/Ring_Right_RingFinger_GoldDiamond/Ring_Left_RingFinger_GoldDiamond/WristWatch_Right_ClassicBlack/WristWatch_Left_ClassicBlack/WristWatch_Right_ClassicBrown/WristWatch_Left_ClassicBrown/WristWatch_Right_ClassicMilitary/WristWatch_Left_ClassicMilitary/WristWatch_Right_ClassicGold/WristWatch_Left_ClassicGold/Bracelet_BangleRightGold/Bracelet_BangleLeftGold/Bracelet_ChainRightGold/Bracelet_ChainLeftGold/Bracelet_BangleRightSilver/Bracelet_BangleLeftSilver/Bracelet_ChainRightSilver/Bracelet_ChainLeftSilver/Bracelet_RightFriendshipTINT/Bracelet_LeftFriendshipTINT/BellyButton_DangleGold/BellyButton_DangleGoldRuby/BellyButton_DangleSilver/BellyButton_DangleSilverDiamond/BellyButton_RingGold/BellyButton_RingGoldDiamond/BellyButton_RingGoldRuby/BellyButton_RingSilver/BellyButton_RingSilverAmethyst/BellyButton_RingSilverDiamond/BellyButton_RingSilverRuby/BellyButton_StudGold/BellyButton_StudGoldDiamond/BellyButton_StudSilver/BellyButton_StudSilverDiamond/Corkscrew/Locket/Necklacepearl/Ring/WeddingRing_Man/WeddingRing_Woman=1, 
-    BlowTorch=2,
+    BlowTorch=0.5,
     keep Crucible38,
     keep [Recipe.GetItemTypes.WeldingMask],
 
@@ -189,7 +191,7 @@ module Base {
   
   recipe Make-Projectile45 {
         Necklace_DogTag/Necklace_Gold/Necklace_GoldRuby/Necklace_GoldDiamond/Necklace_Silver/Necklace_SilverSapphire/Necklace_SilverCrucifix/Necklace_SilverDiamond/Necklace_Crucifix/Necklace_YingYang/Necklace_Pearl/NecklaceLong_Gold/NecklaceLong_GoldDiamond/NecklaceLong_Silver/NecklaceLong_SilverEmerald/NecklaceLong_SilverSapphire/NecklaceLong_SilverDiamond/NecklaceLong_Amber/NoseRing_Gold/NoseRing_Silver/NoseStud_Gold/NoseStud_Silver/Earring_LoopLrg_Gold/Earring_LoopLrg_Silver/Earring_LoopMed_Silver/Earring_LoopMed_Gold/Earring_LoopSmall_Silver_Both/Earring_LoopSmall_Silver_Top/Earring_LoopSmall_Gold_Both/Earring_LoopSmall_Gold_Top/Earring_Stud_Gold/Earring_Stud_Silver/Earring_Stone_Sapphire/Earring_Stone_Emerald/Earring_Stone_Ruby/Earring_Pearl/Earring_Dangly_Sapphire/Earring_Dangly_Emerald/Earring_Dangly_Ruby/Earring_Dangly_Diamond/Earring_Dangly_Pearl/Ring_Right_MiddleFinger_Gold/Ring_Left_MiddleFinger_Gold/Ring_Right_RingFinger_Gold/Ring_Left_RingFinger_Gold/Ring_Right_MiddleFinger_Silver/Ring_Left_MiddleFinger_Silver/Ring_Right_RingFinger_Silver/Ring_Left_RingFinger_Silver/Ring_Right_MiddleFinger_SilverDiamond/Ring_Left_MiddleFinger_SilverDiamond/Ring_Right_RingFinger_SilverDiamond/Ring_Left_RingFinger_SilverDiamond/Ring_Right_MiddleFinger_GoldRuby/Ring_Left_MiddleFinger_GoldRuby/Ring_Right_RingFinger_GoldRuby/Ring_Left_RingFinger_GoldRuby/Ring_Right_MiddleFinger_GoldDiamond/Ring_Left_MiddleFinger_GoldDiamond/Ring_Right_RingFinger_GoldDiamond/Ring_Left_RingFinger_GoldDiamond/WristWatch_Right_ClassicBlack/WristWatch_Left_ClassicBlack/WristWatch_Right_ClassicBrown/WristWatch_Left_ClassicBrown/WristWatch_Right_ClassicMilitary/WristWatch_Left_ClassicMilitary/WristWatch_Right_ClassicGold/WristWatch_Left_ClassicGold/Bracelet_BangleRightGold/Bracelet_BangleLeftGold/Bracelet_ChainRightGold/Bracelet_ChainLeftGold/Bracelet_BangleRightSilver/Bracelet_BangleLeftSilver/Bracelet_ChainRightSilver/Bracelet_ChainLeftSilver/Bracelet_RightFriendshipTINT/Bracelet_LeftFriendshipTINT/BellyButton_DangleGold/BellyButton_DangleGoldRuby/BellyButton_DangleSilver/BellyButton_DangleSilverDiamond/BellyButton_RingGold/BellyButton_RingGoldDiamond/BellyButton_RingGoldRuby/BellyButton_RingSilver/BellyButton_RingSilverAmethyst/BellyButton_RingSilverDiamond/BellyButton_RingSilverRuby/BellyButton_StudGold/BellyButton_StudGoldDiamond/BellyButton_StudSilver/BellyButton_StudSilverDiamond/Corkscrew/Locket/Necklacepearl/Ring/WeddingRing_Man/WeddingRing_Woman=1, 
-    BlowTorch=2,
+    BlowTorch=0.5,
     keep Crucible45,
     keep [Recipe.GetItemTypes.WeldingMask],
 
@@ -206,7 +208,7 @@ module Base {
   
   recipe Make-Projectile44 {
         Necklace_DogTag/Necklace_Gold/Necklace_GoldRuby/Necklace_GoldDiamond/Necklace_Silver/Necklace_SilverSapphire/Necklace_SilverCrucifix/Necklace_SilverDiamond/Necklace_Crucifix/Necklace_YingYang/Necklace_Pearl/NecklaceLong_Gold/NecklaceLong_GoldDiamond/NecklaceLong_Silver/NecklaceLong_SilverEmerald/NecklaceLong_SilverSapphire/NecklaceLong_SilverDiamond/NecklaceLong_Amber/NoseRing_Gold/NoseRing_Silver/NoseStud_Gold/NoseStud_Silver/Earring_LoopLrg_Gold/Earring_LoopLrg_Silver/Earring_LoopMed_Silver/Earring_LoopMed_Gold/Earring_LoopSmall_Silver_Both/Earring_LoopSmall_Silver_Top/Earring_LoopSmall_Gold_Both/Earring_LoopSmall_Gold_Top/Earring_Stud_Gold/Earring_Stud_Silver/Earring_Stone_Sapphire/Earring_Stone_Emerald/Earring_Stone_Ruby/Earring_Pearl/Earring_Dangly_Sapphire/Earring_Dangly_Emerald/Earring_Dangly_Ruby/Earring_Dangly_Diamond/Earring_Dangly_Pearl/Ring_Right_MiddleFinger_Gold/Ring_Left_MiddleFinger_Gold/Ring_Right_RingFinger_Gold/Ring_Left_RingFinger_Gold/Ring_Right_MiddleFinger_Silver/Ring_Left_MiddleFinger_Silver/Ring_Right_RingFinger_Silver/Ring_Left_RingFinger_Silver/Ring_Right_MiddleFinger_SilverDiamond/Ring_Left_MiddleFinger_SilverDiamond/Ring_Right_RingFinger_SilverDiamond/Ring_Left_RingFinger_SilverDiamond/Ring_Right_MiddleFinger_GoldRuby/Ring_Left_MiddleFinger_GoldRuby/Ring_Right_RingFinger_GoldRuby/Ring_Left_RingFinger_GoldRuby/Ring_Right_MiddleFinger_GoldDiamond/Ring_Left_MiddleFinger_GoldDiamond/Ring_Right_RingFinger_GoldDiamond/Ring_Left_RingFinger_GoldDiamond/WristWatch_Right_ClassicBlack/WristWatch_Left_ClassicBlack/WristWatch_Right_ClassicBrown/WristWatch_Left_ClassicBrown/WristWatch_Right_ClassicMilitary/WristWatch_Left_ClassicMilitary/WristWatch_Right_ClassicGold/WristWatch_Left_ClassicGold/Bracelet_BangleRightGold/Bracelet_BangleLeftGold/Bracelet_ChainRightGold/Bracelet_ChainLeftGold/Bracelet_BangleRightSilver/Bracelet_BangleLeftSilver/Bracelet_ChainRightSilver/Bracelet_ChainLeftSilver/Bracelet_RightFriendshipTINT/Bracelet_LeftFriendshipTINT/BellyButton_DangleGold/BellyButton_DangleGoldRuby/BellyButton_DangleSilver/BellyButton_DangleSilverDiamond/BellyButton_RingGold/BellyButton_RingGoldDiamond/BellyButton_RingGoldRuby/BellyButton_RingSilver/BellyButton_RingSilverAmethyst/BellyButton_RingSilverDiamond/BellyButton_RingSilverRuby/BellyButton_StudGold/BellyButton_StudGoldDiamond/BellyButton_StudSilver/BellyButton_StudSilverDiamond/Corkscrew/Locket/Necklacepearl/Ring/WeddingRing_Man/WeddingRing_Woman=1, 
-    BlowTorch=2,
+    BlowTorch=0.5,
     keep Crucible44,
     keep [Recipe.GetItemTypes.WeldingMask],
 
@@ -223,7 +225,7 @@ module Base {
   
   recipe Make-Projectile556 {
         Necklace_DogTag/Necklace_Gold/Necklace_GoldRuby/Necklace_GoldDiamond/Necklace_Silver/Necklace_SilverSapphire/Necklace_SilverCrucifix/Necklace_SilverDiamond/Necklace_Crucifix/Necklace_YingYang/Necklace_Pearl/NecklaceLong_Gold/NecklaceLong_GoldDiamond/NecklaceLong_Silver/NecklaceLong_SilverEmerald/NecklaceLong_SilverSapphire/NecklaceLong_SilverDiamond/NecklaceLong_Amber/NoseRing_Gold/NoseRing_Silver/NoseStud_Gold/NoseStud_Silver/Earring_LoopLrg_Gold/Earring_LoopLrg_Silver/Earring_LoopMed_Silver/Earring_LoopMed_Gold/Earring_LoopSmall_Silver_Both/Earring_LoopSmall_Silver_Top/Earring_LoopSmall_Gold_Both/Earring_LoopSmall_Gold_Top/Earring_Stud_Gold/Earring_Stud_Silver/Earring_Stone_Sapphire/Earring_Stone_Emerald/Earring_Stone_Ruby/Earring_Pearl/Earring_Dangly_Sapphire/Earring_Dangly_Emerald/Earring_Dangly_Ruby/Earring_Dangly_Diamond/Earring_Dangly_Pearl/Ring_Right_MiddleFinger_Gold/Ring_Left_MiddleFinger_Gold/Ring_Right_RingFinger_Gold/Ring_Left_RingFinger_Gold/Ring_Right_MiddleFinger_Silver/Ring_Left_MiddleFinger_Silver/Ring_Right_RingFinger_Silver/Ring_Left_RingFinger_Silver/Ring_Right_MiddleFinger_SilverDiamond/Ring_Left_MiddleFinger_SilverDiamond/Ring_Right_RingFinger_SilverDiamond/Ring_Left_RingFinger_SilverDiamond/Ring_Right_MiddleFinger_GoldRuby/Ring_Left_MiddleFinger_GoldRuby/Ring_Right_RingFinger_GoldRuby/Ring_Left_RingFinger_GoldRuby/Ring_Right_MiddleFinger_GoldDiamond/Ring_Left_MiddleFinger_GoldDiamond/Ring_Right_RingFinger_GoldDiamond/Ring_Left_RingFinger_GoldDiamond/WristWatch_Right_ClassicBlack/WristWatch_Left_ClassicBlack/WristWatch_Right_ClassicBrown/WristWatch_Left_ClassicBrown/WristWatch_Right_ClassicMilitary/WristWatch_Left_ClassicMilitary/WristWatch_Right_ClassicGold/WristWatch_Left_ClassicGold/Bracelet_BangleRightGold/Bracelet_BangleLeftGold/Bracelet_ChainRightGold/Bracelet_ChainLeftGold/Bracelet_BangleRightSilver/Bracelet_BangleLeftSilver/Bracelet_ChainRightSilver/Bracelet_ChainLeftSilver/Bracelet_RightFriendshipTINT/Bracelet_LeftFriendshipTINT/BellyButton_DangleGold/BellyButton_DangleGoldRuby/BellyButton_DangleSilver/BellyButton_DangleSilverDiamond/BellyButton_RingGold/BellyButton_RingGoldDiamond/BellyButton_RingGoldRuby/BellyButton_RingSilver/BellyButton_RingSilverAmethyst/BellyButton_RingSilverDiamond/BellyButton_RingSilverRuby/BellyButton_StudGold/BellyButton_StudGoldDiamond/BellyButton_StudSilver/BellyButton_StudSilverDiamond/Corkscrew/Locket/Necklacepearl/Ring/WeddingRing_Man/WeddingRing_Woman=1, 
-    BlowTorch=2,
+    BlowTorch=0.5,
     keep Crucible556,
     keep [Recipe.GetItemTypes.WeldingMask],
 
@@ -240,7 +242,7 @@ module Base {
   
   recipe Make-Projectile545 {
         Necklace_DogTag/Necklace_Gold/Necklace_GoldRuby/Necklace_GoldDiamond/Necklace_Silver/Necklace_SilverSapphire/Necklace_SilverCrucifix/Necklace_SilverDiamond/Necklace_Crucifix/Necklace_YingYang/Necklace_Pearl/NecklaceLong_Gold/NecklaceLong_GoldDiamond/NecklaceLong_Silver/NecklaceLong_SilverEmerald/NecklaceLong_SilverSapphire/NecklaceLong_SilverDiamond/NecklaceLong_Amber/NoseRing_Gold/NoseRing_Silver/NoseStud_Gold/NoseStud_Silver/Earring_LoopLrg_Gold/Earring_LoopLrg_Silver/Earring_LoopMed_Silver/Earring_LoopMed_Gold/Earring_LoopSmall_Silver_Both/Earring_LoopSmall_Silver_Top/Earring_LoopSmall_Gold_Both/Earring_LoopSmall_Gold_Top/Earring_Stud_Gold/Earring_Stud_Silver/Earring_Stone_Sapphire/Earring_Stone_Emerald/Earring_Stone_Ruby/Earring_Pearl/Earring_Dangly_Sapphire/Earring_Dangly_Emerald/Earring_Dangly_Ruby/Earring_Dangly_Diamond/Earring_Dangly_Pearl/Ring_Right_MiddleFinger_Gold/Ring_Left_MiddleFinger_Gold/Ring_Right_RingFinger_Gold/Ring_Left_RingFinger_Gold/Ring_Right_MiddleFinger_Silver/Ring_Left_MiddleFinger_Silver/Ring_Right_RingFinger_Silver/Ring_Left_RingFinger_Silver/Ring_Right_MiddleFinger_SilverDiamond/Ring_Left_MiddleFinger_SilverDiamond/Ring_Right_RingFinger_SilverDiamond/Ring_Left_RingFinger_SilverDiamond/Ring_Right_MiddleFinger_GoldRuby/Ring_Left_MiddleFinger_GoldRuby/Ring_Right_RingFinger_GoldRuby/Ring_Left_RingFinger_GoldRuby/Ring_Right_MiddleFinger_GoldDiamond/Ring_Left_MiddleFinger_GoldDiamond/Ring_Right_RingFinger_GoldDiamond/Ring_Left_RingFinger_GoldDiamond/WristWatch_Right_ClassicBlack/WristWatch_Left_ClassicBlack/WristWatch_Right_ClassicBrown/WristWatch_Left_ClassicBrown/WristWatch_Right_ClassicMilitary/WristWatch_Left_ClassicMilitary/WristWatch_Right_ClassicGold/WristWatch_Left_ClassicGold/Bracelet_BangleRightGold/Bracelet_BangleLeftGold/Bracelet_ChainRightGold/Bracelet_ChainLeftGold/Bracelet_BangleRightSilver/Bracelet_BangleLeftSilver/Bracelet_ChainRightSilver/Bracelet_ChainLeftSilver/Bracelet_RightFriendshipTINT/Bracelet_LeftFriendshipTINT/BellyButton_DangleGold/BellyButton_DangleGoldRuby/BellyButton_DangleSilver/BellyButton_DangleSilverDiamond/BellyButton_RingGold/BellyButton_RingGoldDiamond/BellyButton_RingGoldRuby/BellyButton_RingSilver/BellyButton_RingSilverAmethyst/BellyButton_RingSilverDiamond/BellyButton_RingSilverRuby/BellyButton_StudGold/BellyButton_StudGoldDiamond/BellyButton_StudSilver/BellyButton_StudSilverDiamond/Corkscrew/Locket/Necklacepearl/Ring/WeddingRing_Man/WeddingRing_Woman=1, 
-    BlowTorch=2,
+    BlowTorch=0.5,
     keep Crucible545,
     keep [Recipe.GetItemTypes.WeldingMask],
 
@@ -257,7 +259,7 @@ module Base {
   
   recipe Make-Projectile30 {
         Necklace_DogTag/Necklace_Gold/Necklace_GoldRuby/Necklace_GoldDiamond/Necklace_Silver/Necklace_SilverSapphire/Necklace_SilverCrucifix/Necklace_SilverDiamond/Necklace_Crucifix/Necklace_YingYang/Necklace_Pearl/NecklaceLong_Gold/NecklaceLong_GoldDiamond/NecklaceLong_Silver/NecklaceLong_SilverEmerald/NecklaceLong_SilverSapphire/NecklaceLong_SilverDiamond/NecklaceLong_Amber/NoseRing_Gold/NoseRing_Silver/NoseStud_Gold/NoseStud_Silver/Earring_LoopLrg_Gold/Earring_LoopLrg_Silver/Earring_LoopMed_Silver/Earring_LoopMed_Gold/Earring_LoopSmall_Silver_Both/Earring_LoopSmall_Silver_Top/Earring_LoopSmall_Gold_Both/Earring_LoopSmall_Gold_Top/Earring_Stud_Gold/Earring_Stud_Silver/Earring_Stone_Sapphire/Earring_Stone_Emerald/Earring_Stone_Ruby/Earring_Pearl/Earring_Dangly_Sapphire/Earring_Dangly_Emerald/Earring_Dangly_Ruby/Earring_Dangly_Diamond/Earring_Dangly_Pearl/Ring_Right_MiddleFinger_Gold/Ring_Left_MiddleFinger_Gold/Ring_Right_RingFinger_Gold/Ring_Left_RingFinger_Gold/Ring_Right_MiddleFinger_Silver/Ring_Left_MiddleFinger_Silver/Ring_Right_RingFinger_Silver/Ring_Left_RingFinger_Silver/Ring_Right_MiddleFinger_SilverDiamond/Ring_Left_MiddleFinger_SilverDiamond/Ring_Right_RingFinger_SilverDiamond/Ring_Left_RingFinger_SilverDiamond/Ring_Right_MiddleFinger_GoldRuby/Ring_Left_MiddleFinger_GoldRuby/Ring_Right_RingFinger_GoldRuby/Ring_Left_RingFinger_GoldRuby/Ring_Right_MiddleFinger_GoldDiamond/Ring_Left_MiddleFinger_GoldDiamond/Ring_Right_RingFinger_GoldDiamond/Ring_Left_RingFinger_GoldDiamond/WristWatch_Right_ClassicBlack/WristWatch_Left_ClassicBlack/WristWatch_Right_ClassicBrown/WristWatch_Left_ClassicBrown/WristWatch_Right_ClassicMilitary/WristWatch_Left_ClassicMilitary/WristWatch_Right_ClassicGold/WristWatch_Left_ClassicGold/Bracelet_BangleRightGold/Bracelet_BangleLeftGold/Bracelet_ChainRightGold/Bracelet_ChainLeftGold/Bracelet_BangleRightSilver/Bracelet_BangleLeftSilver/Bracelet_ChainRightSilver/Bracelet_ChainLeftSilver/Bracelet_RightFriendshipTINT/Bracelet_LeftFriendshipTINT/BellyButton_DangleGold/BellyButton_DangleGoldRuby/BellyButton_DangleSilver/BellyButton_DangleSilverDiamond/BellyButton_RingGold/BellyButton_RingGoldDiamond/BellyButton_RingGoldRuby/BellyButton_RingSilver/BellyButton_RingSilverAmethyst/BellyButton_RingSilverDiamond/BellyButton_RingSilverRuby/BellyButton_StudGold/BellyButton_StudGoldDiamond/BellyButton_StudSilver/BellyButton_StudSilverDiamond/Corkscrew/Locket/Necklacepearl/Ring/WeddingRing_Man/WeddingRing_Woman=1, 
-    BlowTorch=2,
+    BlowTorch=0.5,
     keep Crucible30,
     keep [Recipe.GetItemTypes.WeldingMask],
 
@@ -274,146 +276,37 @@ module Base {
   
   recipe Make-Projectile50 {
         Necklace_DogTag/Necklace_Gold/Necklace_GoldRuby/Necklace_GoldDiamond/Necklace_Silver/Necklace_SilverSapphire/Necklace_SilverCrucifix/Necklace_SilverDiamond/Necklace_Crucifix/Necklace_YingYang/Necklace_Pearl/NecklaceLong_Gold/NecklaceLong_GoldDiamond/NecklaceLong_Silver/NecklaceLong_SilverEmerald/NecklaceLong_SilverSapphire/NecklaceLong_SilverDiamond/NecklaceLong_Amber/NoseRing_Gold/NoseRing_Silver/NoseStud_Gold/NoseStud_Silver/Earring_LoopLrg_Gold/Earring_LoopLrg_Silver/Earring_LoopMed_Silver/Earring_LoopMed_Gold/Earring_LoopSmall_Silver_Both/Earring_LoopSmall_Silver_Top/Earring_LoopSmall_Gold_Both/Earring_LoopSmall_Gold_Top/Earring_Stud_Gold/Earring_Stud_Silver/Earring_Stone_Sapphire/Earring_Stone_Emerald/Earring_Stone_Ruby/Earring_Pearl/Earring_Dangly_Sapphire/Earring_Dangly_Emerald/Earring_Dangly_Ruby/Earring_Dangly_Diamond/Earring_Dangly_Pearl/Ring_Right_MiddleFinger_Gold/Ring_Left_MiddleFinger_Gold/Ring_Right_RingFinger_Gold/Ring_Left_RingFinger_Gold/Ring_Right_MiddleFinger_Silver/Ring_Left_MiddleFinger_Silver/Ring_Right_RingFinger_Silver/Ring_Left_RingFinger_Silver/Ring_Right_MiddleFinger_SilverDiamond/Ring_Left_MiddleFinger_SilverDiamond/Ring_Right_RingFinger_SilverDiamond/Ring_Left_RingFinger_SilverDiamond/Ring_Right_MiddleFinger_GoldRuby/Ring_Left_MiddleFinger_GoldRuby/Ring_Right_RingFinger_GoldRuby/Ring_Left_RingFinger_GoldRuby/Ring_Right_MiddleFinger_GoldDiamond/Ring_Left_MiddleFinger_GoldDiamond/Ring_Right_RingFinger_GoldDiamond/Ring_Left_RingFinger_GoldDiamond/WristWatch_Right_ClassicBlack/WristWatch_Left_ClassicBlack/WristWatch_Right_ClassicBrown/WristWatch_Left_ClassicBrown/WristWatch_Right_ClassicMilitary/WristWatch_Left_ClassicMilitary/WristWatch_Right_ClassicGold/WristWatch_Left_ClassicGold/Bracelet_BangleRightGold/Bracelet_BangleLeftGold/Bracelet_ChainRightGold/Bracelet_ChainLeftGold/Bracelet_BangleRightSilver/Bracelet_BangleLeftSilver/Bracelet_ChainRightSilver/Bracelet_ChainLeftSilver/Bracelet_RightFriendshipTINT/Bracelet_LeftFriendshipTINT/BellyButton_DangleGold/BellyButton_DangleGoldRuby/BellyButton_DangleSilver/BellyButton_DangleSilverDiamond/BellyButton_RingGold/BellyButton_RingGoldDiamond/BellyButton_RingGoldRuby/BellyButton_RingSilver/BellyButton_RingSilverAmethyst/BellyButton_RingSilverDiamond/BellyButton_RingSilverRuby/BellyButton_StudGold/BellyButton_StudGoldDiamond/BellyButton_StudSilver/BellyButton_StudSilverDiamond/Corkscrew/Locket/Necklacepearl/Ring/WeddingRing_Man/WeddingRing_Woman=1, 
-    BlowTorch=2,
+    BlowTorch=0.5,
     keep Crucible50,
     keep [Recipe.GetItemTypes.WeldingMask],
 
-		Result:Lead50,
-		AnimNode:Pour,
-		Time:100.0,
-		Category:Smithing,
-		CanBeDoneFromFloor:TRUE,
-    Prop1:BlowTorch,
-    Prop2:Source=3,
-    StopOnWalk:true,
-    StopOnRun:true,
+		Result             : Lead50,
+		AnimNode           : Pour,
+		Time               : 100.0,
+		Category           : Smithing,
+		CanBeDoneFromFloor : TRUE,
+    Prop1              : BlowTorch,
+    Prop2              : Source=3,
+    StopOnWalk         : true,
+    StopOnRun          : true,
   }  
   
   recipe Make-Projectile00Buck {
         Necklace_DogTag/Necklace_Gold/Necklace_GoldRuby/Necklace_GoldDiamond/Necklace_Silver/Necklace_SilverSapphire/Necklace_SilverCrucifix/Necklace_SilverDiamond/Necklace_Crucifix/Necklace_YingYang/Necklace_Pearl/NecklaceLong_Gold/NecklaceLong_GoldDiamond/NecklaceLong_Silver/NecklaceLong_SilverEmerald/NecklaceLong_SilverSapphire/NecklaceLong_SilverDiamond/NecklaceLong_Amber/NoseRing_Gold/NoseRing_Silver/NoseStud_Gold/NoseStud_Silver/Earring_LoopLrg_Gold/Earring_LoopLrg_Silver/Earring_LoopMed_Silver/Earring_LoopMed_Gold/Earring_LoopSmall_Silver_Both/Earring_LoopSmall_Silver_Top/Earring_LoopSmall_Gold_Both/Earring_LoopSmall_Gold_Top/Earring_Stud_Gold/Earring_Stud_Silver/Earring_Stone_Sapphire/Earring_Stone_Emerald/Earring_Stone_Ruby/Earring_Pearl/Earring_Dangly_Sapphire/Earring_Dangly_Emerald/Earring_Dangly_Ruby/Earring_Dangly_Diamond/Earring_Dangly_Pearl/Ring_Right_MiddleFinger_Gold/Ring_Left_MiddleFinger_Gold/Ring_Right_RingFinger_Gold/Ring_Left_RingFinger_Gold/Ring_Right_MiddleFinger_Silver/Ring_Left_MiddleFinger_Silver/Ring_Right_RingFinger_Silver/Ring_Left_RingFinger_Silver/Ring_Right_MiddleFinger_SilverDiamond/Ring_Left_MiddleFinger_SilverDiamond/Ring_Right_RingFinger_SilverDiamond/Ring_Left_RingFinger_SilverDiamond/Ring_Right_MiddleFinger_GoldRuby/Ring_Left_MiddleFinger_GoldRuby/Ring_Right_RingFinger_GoldRuby/Ring_Left_RingFinger_GoldRuby/Ring_Right_MiddleFinger_GoldDiamond/Ring_Left_MiddleFinger_GoldDiamond/Ring_Right_RingFinger_GoldDiamond/Ring_Left_RingFinger_GoldDiamond/WristWatch_Right_ClassicBlack/WristWatch_Left_ClassicBlack/WristWatch_Right_ClassicBrown/WristWatch_Left_ClassicBrown/WristWatch_Right_ClassicMilitary/WristWatch_Left_ClassicMilitary/WristWatch_Right_ClassicGold/WristWatch_Left_ClassicGold/Bracelet_BangleRightGold/Bracelet_BangleLeftGold/Bracelet_ChainRightGold/Bracelet_ChainLeftGold/Bracelet_BangleRightSilver/Bracelet_BangleLeftSilver/Bracelet_ChainRightSilver/Bracelet_ChainLeftSilver/Bracelet_RightFriendshipTINT/Bracelet_LeftFriendshipTINT/BellyButton_DangleGold/BellyButton_DangleGoldRuby/BellyButton_DangleSilver/BellyButton_DangleSilverDiamond/BellyButton_RingGold/BellyButton_RingGoldDiamond/BellyButton_RingGoldRuby/BellyButton_RingSilver/BellyButton_RingSilverAmethyst/BellyButton_RingSilverDiamond/BellyButton_RingSilverRuby/BellyButton_StudGold/BellyButton_StudGoldDiamond/BellyButton_StudSilver/BellyButton_StudSilverDiamond/Corkscrew/Locket/Necklacepearl/Ring/WeddingRing_Man/WeddingRing_Woman=1, 
-    BlowTorch=2,
+    BlowTorch=0.5,
     keep Crucible00Buck,
     keep [Recipe.GetItemTypes.WeldingMask],
 
-		Result:Lead00Buck=20,
-		AnimNode:Pour,
-		Time:100.0,
-		Category:Smithing,
-		CanBeDoneFromFloor:TRUE,
-    Prop1:BlowTorch,
-    Prop2:Source=3,
-    StopOnWalk:true,
-    StopOnRun:true,
+		Result             : Lead00Buck=20,
+		AnimNode           : Pour,
+		Time               : 100.0,
+		Category           : Smithing,
+		CanBeDoneFromFloor : TRUE,
+    Prop1              : BlowTorch,
+    Prop2              : Source=3,
+    StopOnWalk         : true,
+    StopOnRun          : true,
   }
-  
-  recipe Knit_a_Scarf {
-    destroy Yarn,
-    keep KnittingNeedles,
-    
-    Result:Scarf_StripeRedWhite,
-		AnimNode:Craft,
-		Time:200.0,
-    SkillRequired:Tailoring=4,
-		Category:Tailoring,
-		CanBeDoneFromFloor:FALSE,
-    Prop1:KnittingNeedles,
-    StopOnWalk:true,
-    StopOnRun:true,
-    NeedToBeLearn:true,
-  }
-  
-  recipe Make_a_Scarf {
-    destroy DishCloth=3,
-    Thread=0.1, 
-    keep [Recipe.GetItemTypes.SewingNeedle],
-    
-    Result:Scarf_White,
-		AnimNode:Craft,
-		Time:200.0,
-    SkillRequired:Tailoring=4,
-		Category:Tailoring,
-		CanBeDoneFromFloor:FALSE,
-    Prop1:Source=3,
-    StopOnWalk:true,
-    StopOnRun:true,
-    NeedToBeLearn:true,
-  }
-  /* Not working as expected
-  recipe Make_Tactical_Boxers {
-    destroy Boxers_White/Boxers_Silk_Black/Boxers_Silk_Red/Boxers_RedStripes/Boxers_Hearts,
-    destroy CreditCard,
-    destroy DenimStrips/LeatherStrips/RippedSheets,
-    Thread=0.1, 
-    keep [Recipe.GetItemTypes.SewingNeedle],
-    
-    Result:Tactical_Boxers,
-		AnimNode:Craft,
-		Time:200.0,
-    SkillRequired:Tailoring=4,
-		Category:Tailoring,
-		CanBeDoneFromFloor: FALSE,
-    Prop1:Source=5,
-    StopOnWalk:true,
-    StopOnRun:true,
-    NeedToBeLearn:true,  
-  }
-  
-  recipe Make_Tactical_Briefs {
-    destroy Briefs_White/Briefs_AnimalPrints,
-    destroy CreditCard,
-    destroy DenimStrips/LeatherStrips/RippedSheets,
-    Thread=0.1, 
-    keep [Recipe.GetItemTypes.SewingNeedle],
-    
-    Result:Tactical_Briefs,
-		AnimNode:Craft,
-		Time:200.0,
-    SkillRequired:Tailoring=4,
-		Category:Tailoring,
-		CanBeDoneFromFloor: FALSE,
-    Prop1:Source=5,
-    StopOnWalk:true,
-    StopOnRun:true,
-    NeedToBeLearn:true,  
-  }
-    
-  recipe Make_Tactical_Trunks {
-    destroy Briefs_SmallTrunks_WhiteTINT/Briefs_SmallTrunks_Black/Briefs_SmallTrunks_Blue/Briefs_SmallTrunks_Red,
-    destroy CreditCard,
-    destroy DenimStrips/LeatherStrips/RippedSheets,
-    Thread=0.1, 
-    keep [Recipe.GetItemTypes.SewingNeedle],
-    
-    Result:Tactical_Trunks,
-		AnimNode:Craft,
-		Time:200.0,
-    SkillRequired:Tailoring=4,
-		Category:Tailoring,
-		CanBeDoneFromFloor: FALSE,
-    Prop1:Source=5,
-    StopOnWalk:true,
-    StopOnRun:true,
-    NeedToBeLearn:true,  
-  }
-  
-  recipe Make_Tactical_Underpants {
-    destroy Underpants_White/Underpants_Black/FrillyUnderpants_Black/FrillyUnderpants_Pink/FrillyUnderpants_Red/Underpants_RedSpots/Underpants_AnimalPrint,
-    destroy CreditCard,
-    destroy DenimStrips/LeatherStrips/RippedSheets,
-    Thread=0.1, 
-    keep [Recipe.GetItemTypes.SewingNeedle],
-    
-    Result:Tactical_Underpants,
-		AnimNode:Craft,
-		Time:200.0,
-    SkillRequired:Tailoring=4,
-		Category:Tailoring,
-		CanBeDoneFromFloor: FALSE,
-    Prop1:Source=5,
-    StopOnWalk:true,
-    StopOnRun:true,
-    NeedToBeLearn:true,  
-  } */
   
   recipe Make_Tomato_Jam {
     destroy TinCanEmpty=3,
@@ -422,16 +315,16 @@ module Base {
     [Recipe.GetItemTypes.Sugar];2,
     keep [Recipe.GetItemTypes.SharpKnife],
 
-    Result:RawTomatoJam,
-    Time:100.0,
-    Category:Cooking,
-    Sound:SliceMeat,
-    NeedToBeLearn:true,  
-    Prop1:WaterPot,
-    Prop2:Source=5,
-    StopOnWalk:true,
-    StopOnRun:true,
-    AnimNode:Craft,
+    Result        : RawTomatoJam,
+    Time          : 100.0,
+    Category      : Cooking,
+    Sound         : SliceMeat,
+    NeedToBeLearn : true,  
+    Prop1         : WaterPot,
+    Prop2         : Source=5,
+    StopOnWalk    : true,
+    StopOnRun     : true,
+    AnimNode      : Craft,
   }
   
   recipe Make_Strawberry_Jam {
@@ -441,45 +334,46 @@ module Base {
     [Recipe.GetItemTypes.Sugar];2,
     keep [Recipe.GetItemTypes.SharpKnife],
 
-    Result:RawStrawberryJam,
-    Time:100.0,
-    Category:Cooking,
-    Sound:SliceMeat,
-    NeedToBeLearn:true,  
-    Prop1:WaterPot,
-    Prop2:Source=5,
-    StopOnWalk:true,
-    StopOnRun:true,
-    AnimNode:Craft,
+    Result        : RawStrawberryJam,
+    Time          : 100.0,
+    Category      : Cooking,
+    Sound         : SliceMeat,
+    NeedToBeLearn : true,  
+    Prop1         : WaterPot,
+    Prop2         : Source=5,
+    StopOnWalk    : true,
+    StopOnRun     : true,
+    AnimNode      : Craft,
   }
   
   recipe Make_Carrot_Seed_Snack {
     keep Spatula/[Recipe.GetItemTypes.Spoon]/[Recipe.GetItemTypes.Fork],
-    keep Bowl,
+    keep RoastingPan,
     destroy farming.CarrotSeed=20,
-    Butter/Lard/Margarine;15,
+    Butter/Lard/Margarine;2,
     Salt;2,
     
-    Result:CarrotSeedSnack,
-    NeedToBeLearn:true,
-    Time:50.0,
-    Category:Cooking,
-    OnGiveXP:Recipe.OnGiveXP.Cooking10,    
+    Result        : RawCarrotSeedSnack,
+    NeedToBeLearn : true,
+    Time          : 50.0,
+    Category      : Cooking,
+    OnGiveXP      : Recipe.OnGiveXP.Cooking10,    
   }
   
   /** Tinned meats **/
   recipe Make_Canned_Lard_Meat {
-    destroy Rabbitmeat:1/Smallanimalmeat:2/Smallbirdmeat:2/FrogMeat:3,
+    destroy Rabbitmeat/Smallanimalmeat/Smallbirdmeat/FrogMeat,
     destroy TinCanEmpty,
     Salt;1,
     keep [Recipe.GetItemTypes.SharpKnife],
     
-    Result:CannedLardMeat,
-    OnTest:Recipe.OnTest.IsCookedMeat,
-    NeedToBeLearn:true,
-    Time:100.0,
-    Category:Cooking,
-    OnGiveXP:Recipe.OnGiveXP.Cooking10, 
+    Result        : CannedLardMeat,
+    OnTest        : Recipe.OnTest.IsCookedMeat,
+    OnCreate      : Recipe.OnCreate.CompleteLardedMeat,
+    NeedToBeLearn : true,
+    Time          : 100.0,
+    Category      : Cooking,
+    OnGiveXP      : Recipe.OnGiveXP.Cooking10, 
   }
   
   /** Game Meat to jerky (needs code to cure) **/
@@ -488,12 +382,13 @@ module Base {
     Salt;5,
     keep [Recipe.GetItemTypes.SharpKnife],
     
-    Result:RabbitJerky,
-    OnTest:Recipe.OnTest.IsUncookedMeat,
-    NeedToBeLearn:true,
-    Time:100.0,
-    Category:Cooking,
-    OnGiveXP:Recipe.OnGiveXP.Cooking10, 
+    Result        : RabbitJerky,
+    OnTest        : Recipe.OnTest.IsUncookedMeat,
+    OnCreate      : Recipe.OnCreate.CompleteJerkyMeat,
+    NeedToBeLearn : true,
+    Time          : 100.0,
+    Category      : Cooking,
+    OnGiveXP      : Recipe.OnGiveXP.Cooking10, 
   }
   
   recipe Make_Rodent_Jerky {
@@ -501,12 +396,13 @@ module Base {
     Salt;5,
     keep [Recipe.GetItemTypes.SharpKnife],
     
-    Result:RodentJerky,
-    OnTest:Recipe.OnTest.IsUncookedMeat,
-    NeedToBeLearn:true,
-    Time:100.0,
-    Category:Cooking,
-    OnGiveXP:Recipe.OnGiveXP.Cooking10, 
+    Result        : RodentJerky,
+    OnTest        : Recipe.OnTest.IsUncookedMeat,
+    OnCreate      : Recipe.OnCreate.CompleteJerkyMeat,
+    NeedToBeLearn : true,
+    Time          : 100.0,
+    Category      : Cooking,
+    OnGiveXP      : Recipe.OnGiveXP.Cooking10, 
   }
   
   recipe Make_Bird_Jerky {
@@ -514,12 +410,13 @@ module Base {
     Salt;5,
     keep [Recipe.GetItemTypes.SharpKnife],
     
-    Result:BirdJerky,
-    OnTest:Recipe.OnTest.IsUncookedMeat,
-    NeedToBeLearn:true,
-    Time:100.0,
-    Category:Cooking,
-    OnGiveXP:Recipe.OnGiveXP.Cooking10, 
+    Result        : BirdJerky,
+    OnTest        : Recipe.OnTest.IsUncookedMeat,
+    OnCreate      : Recipe.OnCreate.CompleteJerkyMeat,
+    NeedToBeLearn : true,
+    Time          : 100.0,
+    Category      : Cooking,
+    OnGiveXP      : Recipe.OnGiveXP.Cooking10, 
   }
   
   recipe Make_Frog_Jerky {
@@ -527,13 +424,154 @@ module Base {
     Salt;5,
     keep [Recipe.GetItemTypes.SharpKnife],
     
-    Result:FrogJerky,
-    OnTest:Recipe.OnTest.IsUncookedMeat,
-    NeedToBeLearn:true,
-    Time:100.0,
-    Category:Cooking,
-    OnGiveXP:Recipe.OnGiveXP.Cooking10, 
+    Result        : FrogJerky,
+    OnTest        : Recipe.OnTest.IsUncookedMeat,
+    OnCreate      : Recipe.OnCreate.CompleteJerkyMeat,
+    NeedToBeLearn : true,
+    Time          : 100.0,
+    Category      : Cooking,
+    OnGiveXP      : Recipe.OnGiveXP.Cooking10, 
   }
   
   /* Roasted Cricket & Grasshopper */
+  
+  /* Overrides and additions */
+  /* Adding to Machines */
+  recipe Compact Barrel {
+    Moveables.industry_01_22/Moveables.industry_01_23,
+    
+    Result             : SheetMetal=2,
+    NearItem           : HydraulicPress,
+    Time               : 400,
+    Category           : Press,
+    Sound              : Press,
+    CanBeDoneFromFloor : TRUE,
+    Override           : true,
+  }
+  
+  recipe Compact Normal Gas Tanks {
+    NormalGasTank1/NormalGasTank2/NormalGasTank3,
+    
+    NearItem           : HydraulicPress,
+    Result             : SheetMetal=2,
+    Time               : 200,
+    Category           : Press,
+    Sound              : Press,
+    CanBeDoneFromFloor : TRUE,
+  }
+  
+  recipe Compact Small Gas Tanks {
+    SmallGasTank1/SmallGasTank2/SmallGasTank3,
+    
+    NearItem           : HydraulicPress,
+    Result             : SheetMetal=1,
+    Time               : 100,
+    Category           : Press,
+    Sound              : Press,
+    CanBeDoneFromFloor : TRUE,
+  }
+  
+  recipe Compact Hood Lid {
+    EngineDoor1/EngineDoor2/EngineDoor3,
+    
+    NearItem           : HydraulicPress,
+    Result             : SheetMetal=2,
+    Time               : 200,
+    Category           : Press,
+    Sound              : Press,
+    CanBeDoneFromFloor : TRUE,
+  }
+  
+  recipe Compact Trunk Door {
+    TrunkDoor1/TrunkDoor2/TrunkDoor3,
+    
+    NearItem           : HydraulicPress,
+    Result             : SheetMetal=2,
+    Time               : 200,
+    Category           : Press,
+    Sound              : Press,
+    CanBeDoneFromFloor : TRUE,
+  }
+  
+  recipe Cut Metal Pipe {
+    NormalSuspension1/NormalSuspension2/ModernSuspension1/ModernSuspension2,
+    NearItem           : MetalCutter,
+    Result             : MetalPipe=3,
+    Time               : 160,
+    Category           : MetalCutting,
+    SkillRequired      : MetalWelding=2,
+    Sound              : weldingmachine,
+    CanBeDoneFromFloor : TRUE,
+  }
+  
+  recipe Cut Metal Bar {
+    NormalSuspension1/NormalSuspension2/ModernSuspension1/ModernSuspension2,
+    NearItem           : MetalCutter,
+    Result             : MetalBar=3,
+    Time               : 160,
+    Category           : MetalCutting,
+    SkillRequired      : MetalWelding=2,
+    Sound              : weldingmachine,
+    CanBeDoneFromFloor : TRUE,
+  }  
+  
+  recipe Cut Scrap Metal {
+    OldBrake1/OldBrake2/OldBrake3/NormalBrake1/NormalBrake2/NormalBrake3/ModernBrake1/ModernBrake2/ModernBrake3,
+    NearItem           : MetalCutter,
+    Result             : ScrapMetal=5,
+    Time               : 160,
+    Category           : MetalCutting,
+    SkillRequired      : MetalWelding=2,
+    Sound              : weldingmachine,
+    CanBeDoneFromFloor : TRUE,
+  }
+  
+  recipe Compact Muffler {
+    destroy OldCarMuffler1/OldCarMuffler2/OldCarMuffler3/NormalCarMuffler1/NormalCarMuffler2/NormalCarMuffler3/ModernCarMuffler1/ModernCarMuffler2/ModernCarMuffler3,
+    
+    NearItem           : HydraulicPress,
+    Result             : SheetMetal=2,
+    Time               : 200,
+    Category           : Press,
+    Sound              : Press,
+    CanBeDoneFromFloor : TRUE,
+  } 
+  
+  recipe Dismantle Car Seat {
+    destroy NormalCarSeat1/NormalCarSeat2/NormalCarSeat3,
+    NearItem           : MetalCutter,
+    Result             : MetalBar=4,
+    Time               : 200,
+    Category           : MetalCutting,
+    SkillRequired      : MetalWelding=2,
+    Sound              : weldingmachine,
+    CanBeDoneFromFloor : TRUE,
+    OnCreate           : Recipe.OnCreate.DismantleSeat,
+  }
+  
+  recipe Make Drum from Barrel {
+    destroy Moveables.industry_01_22/Moveables.industry_01_23,
+    
+    Result             : Moveables.crafted_01_24,
+    NearItem           : MetalCutter,
+    Time               : 400,
+    Category           : MetalCutting,
+    Sound              : weldingmachine,
+    CanBeDoneFromFloor : TRUE,
+    Override           : true,
+  }
+  
+  recipe Forge Scrap Metal into Small Metal Sheet {
+    destroy ScrapMetal,
+    Charcoal=1,
+    
+    NearItem           : Furnace,
+    SkillRequired      : MetalWelding=5,
+    AllowDestroyedItem : true,
+    Category           : WeaponForge,
+    Result             : SmallSheetMetal=2,
+    Time               : 260,
+    Sound              : Forging,
+    CanBeDoneFromFloor : TRUE,
+  }
 }

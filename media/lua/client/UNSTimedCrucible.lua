@@ -18,7 +18,6 @@ UNSTimedCrucible.DEBUG.trace = false -- true
 
 -- Trigger every game update when the action is perform
 function UNSTimedCrucible:update() 
-    -- print("Action is update");
 end
 
 -- Wait until return false
@@ -68,7 +67,6 @@ end
 
 
 function UNSTimedCrucible:isValid()
-  -- print("isValid")
   return true
 end
 
@@ -128,6 +126,7 @@ function UNSTimedCrucible:perform()
       local newItemName = UNSMenuAmmo.TYPE_OF_CRUCIBLES[self.which]
       newItem = InventoryItemFactory.CreateItem(newItemName)
       if newItem then
+        -- Todo check if mug is in inventory or on the ground
         self.character:getInventory():Remove(self.item)
         self.character:getInventory():AddItem(newItem)
       else

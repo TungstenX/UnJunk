@@ -111,14 +111,10 @@ end
 
 UNSMenu.OnFillWorldObjectContextMenuBypass = function(playerSup, context, worldobjects, test)
   if not SandboxVars.UnJunk.Bypass then return end
-
-  local player = getSpecificPlayer(playerSup)
-    
+  local player = getSpecificPlayer(playerSup)    
   if player:getVehicle() then return end
-
   local playerInv =  player:getInventory()
   local bypassKey = getBypassKey(playerInv)
-
   if not bypassKey then return end
 
   local lockedObject = nil
@@ -154,9 +150,8 @@ UNSMenu.OnFillWorldObjectContextMenuBypass = function(playerSup, context, worldo
 		if instanceof(lockedObject, "IsoDoor") and lockedObject:isBarricaded() == false and lockedObject:isLocked() == true and lockedObject:getKeyId() ~= 0x0BADDEAD then
       context:addOptionOnTop(getText("ContextMenu_Use_Skelenton"), worldobjects, UNSMenu.bypassDoor, lockedObject,  player, bypassKey)
 		end
-	end
+  end
 end
-
 Events.OnFillWorldObjectContextMenu.Add(UNSMenu.OnFillWorldObjectContextMenuBypass)
 
 

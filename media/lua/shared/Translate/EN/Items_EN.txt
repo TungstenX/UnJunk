@@ -18,7 +18,8 @@ Items_EN = {
   DisplayNameTacticalGrannyMag1             = "The Tactical Granny Magazine vol 1",  
   DisplayNameTacticalGrannyMag2             = "The Tactical Granny Magazine vol 2",
   DisplayNameKentuckyAppalachianCookingMag1 = "Kentucky Appalachian Cooking Magazine Vol. 1",
-  DisplayNameKentuckyAppalachianCookingMag2 = "Kentucky Appalachian Cooking Magazine Vol. 2",
+  DisplayNameKentuckyAppalachianCookingMag2 = "Kentucky Appalachian Cooking Magazine Vol. 2",  
+  DisplayNameTweakingTimmyMag1              = "Tweaking with Timmy Magazine vol 1",
   DisplayNamePotOfSurvivalStew              = "Pot of Survival Stew",
   DisplayNameStrawberryJam                  = "Strawberry Jam",
   DisplayNameTomatoJam                      = "Tomato Jam",
@@ -44,6 +45,6 @@ Items_EN = {
   DisplayNameCrucible45                     = "Crucible mold 45-cal",
   DisplayNameCrucible50                     = "Crucible mold 50-cal",
   DisplayNameCrucible00Buck                 = "Crucible mold Buckshot",
-  JerkyWet                                  = "Wet",
+  JerkyWet                                  = "Wet ☠",
   JerkyDry                                  = "Dry",
 }

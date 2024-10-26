@@ -99,18 +99,10 @@ function UNSMenuAmmo.useMaterial(player, material, amount)
   local typeMaterial = string.split(material, '\\.')[2]
   if tonumber(amount) > 0 then
     local item = inv:getFirstTypeRecurse(typeMaterial)
-    print("typeMaterial: " .. typeMaterial)
-    print("amount:       " .. tostring(amount))
-    print("item:         " .. tostring(item))
     if item and instanceof(item, "DrainableComboItem") then
-      print("DrainableComboItem type:                  " .. tostring(item:getType()))
-      print("DrainableComboItem IsDrainable:           " .. tostring(item:IsDrainable()))
-      print("DrainableComboItem getDrainableUsesFloat: " .. tostring(item:getDrainableUsesFloat()))
-      --print("DrainableComboItem IsDrainable(): " .. tostring(item:IsDrainable()()))
       item:Use()
       return true
-    elseif item then      
-      print("item type:    " .. tostring(item:getType()))
+    elseif item then
       inv:Remove(item)
       return true
     end
@@ -144,12 +136,6 @@ function UNSMenuAmmo.tooltipCheckForMaterial(player, material, amount, tooltip)
   end
 end
 
-UNSMenuAmmo.castProjectile = function(worldobjects, player, item)
-  print(tostring(worldobjects))
-  print(tostring(player))
-  print(tostring(item))
-end
-
 UNSMenuAmmo.makeCrucible = function(mug, playerIndex, which)
   local player = getSpecificPlayer(playerIndex)
   ISTimedActionQueue.add(UNSTimedCrucible:new(player, mug, which, 50))  
@@ -162,15 +148,12 @@ function UNSMenuAmmo.tooltipCheckForTool(player, tool, tooltip)
     return true
   else
     for _, toolTypes in pairs(UNSTools.TOOLS[tool]) do
-      --for k, v in pairs(toolTypes) do
-      --  print(tostring(k) .. "] " .. tostring(v))
-      --end
       local toolsRequired = ""
       local count = 0
       if toolTypes then
         for _, toolType in pairs(toolTypes) do
           if count > 1 then
-            toolsRequired = toolsRequired + " / "
+            toolsRequired = toolsRequired .. " / "
           end
           count = count + 1
           toolsRequired = toolsRequired .. getItemNameFromFullType(toolType)
@@ -272,16 +255,13 @@ function UNSMenuAmmo.testOrUse(character, hasWater, tooltip)
         end
       elseif currentMaterial.Consumable and currentMaterial.Amount then
         if currentMaterial.Consumable == 'Base.Water' then
-          print("checking water")
           if hasWater then
-            print("mug got water already")
             if tooltip then
               local usesText = " (uses)" -- TODO: Translate
               tooltip.description = tooltip.description .. ' <RGB:0,1,0>H2O 1/' .. currentMaterial.Amount .. usesText .. ' <LINE>'
             end
             currentResult = true
           else
-            print("have to use water")
             if tooltip then
               currentResult = UNSMenuAmmo.tooltipCheckForWater(character, currentMaterial.Amount, tooltip)
             else
@@ -365,7 +345,6 @@ function UNSMenuAmmo.canBuildObject(skills, option, player, mugInfo)
   return tooltip
 end
 
-
 function UNSMenuAmmo.mugMenuBuilder(subMenu, playerNum, player, mug, mugInfo)
   local option
   local tooltip
@@ -381,6 +360,72 @@ function UNSMenuAmmo.mugMenuBuilder(subMenu, playerNum, player, mug, mugInfo)
   end
 end  
 
+local function isInSameRoom(isoRoom1, isoRoom2)
+  if isoRoom1 == nil and isoRoom2 == nil then
+    return true
+  elseif isoRoom1 ~= nil and isoRoom2 ~= nil and isoRoom1:getName() == isoRoom2:getName() then
+    return true
+  else
+    return false
+  end
+end
+
+function UNSMenuAmmo.isNearSprite(player, spriteNames)
+  local sq0 = player:getCurrentSquare()
+  local playerRoom = sq0:getRoom()
+  local squares = {
+    sq0,
+    getSquare(sq0:getX() + 1, sq0:getY() + 1, sq0:getZ()),
+    getSquare(sq0:getX() + 1, sq0:getY(), sq0:getZ()),
+    getSquare(sq0:getX() + 1, sq0:getY() - 1, sq0:getZ()),
+    getSquare(sq0:getX(), sq0:getY() - 1, sq0:getZ()),
+    getSquare(sq0:getX() - 1, sq0:getY() - 1, sq0:getZ()),    
+    getSquare(sq0:getX() - 1, sq0:getY(), sq0:getZ()),
+    getSquare(sq0:getX() - 1, sq0:getY() + 1, sq0:getZ()),
+    getSquare(sq0:getX(), sq0:getY() + 1, sq0:getZ()),
+  }
+  
+  for _, square in pairs(squares) do
+    local isoRoom = square:getRoom()
+    if isInSameRoom(playerRoom, isoRoom) then 
+      local objects = square:getObjects()
+      local size = objects:size()
+      for i = 0, size - 1 do
+        local object = objects:get(i)
+        local sprite = object:getSprite()
+        if sprite then
+          for _, sprintName in pairs(spriteNames) do
+            if sprintName == sprite:getName() then
+              return object
+            end
+          end
+        end
+      end
+    end
+  end  
+end
+
+function UNSMenuAmmo.metlToScrap(items, charcoalItems, object, player)
+  local numberOfItems = #items
+  local numberOfCharoal = charcoalItems:size()
+  if numberOfItems > numberOfCharoal then
+    numberOfItems = numberOfCharoal
+  end
+  
+  local index = 0
+  for _, item in pairs(items) do
+    if index == numberOfItems then
+      break
+    end
+    local charcoal = charcoalItems:get(index)
+    ISTimedActionQueue.add(UNSTimedMelting:new(player, item, charcoal, object, 200)) 
+  end
+end
+
+function UNSMenuAmmo.getCharcoal(player)
+  local inv = player:getInventory()
+  return inv:getAllTypeRecurse("Charcoal")
+end
 
 UNSMenuAmmo.OnFillInventoryObjectContextMenu = function(playerIndex, context, items)
   local player = getSpecificPlayer(playerIndex)
@@ -391,9 +436,9 @@ UNSMenuAmmo.OnFillInventoryObjectContextMenu = function(playerIndex, context, it
   local crucible = nil
   local calibre = nil
   local mug = nil
-  local mugInfo = nil
-  
+  local mugInfo = nil  
   local tempItem = nil
+  local metalicItems = {}
 
   for _,v in ipairs(items) do
     if not instanceof(v, "InventoryItem") then
@@ -413,6 +458,9 @@ UNSMenuAmmo.OnFillInventoryObjectContextMenu = function(playerIndex, context, it
       elseif mugInfo ~= nil then
         mug = tempItem
       end
+      if tempItem:getMetalValue() > 0.0 then
+        table.insert(metalicItems, tempItem)
+      end
     end
   end
 
@@ -429,6 +477,21 @@ UNSMenuAmmo.OnFillInventoryObjectContextMenu = function(playerIndex, context, it
     local subMenu = ISContextMenu:getNew(context)
     context:addSubMenu(menu, subMenu)
     UNSMenuAmmo.mugMenuBuilder(subMenu, playerIndex, player, mug, mugInfo)		
+  end
+  
+  if #metalicItems > 0 then
+    -- scan tiles around player for machine_20
+    local object = UNSMenuAmmo.isNearSprite(player, {"machinestile_20", "machinestile_21"})
+    if object then
+      local which = getText("ContextMenu_MeltItemToScrap")
+      if #metalicItems > 1 then
+        which = getText("ContextMenu_MeltItemsToScrap") .. " (" .. tostring(#metalicItem) .. ")"
+      end
+      local charcoalItems = UNSMenuAmmo.getCharcoal(player)
+      if charcoalItems and charcoalItems:size() > 0 then
+        context:addOption(which, metalicItems, UNSMenuAmmo.metlToScrap, charcoalItems, object, player)
+      end
+    end
   end
 
   return context

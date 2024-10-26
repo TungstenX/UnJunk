@@ -1,0 +1,143 @@
+/*
+┌────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ _/_/_/_/_/  _/    _/  _/      _/    _/_/_/    _/_/_/  _/_/_/_/_/  _/_/_/_/  _/      _/  _/      _/ │    
+│    _/      _/    _/  _/_/    _/  _/        _/            _/      _/        _/_/    _/    _/  _/    │   
+│   _/      _/    _/  _/  _/  _/  _/  _/_/    _/_/        _/      _/_/_/    _/  _/  _/      _/       │   
+│  _/      _/    _/  _/    _/_/  _/    _/        _/      _/      _/        _/    _/_/    _/  _/      │   
+│ _/        _/_/    _/      _/    _/_/_/  _/_/_/        _/      _/_/_/_/  _/      _/  _/      _/     │   
+├────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ © Copyright 2024                                                                                   │ 
+└────────────────────────────────────────────────────────────────────────────────────────────────────┘
+The Tactical Granny recipes
+*/
+
+module Base {
+  
+  recipe Knit_a_Scarf {
+    destroy Yarn,
+    keep KnittingNeedles,
+    
+    Result             : Scarf_StripeRedWhite,
+		AnimNode           : Craft,
+		Time               : 200.0,
+    SkillRequired      : Tailoring=4,
+		Category           : Tailoring,
+		CanBeDoneFromFloor : FALSE,
+    Prop1              : KnittingNeedles,
+    StopOnWalk         : true,
+    StopOnRun          : true,
+    NeedToBeLearn      : true,
+  }
+  
+  recipe Make_a_Scarf {
+    destroy DishCloth=3,
+    Thread=0.1, 
+    keep [Recipe.GetItemTypes.SewingNeedle],
+    
+    Result             : Scarf_White,
+		AnimNode           : Craft,
+		Time               : 200.0,
+    SkillRequired      : Tailoring=4,
+		Category           : Tailoring,
+		CanBeDoneFromFloor : FALSE,
+    Prop1              : Source=3,
+    StopOnWalk         : true,
+    StopOnRun          : true,
+    NeedToBeLearn      : true,
+  }
+  
+  recipe Make_a_Poncho {
+    destroy Tarp,
+    Thread=0.1, 
+    keep [Recipe.GetItemTypes.SewingNeedle],
+    keep [Recipe.GetItemTypes.Scissors]/[Recipe.GetItemTypes.SharpKnife],
+    
+    Result             : PonchoYellow,
+		AnimNode           : Craft,
+		Time               : 200.0,
+    SkillRequired      : Tailoring=4,
+		Category           : Tailoring,
+		CanBeDoneFromFloor : FALSE,
+    Prop1              : Source=3,
+    StopOnWalk         : true,
+    StopOnRun          : true,
+    NeedToBeLearn      : true,
+  }
+  
+  /* Not working as expected
+  recipe Make_Tactical_Boxers {
+    destroy Boxers_White/Boxers_Silk_Black/Boxers_Silk_Red/Boxers_RedStripes/Boxers_Hearts,
+    destroy CreditCard,
+    destroy DenimStrips/LeatherStrips/RippedSheets,
+    Thread=0.1, 
+    keep [Recipe.GetItemTypes.SewingNeedle],
+    
+    Result:Tactical_Boxers,
+		AnimNode:Craft,
+		Time:200.0,
+    SkillRequired:Tailoring=4,
+		Category:Tailoring,
+		CanBeDoneFromFloor: FALSE,
+    Prop1:Source=5,
+    StopOnWalk:true,
+    StopOnRun:true,
+    NeedToBeLearn:true,  
+  }
+  
+  recipe Make_Tactical_Briefs {
+    destroy Briefs_White/Briefs_AnimalPrints,
+    destroy CreditCard,
+    destroy DenimStrips/LeatherStrips/RippedSheets,
+    Thread=0.1, 
+    keep [Recipe.GetItemTypes.SewingNeedle],
+    
+    Result:Tactical_Briefs,
+		AnimNode:Craft,
+		Time:200.0,
+    SkillRequired:Tailoring=4,
+		Category:Tailoring,
+		CanBeDoneFromFloor: FALSE,
+    Prop1:Source=5,
+    StopOnWalk:true,
+    StopOnRun:true,
+    NeedToBeLearn:true,  
+  }
+    
+  recipe Make_Tactical_Trunks {
+    destroy Briefs_SmallTrunks_WhiteTINT/Briefs_SmallTrunks_Black/Briefs_SmallTrunks_Blue/Briefs_SmallTrunks_Red,
+    destroy CreditCard,
+    destroy DenimStrips/LeatherStrips/RippedSheets,
+    Thread=0.1, 
+    keep [Recipe.GetItemTypes.SewingNeedle],
+    
+    Result:Tactical_Trunks,
+		AnimNode:Craft,
+		Time:200.0,
+    SkillRequired:Tailoring=4,
+		Category:Tailoring,
+		CanBeDoneFromFloor: FALSE,
+    Prop1:Source=5,
+    StopOnWalk:true,
+    StopOnRun:true,
+    NeedToBeLearn:true,  
+  }
+  
+  recipe Make_Tactical_Underpants {
+    destroy Underpants_White/Underpants_Black/FrillyUnderpants_Black/FrillyUnderpants_Pink/FrillyUnderpants_Red/Underpants_RedSpots/Underpants_AnimalPrint,
+    destroy CreditCard,
+    destroy DenimStrips/LeatherStrips/RippedSheets,
+    Thread=0.1, 
+    keep [Recipe.GetItemTypes.SewingNeedle],
+    
+    Result             : Tactical_Underpants,
+		AnimNode           : Craft,
+		Time               : 200.0,
+    SkillRequired      : Tailoring=4,
+		Category           : Tailoring,
+		CanBeDoneFromFloor : FALSE,
+    Prop1              : Source=5,
+    StopOnWalk         : true,
+    StopOnRun          : true,
+    NeedToBeLearn      : true,  
+  } */
+}
