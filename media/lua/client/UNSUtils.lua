@@ -144,3 +144,38 @@ function UNSUtils.dumpTable(o)
     return tostring(o)
   end
 end
+
+function UNSUtils.printTable(t, level)
+  if level >= 3 then
+    return
+  end
+  local msg = ""
+  local indent = ""
+  for i = 0, level do
+    indent = indent .. "  "
+  end
+  msg = msg .. "\n" .. indent
+  msg = msg .. "[TABLE BEGIN]"
+  for k, v in pairs(t) do
+    if type(v) == "table" then
+      msg = msg .. "\n" .. indent
+      msg = msg .. "[" .. tostring(k) .. "] (" .. type(v) .. ")"
+      local nextLevel = level + 1
+      UNSMenuLightBulb.printTable(v, nextLevel)
+    else
+      msg = msg .. "\n" .. indent
+      msg = msg .. "[" .. tostring(k) .. "] (" .. type(v) .. ") " .. tostring(v)
+    end
+  end
+  msg = msg .. "\n" .. indent
+  msg = msg .. "[TABLE END]"
+  print(msg)
+end
+
+
+function UNSUtils.startsWith(needle, haystack)
+  if needle == nil or haystack == nil then
+    return false
+  end
+ return string.sub(haystack, 1, string.len(needle)) == needle
+end

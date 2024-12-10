@@ -440,7 +440,7 @@ UNSMenuAmmo.OnFillInventoryObjectContextMenu = function(playerIndex, context, it
   local tempItem = nil
   local metalicItems = {}
 
-  for _,v in ipairs(items) do
+  for k, v in ipairs(items) do
     if not instanceof(v, "InventoryItem") then
       if #v.items == 2 then
         tempItem = v.items[1]

@@ -161,19 +161,6 @@ module Base {
     WorldStaticModel = MagazineEngi1Ground,
   }
   
- /* item TacticalGrannyMag2 {
-    DisplayCategory  = SkillBook,
-    Weight           = 0.1,
-    Type             = Literature,
-    DisplayName      = The Tactical Granny Magazine Vol. 2,
-    Icon             = TacticalGrannyMag1,
-    TeachedRecipes   = Make_Tactical_Boxers,Make_Tactical_Briefs,Make_Tactical_Trunks,Make_Tactical_Underpants,
-    Tooltip          = Tooltip_item_TacticalGrannyMag,
-    ReplaceOnUse     = TacticalGranny2,
-    StaticModel      = Magazine,
-    WorldStaticModel = MagazineEngi1Ground,
-  }*/
-  
   /* Overwrite items */
   /* Spices */
   item BouillonCube {

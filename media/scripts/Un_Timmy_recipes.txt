@@ -23,7 +23,7 @@ module Base {
     destroy Razor,
     destroy RubberBand=2,
     destroy Staples,
-    keep    Screwdriver,
+    keep Screwdriver,
 
     Result             : CarBatteryCharger,
     Sound              : TelevisionZap,
