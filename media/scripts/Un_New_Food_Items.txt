@@ -331,7 +331,7 @@ item PotOfSurvivalStew {
     CustomContextMenu = Drink,
     CustomEatSound    = DrinkingFromBottleGlass,
     StaticModel       = WhiteWineBottle,
-    WorldStaticModel  = WineWhiteGround,    `
+    WorldStaticModel  = WineWhiteGround,    
   }
   
   item OpenWineRotten2 {
@@ -353,7 +353,7 @@ item PotOfSurvivalStew {
     CustomContextMenu = Drink,
     CustomEatSound    = DrinkingFromBottleGlass,
     StaticModel       = WhiteWineBottle,
-    WorldStaticModel  = WineWhiteGround,    `
+    WorldStaticModel  = WineWhiteGround,
   }
     
   item CarrotSeedSnack {

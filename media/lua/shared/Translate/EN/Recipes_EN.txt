@@ -55,4 +55,5 @@ Recipes_EN = {
   Make_Bird_Jerky              = "Make bird jerky",
   Make_Frog_Jerky              = "Make frog jerky",  
   Make_a_Poncho                = "Make a poncho",
+  Craft_Car_Battery_Charger    = "Craft a car battery charger",
 }

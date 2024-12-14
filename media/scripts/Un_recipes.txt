@@ -446,6 +446,7 @@ module Base {
     Category           : Press,
     Sound              : Press,
     CanBeDoneFromFloor : TRUE,
+    AllowDestroyedItem : true,
     Override           : true,
   }
   
@@ -457,6 +458,7 @@ module Base {
     Time               : 200,
     Category           : Press,
     Sound              : Press,
+    AllowDestroyedItem : true,
     CanBeDoneFromFloor : TRUE,
   }
   
@@ -468,6 +470,7 @@ module Base {
     Time               : 100,
     Category           : Press,
     Sound              : Press,
+    AllowDestroyedItem : true,
     CanBeDoneFromFloor : TRUE,
   }
   
@@ -479,6 +482,7 @@ module Base {
     Time               : 200,
     Category           : Press,
     Sound              : Press,
+    AllowDestroyedItem : true,
     CanBeDoneFromFloor : TRUE,
   }
   
@@ -490,6 +494,7 @@ module Base {
     Time               : 200,
     Category           : Press,
     Sound              : Press,
+    AllowDestroyedItem : true,
     CanBeDoneFromFloor : TRUE,
   }
   
@@ -501,6 +506,7 @@ module Base {
     Category           : MetalCutting,
     SkillRequired      : MetalWelding=2,
     Sound              : weldingmachine,
+    AllowDestroyedItem : true,
     CanBeDoneFromFloor : TRUE,
   }
   
@@ -512,6 +518,7 @@ module Base {
     Category           : MetalCutting,
     SkillRequired      : MetalWelding=2,
     Sound              : weldingmachine,
+    AllowDestroyedItem : true,
     CanBeDoneFromFloor : TRUE,
   }  
   
@@ -522,7 +529,8 @@ module Base {
     Time               : 160,
     Category           : MetalCutting,
     SkillRequired      : MetalWelding=2,
-    Sound              : weldingmachine,
+    Sound              : weldingmachine,    
+    AllowDestroyedItem : true,
     CanBeDoneFromFloor : TRUE,
   }
   
@@ -534,6 +542,7 @@ module Base {
     Time               : 200,
     Category           : Press,
     Sound              : Press,
+    AllowDestroyedItem : true,
     CanBeDoneFromFloor : TRUE,
   } 
   
@@ -545,6 +554,7 @@ module Base {
     Category           : MetalCutting,
     SkillRequired      : MetalWelding=2,
     Sound              : weldingmachine,
+    AllowDestroyedItem : true,
     CanBeDoneFromFloor : TRUE,
     OnCreate           : Recipe.OnCreate.DismantleSeat,
   }
@@ -559,6 +569,8 @@ module Base {
     Sound              : weldingmachine,
     CanBeDoneFromFloor : TRUE,
     Override           : true,
+    OnCreate           : Recipe.OnCreate.CompleteDrumCut,
+    RemoveResultItem   : true,
   }
   
   recipe Forge Scrap Metal into Small Metal Sheet {

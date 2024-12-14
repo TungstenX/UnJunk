@@ -144,3 +144,58 @@ function Recipe.OnCreate.DismantleSeat(items, result, player)
   player:getInventory():AddItems("Base.SmallSheetMetal", 2)
   player:getInventory():AddItems("Base.Screws", 7)
 end
+
+function Recipe.OnCreate.CompleteDrumCut(items, result, player)
+  -- remove from inventory
+  local constainer = result:getContainer()
+  if UNSRecipeCode.LOG.debug then
+    print("CompleteDrumCut called")
+  end
+    
+  local sq = player:getCurrentSquare()
+  local spriteName = "crafted_01_24"
+  local modData = {}
+	modData["haveCharcoal"] = false
+	modData["haveLogs"] = false
+	modData["isLit"] = false
+	modData["waterAmount"] = 0.0
+	modData["waterMax"] = 800
+	modData["taintedWater"] = false
+
+	local cell = getWorld():getCell()
+	local north = false
+	local metalDrum = IsoThumpable.new(cell, sq, spriteName, north, modData)
+
+	metalDrum:setCanPassThrough(false)
+	metalDrum:setCanBarricade(false)
+	metalDrum:setThumpDmg(8)
+	metalDrum:setIsContainer(false)
+	metalDrum:setIsDoor(false)
+	metalDrum:setIsDoorFrame(false)
+	metalDrum:setCrossSpeed(1.0)
+	metalDrum:setBlockAllTheSquare(true)
+	metalDrum:setName("MetalDrum")
+	metalDrum:setIsDismantable(true)
+	metalDrum:setCanBePlastered(false)
+	metalDrum:setIsHoppable(false)
+	metalDrum:setIsThumpable(true)
+	metalDrum:setModData(copyTable(modData))
+	metalDrum:setMaxHealth(200)
+	metalDrum:setHealth(200)
+	metalDrum:setBreakSound("BreakObject")
+	metalDrum:setSpecialTooltip(true)
+
+	metalDrum:setWaterAmount(0.0)
+
+	sq:AddSpecialObject(metalDrum, 1)
+	metalDrum:transmitCompleteItemToClients()
+
+  if isClient() then metalDrum:transmitCompleteItemToServer() end
+  -- for RainCollectorBarrel in singleplayer
+  triggerEvent("OnObjectAdded", metalDrum) 
+  getTileOverlays():fixTableTopOverlays(sq)
+  sq:RecalcProperties()
+  sq:RecalcAllWithNeighbours(true)
+  triggerEvent("OnContainerUpdate")
+  IsoGenerator.updateGenerator(sq)
+end
